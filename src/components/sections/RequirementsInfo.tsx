@@ -2,7 +2,7 @@ export default function RequirementsInfo() {
   const styles = {
     container: {
       minHeight: '100vh',
-      background: '#f5f5f5',
+      // background: '#f5f5f5',
       padding: '40px 20px',
       fontFamily: "'Times New Roman', serif"
     },
