@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useAppDispatch } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
 
 export default function OwnerOperatorAgreement() {
