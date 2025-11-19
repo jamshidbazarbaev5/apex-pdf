@@ -3,7 +3,6 @@ import { updateFormData } from "@/store/formSlice";
 
 export default function OwnerOperatorAgreement() {
   const dispatch = useAppDispatch();
-  // const formData = useAppSelector((state) => state.form);
 
   const handleChange = (field: string, value: string) => {
     dispatch(updateFormData({ [field]: value }));
@@ -12,108 +11,119 @@ export default function OwnerOperatorAgreement() {
   const styles = {
     container: {
       minHeight: "100vh",
-      padding: "40px 20px",
+      padding: "20px",
       fontFamily: "'Times New Roman', Times, serif",
-      backgroundColor: "#f5f5f5",
+      backgroundColor: "#ffffff",
       WebkitFontSmoothing: "antialiased" as const,
       MozOsxFontSmoothing: "grayscale" as const,
     },
     page: {
-      maxWidth: "850px",
+      maxWidth: "8.5in",
+      width: "100%",
       margin: "0 auto 40px",
       background: "white",
-      padding: "60px 80px",
-      boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+      padding: "1in",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
       position: "relative" as const,
+      boxSizing: "border-box" as const,
     },
     header: {
       textAlign: "center" as const,
-      marginBottom: "50px",
+      marginBottom: "40px",
     },
     companyName: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "24px",
-      marginBottom: "15px",
-      letterSpacing: "1px",
+      fontSize: "20px",
+      marginBottom: "8px",
+      letterSpacing: "0.5px",
     },
     companyInfo: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "18px",
-      marginBottom: "10px",
-      letterSpacing: "0.5px",
+      fontSize: "16px",
+      marginBottom: "8px",
+      letterSpacing: "0.3px",
     },
     title: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "18px",
-      marginTop: "25px",
-      marginBottom: "30px",
+      fontSize: "16px",
+      marginTop: "20px",
+      marginBottom: "40px",
       letterSpacing: "0.5px",
     },
     sectionTitle: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "16px",
+      fontSize: "14px",
       marginTop: "40px",
       marginBottom: "25px",
       letterSpacing: "0.5px",
       textAlign: "center" as const,
     },
     paragraph: {
-      fontSize: "13px",
-      lineHeight: "1.8",
+      fontSize: "12px",
+      lineHeight: "1.6",
       textAlign: "justify" as const,
-      marginBottom: "20px",
+      marginBottom: "16px",
       color: "#000",
-      fontWeight: "500" as const,
+      fontWeight: "400" as const,
     },
     agreementText: {
-      fontSize: "13px",
-      lineHeight: "1.8",
-      marginBottom: "25px",
+      fontSize: "12px",
+      lineHeight: "1.6",
+      marginBottom: "16px",
       color: "#000",
-      fontWeight: "500" as const,
+      fontWeight: "400" as const,
     },
     input: {
       border: "none",
-      borderBottom: "1.5px solid #000",
+      borderBottom: "1px solid #000",
       outline: "none",
-      fontSize: "13px",
+      fontSize: "12px",
       color: "#000",
-      padding: "2px 5px",
+      padding: "0 4px 2px 4px",
       background: "transparent",
       fontFamily: "'Times New Roman', Times, serif",
-      fontWeight: "500" as const,
-      minWidth: "100px",
+      fontWeight: "400" as const,
+      minWidth: "80px",
       display: "inline-block",
     },
     bold: {
       fontWeight: "700" as const,
     },
     sectionNumber: {
-      fontWeight: "700" as const,
-      fontSize: "13px",
-      marginTop: "25px",
-      marginBottom: "15px",
+      fontSize: "12px",
+      marginTop: "16px",
+      marginBottom: "16px",
       color: "#000",
+      fontWeight: "400" as const,
+      lineHeight: "1.6",
+      textAlign: "justify" as const,
     },
     sectionContent: {
-      fontSize: "13px",
-      lineHeight: "1.8",
+      fontSize: "12px",
+      lineHeight: "1.6",
       textAlign: "justify" as const,
-      marginBottom: "20px",
+      marginBottom: "16px",
       color: "#000",
-      fontWeight: "500" as const,
-      paddingLeft: "20px",
+      fontWeight: "400" as const,
+      paddingLeft: "0px",
     },
     nowTherefore: {
       fontWeight: "700" as const,
-      fontSize: "13px",
-      marginTop: "30px",
-      marginBottom: "25px",
+      fontSize: "12px",
+      marginTop: "24px",
+      marginBottom: "24px",
       color: "#000",
+    },
+    pageNumber: {
+      textAlign: "center" as const,
+      marginTop: "40px",
+      fontSize: "12px",
+      color: "#000",
+      fontWeight: "400" as const,
     },
     signatureRow: {
       display: "flex",
@@ -123,37 +133,26 @@ export default function OwnerOperatorAgreement() {
       justifyContent: "flex-end",
     },
     signatureLabel: {
-      fontSize: "13px",
-      fontWeight: "500" as const,
+      fontSize: "12px",
+      fontWeight: "400" as const,
       marginRight: "20px",
     },
     signatureInput: {
       border: "none",
-      borderBottom: "1.5px solid #000",
+      borderBottom: "1px solid #000",
       outline: "none",
-      fontSize: "13px",
+      fontSize: "12px",
       color: "#000",
-      padding: "2px 5px",
+      padding: "0 4px 2px 4px",
       background: "transparent",
       fontFamily: "'Times New Roman', Times, serif",
-      fontWeight: "500" as const,
+      fontWeight: "400" as const,
       minWidth: "300px",
-    },
-    pageNumber: {
-      textAlign: "center" as const,
-      marginTop: "50px",
-      fontSize: "13px",
-      color: "#000",
-      fontWeight: "500" as const,
     },
     emailLink: {
       color: "#2563eb",
       textDecoration: "underline",
-      fontWeight: "500" as const,
-    },
-    highlight: {
-      color: "#2563eb",
-      fontWeight: "700" as const,
+      fontWeight: "400" as const,
     },
   };
 
@@ -179,7 +178,7 @@ export default function OwnerOperatorAgreement() {
           , 20
           <input
             type="text"
-            style={{ ...styles.input, minWidth: "40px" }}
+            style={{ ...styles.input, minWidth: "30px" }}
             placeholder="25"
             onChange={(e) => handleChange("agreementYear", e.target.value)}
           />{" "}
@@ -187,7 +186,7 @@ export default function OwnerOperatorAgreement() {
           at 1673 Reed Dr, Krum, TX, 76249) and OWNER-OPERATOR,{" "}
           <input
             type="text"
-            style={{ ...styles.input, minWidth: "200px" }}
+            style={{ ...styles.input, minWidth: "180px" }}
             placeholder="Expect Xpress LLC"
             onChange={(e) =>
               handleChange("agreementOwnerOperator", e.target.value)
@@ -199,7 +198,7 @@ export default function OwnerOperatorAgreement() {
           (located at{" "}
           <input
             type="text"
-            style={{ ...styles.input, minWidth: "300px" }}
+            style={{ ...styles.input, minWidth: "400px" }}
             placeholder="50 Agnes St Ste 205"
             onChange={(e) =>
               handleChange("agreementOwnerAddress", e.target.value)
@@ -322,7 +321,11 @@ export default function OwnerOperatorAgreement() {
         <div style={styles.sectionNumber}>
           <span style={styles.bold}>1.9</span> Empty miles are compensated
           beginning at 100 miles (to be discussed with dispatcher before the
-          pick-up). The Owner-Operator must provide the Company with his actual
+          pick-
+        </div>
+
+        <div style={styles.sectionContent}>
+          up). The Owner-Operator must provide the Company with his actual
           current location in order to calculate
         </div>
 
@@ -678,6 +681,7 @@ export default function OwnerOperatorAgreement() {
             textAlign: "center",
             fontWeight: "700",
             marginTop: "20px",
+            color: "#2563eb",
           }}
         >
           On the BOL, the shipper must also include the phrase "Not driver's
