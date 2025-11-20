@@ -14,7 +14,7 @@ export default function AxperForm() {
       minHeight: "100vh",
       padding: "40px 20px",
       fontFamily: "'Times New Roman', Times, serif",
-      backgroundColor: "#f5f5f5",
+    //   backgroundColor: "#f5f5f5",
       WebkitFontSmoothing: "antialiased" as const,
       MozOsxFontSmoothing: "grayscale" as const,
     },
