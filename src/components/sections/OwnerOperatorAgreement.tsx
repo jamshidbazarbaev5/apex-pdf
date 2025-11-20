@@ -22,35 +22,35 @@ export default function OwnerOperatorAgreement() {
       width: "100%",
       margin: "0 auto 40px",
       background: "white",
-      padding: "1in",
+      padding: "60px 70px",
       boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
       position: "relative" as const,
       boxSizing: "border-box" as const,
     },
     header: {
       textAlign: "center" as const,
-      marginBottom: "40px",
+      marginBottom: "50px",
     },
     companyName: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "20px",
-      marginBottom: "8px",
+      fontSize: "24px",
+      marginBottom: "10px",
       letterSpacing: "0.5px",
     },
     companyInfo: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "16px",
-      marginBottom: "8px",
+      fontSize: "18px",
+      marginBottom: "10px",
       letterSpacing: "0.3px",
     },
     title: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "16px",
+      fontSize: "18px",
       marginTop: "20px",
-      marginBottom: "40px",
+      marginBottom: "50px",
       letterSpacing: "0.5px",
     },
     sectionTitle: {
@@ -58,22 +58,22 @@ export default function OwnerOperatorAgreement() {
       fontWeight: "700" as const,
       fontSize: "14px",
       marginTop: "40px",
-      marginBottom: "25px",
+      marginBottom: "30px",
       letterSpacing: "0.5px",
       textAlign: "center" as const,
     },
     paragraph: {
-      fontSize: "12px",
-      lineHeight: "1.6",
-      textAlign: "justify" as const,
-      marginBottom: "16px",
+      fontSize: "16px",
+      lineHeight: "1.8",
+      textAlign: "left" as const,
+      marginBottom: "18px",
       color: "#000",
       fontWeight: "400" as const,
     },
     agreementText: {
-      fontSize: "12px",
-      lineHeight: "1.6",
-      marginBottom: "16px",
+      fontSize: "16px",
+      lineHeight: "1.8",
+      marginBottom: "18px",
       color: "#000",
       fontWeight: "400" as const,
     },
@@ -81,7 +81,7 @@ export default function OwnerOperatorAgreement() {
       border: "none",
       borderBottom: "1px solid #000",
       outline: "none",
-      fontSize: "12px",
+      fontSize: "16px",
       color: "#000",
       padding: "0 4px 2px 4px",
       background: "transparent",
@@ -94,33 +94,33 @@ export default function OwnerOperatorAgreement() {
       fontWeight: "700" as const,
     },
     sectionNumber: {
-      fontSize: "12px",
-      marginTop: "16px",
-      marginBottom: "16px",
+      fontSize: "16px",
+      marginTop: "18px",
+      marginBottom: "18px",
       color: "#000",
       fontWeight: "400" as const,
-      lineHeight: "1.6",
-      textAlign: "justify" as const,
+      lineHeight: "1.8",
+      textAlign: "left" as const,
     },
     sectionContent: {
-      fontSize: "12px",
-      lineHeight: "1.6",
-      textAlign: "justify" as const,
-      marginBottom: "16px",
+      fontSize: "16px",
+      lineHeight: "1.8",
+      textAlign: "left" as const,
+      marginBottom: "18px",
       color: "#000",
       fontWeight: "400" as const,
       paddingLeft: "0px",
     },
     nowTherefore: {
       fontWeight: "700" as const,
-      fontSize: "12px",
-      marginTop: "24px",
-      marginBottom: "24px",
+      fontSize: "16px",
+      marginTop: "30px",
+      marginBottom: "30px",
       color: "#000",
     },
     pageNumber: {
       textAlign: "center" as const,
-      marginTop: "40px",
+      marginTop: "50px",
       fontSize: "12px",
       color: "#000",
       fontWeight: "400" as const,
@@ -133,21 +133,21 @@ export default function OwnerOperatorAgreement() {
       justifyContent: "flex-end",
     },
     signatureLabel: {
-      fontSize: "12px",
-      fontWeight: "400" as const,
-      marginRight: "20px",
+      fontSize: "16px",
+      fontWeight: "700" as const,
+      marginRight: "10px",
     },
     signatureInput: {
       border: "none",
       borderBottom: "1px solid #000",
       outline: "none",
-      fontSize: "12px",
+      fontSize: "16px",
       color: "#000",
       padding: "0 4px 2px 4px",
       background: "transparent",
       fontFamily: "'Times New Roman', Times, serif",
       fontWeight: "400" as const,
-      minWidth: "300px",
+      minWidth: "200px",
     },
     emailLink: {
       color: "#2563eb",
@@ -829,6 +829,708 @@ export default function OwnerOperatorAgreement() {
         </div>
 
         <div style={styles.pageNumber}>16</div>
+      </div>
+
+      {/* Page 17 - General Information */}
+      <div style={styles.page}>
+        <div style={styles.sectionTitle}>9. GENERAL INFORMATION</div>
+
+        <div style={styles.sectionNumber}>
+          <span style={styles.bold}>9.1</span> You will receive the agreed-upon
+          quantity from the dispatcher when the load is offered to you. When
+          dispatched for a load, verify the quantity sent to you. We're paying
+          for the distance between two area codes. We are charged by the mile,
+          not by the pound. We do not, however, offer you loads that your truck
+          cannot draw. The change in delivery location necessitates a
+          reevaluation of the per-load rate. The difference of less than 20
+          miles is non-negotiable. THESE NUMBERS CAN BE LOWER DEPENDING ON AREA,
+          TIME OF DAY AND VARIETY OF FACTORS.
+        </div>
+
+        <div style={styles.sectionNumber}>
+          <span style={styles.bold}>9.2</span> Price must be discussed prior to
+          placing a proposal on a load. This includes, but is not limited to: 1)
+          Additional payment for tolls 2) Additional pennies per mile for
+          exceeding your weight limit 3) Limited distance
+        </div>
+
+        <div style={styles.sectionNumber}>
+          <span style={styles.bold}>9.3</span> AXPER LLC will not pay more if
+          the shipper adds additional pallets/skids and the shipment fits in the
+          vehicle. Your earnings are calculated per mile, not per pound;
+          therefore, if the shipment's weight or volume has changed and the
+          vehicle can accommodate it, the unit must accept the shipment.
+          Otherwise, the relationship risks being severed with AXPER LLC
+        </div>
+
+        <div style={styles.sectionNumber}>
+          <span style={styles.bold}>9.4</span> It is prohibited for drivers and
+          proprietors to discuss pricing with shippers or receivers. Any attempt
+          to share driver pay with the shipper or receiver, or to ascertain how
+          much this load was booked for, will result in the immediate
+          termination of the contract.
+        </div>
+
+        <div style={styles.sectionNumber}>
+          <span style={styles.bold}>9.5</span> YOU MUST CHECK IN EVERY MORNING
+          MONDAY-SUNDAY BETWEEN 07:00 am – 09:30 am EASTERN TIME.
+        </div>
+
+        <div style={styles.sectionContent}>
+          1. You can contact our main office at 940-281-5452 to provide your
+          daily availability and location.
+        </div>
+
+        <div style={styles.sectionContent}>
+          2. You will also receive an update via text message between 7:00 a.m.
+          and 9:00 a.m.
+        </div>
+
+        <div style={styles.sectionContent}>
+          3. If you are unavailable on a given day, you are also required to
+          check in and inform dispatch that you are out of service.
+        </div>
+
+        <div style={styles.sectionContent}>
+          4. If you will be absent for a period of time (two to three days, one
+          week to one month), inform the dispatcher and you will not be required
+          to provide updates during that time.
+        </div>
+
+        <div style={styles.sectionContent}>5.</div>
+
+        <div style={styles.sectionNumber}>
+          <span style={styles.bold}>9.6</span> If you work for other companies
+          and receive cargo from them, you must contact our office immediately
+          to be removed from service.
+        </div>
+
+        <div style={styles.sectionNumber}>
+          <span style={styles.bold}>9.7</span> Call the office at 940-281-5452
+          prior to relocating.
+        </div>
+
+        <div style={styles.pageNumber}>17</div>
+      </div>
+
+      {/* Page 18 - General Information Continued */}
+      <div style={styles.page}>
+        <div style={styles.sectionNumber}>
+          <span style={styles.bold}>9.8</span> Once you are available for
+          service, dispatchers will seek out loads for you. If the dispatcher
+        </div>
+
+        <div style={styles.sectionContent}>
+          locates a cargo for you, he will contact you to offer it. It is in
+          your best interest to notify the dispatcher as soon as possible if you
+          will accept the cargo. If you accept the proposal, you will be
+          required to reserve yourself for this offer for at least 15 minutes.
+          The dispatcher will notify you if the bid is accepted. He will then
+          text you information regarding pickup and delivery. You must contact
+          the office number or send a text message to confirm receipt of the
+          information i.e. Every AXPER LLC cargo is required to have its
+          location updated every two hours, once per load.
+        </div>
+
+        <div style={styles.sectionContent}>
+          1. Call for pick-up upon arrival (immediately upon entering the
+          building).
+        </div>
+
+        <div style={styles.sectionContent}>
+          2. Call when the shipment has been deposited (number of pallets, total
+          weight, BOL number).
+        </div>
+
+        <div style={styles.sectionContent}>
+          3. Do not leave the shipper until you have contacted the office and
+          the dispatcher has confirmed the pickup details and given the
+          all-clear.
+        </div>
+
+        <div style={styles.sectionContent}>4. The cargo must be secured.</div>
+
+        <div style={styles.sectionContent}>
+          5. Call upon arrival for drop-off (immediately upon entering the
+          building).
+        </div>
+
+        <div style={styles.sectionContent}>
+          6. Call once the shipment has been delivered with POD (first and last
+          name of the person who signed for the shipment).
+        </div>
+
+        <div style={styles.sectionContent}>
+          7. If you are running late, you must inform the dispatcher as soon as
+          you realize you will be late, not after you have already arrived late.
+        </div>
+
+        <div style={styles.sectionContent}>
+          8. If the consignor instructs you to hand load/unload the goods, you
+          must contact the office and inform the dispatcher before beginning. To
+          be compensated for labor, the dispatcher must: grant you the broker's
+          approval to complete the task.
+        </div>
+
+        <div style={styles.sectionContent}>
+          9. If you transport or unload cargo without informing the dispatcher,
+          you will not be compensated for your labor.
+        </div>
+
+        <div style={styles.sectionContent}>
+          10. Your delivery time is determined by the DISPATCHER, not the
+          SHIPPING COMPANY.
+        </div>
+
+        <div style={styles.sectionContent}>
+          11. If the shipper informs you that the load has been canceled, you
+          must contact the dispatcher and confirm that this is the case before
+          leaving. If the shipper instructs you to discharge elsewhere, you must
+          contact the dispatcher prior to moving.
+        </div>
+
+        <div style={styles.sectionContent}>
+          12. NEVER leave any of your belongings at the shipper, including
+          dumping trash, particularly tires, in their dumpsters.
+        </div>
+
+        <div style={styles.sectionContent}>
+          13. NEVER place anything on top of the loaded pallets and/or crates.
+        </div>
+
+        <div style={styles.sectionNumber}>
+          <span style={styles.bold}>9.9</span> If the Fleet Owner/Operator
+          wishes to complete the pick-up/delivery earlier than scheduled, the
+          company must be notified. Otherwise, it may incur penalties for the
+          Fleet Owner/Operator.
+        </div>
+
+        <div style={styles.signatureRow}>
+          <span style={styles.signatureLabel}>Signature</span>
+          <input
+            type="text"
+            style={styles.signatureInput}
+            placeholder="William Thomas"
+            onChange={(e) =>
+              handleChange("agreement9Signature", e.target.value)
+            }
+          />
+        </div>
+
+        <div style={styles.pageNumber}>18</div>
+      </div>
+
+      {/* Page 19 - Non-Solicitation and Confidentiality */}
+      <div style={styles.page}>
+        <div style={styles.sectionTitle}>
+          10. NON-SOLICITATION AND CONFIDENTIALITY
+        </div>
+
+        <div style={styles.paragraph}>
+          Owner-Operator agrees not to circumvent Company's customers or back
+          solicit any business provided by Company for a minimum of one (1) year
+          after termination of this agreement, and Owner-Operator agrees to
+          maintain the confidentiality of all information pertaining to
+          Company's operations at all times. This includes rates, company lists,
+          client lists, and other confidential information created by the
+          company. Owner-Operator undertakes to assist and safeguard Company's
+          efforts in carrying out this Agreement by avoiding direct contact with
+          or solicitation of Company's customers. Owner-Operator shall not,
+          directly or indirectly, solicit or do business of a transportation or
+          warehousing nature with any of Company's customers who are or were
+          serviced by Owner-Operator during the twenty-four (24) month period
+          preceding the termination of this Agreement, unless otherwise agreed
+          to in writing. Owner-Operator hereby acknowledges that a breach of
+          this provision will cause the Company irreparable harm and damage, and
+          as a result, the Company shall be entitled, in addition to all other
+          remedies available to it, to injunctive and equitable relief to
+          prevent a breach of this Agreement, or any part thereof, and to ensure
+          the enforcement of this Agreement. In addition to other compensatory
+          and punitive damages, the right to a temporary or permanent
+          injunction, and any other legal remedies. Owner-Operator acknowledges
+          and agrees that the restrictions contained in this Chapter are
+          reasonable and necessary to protect the Company's legitimate business
+          interests, and that the time periods, territorial scope, and scope of
+          activity restrictions contained in this Agreement are fair,
+          appropriate, and reasonable.Participation in any action, whether
+          direct or indirect, whose objective is the conveyance of shipper
+          traffic for which the Owner-Operator provides or has provided
+          transportation services for such shipper traffic under agreements
+          initially acquired by Company is banned under this Agreement.
+          Solicitation include actions undertaken or induced by Owner-Operator,
+          as well as actions accepted from or via persons associated to or
+          affiliated with Owner-Operator.Owner-Operator shall include all
+          related or affiliated companies of Owner-Operator and all principals
+          of Owner-Operator, including officers, directors, shareholders,
+          employees, representatives, or other agents acting directly or
+          indirectly on behalf of Owner-Operator, for the purposes of this
+          Chapter.
+        </div>
+
+        <div style={styles.paragraph}>
+          Owner-Operator acknowledges that the Company's pay for services
+          rendered pursuant to this agreement is secret and will not be
+          revealed. Further, Owner-Operator undertakes not to disclose the terms
+          of thisAgreement, the price of transportation services, or any other
+          business-related information between Owner-Operator and Company.
+          Owner-Operator acknowledges that only the Company will be invoiced for
+          any transportation services provided under this agreement. Any
+          invoicing generated directly to a client, as opposed to the Company as
+          specified in this Agreement, shall incur a monetary penalty for the
+          Owner-Operator. This monetary penalty will be ten percent (10%) of the
+          Company's charges. As soon as the billing error is identified, the
+          Company will be assessed the penalty. There is no time limit for this
+          monetary penalty, and penalties may be deducted from future
+          Owner-Operator settlements.
+        </div>
+
+        <div style={styles.signatureRow}>
+          <span style={styles.signatureLabel}>Signature</span>
+          <input
+            type="text"
+            style={styles.signatureInput}
+            placeholder="William Thomas"
+            onChange={(e) =>
+              handleChange("agreement10Signature", e.target.value)
+            }
+          />
+        </div>
+
+        <div style={styles.pageNumber}>19</div>
+      </div>
+
+      {/* Page 20 - Other */}
+      <div style={styles.page}>
+        <div style={styles.sectionTitle}>11. OTHER</div>
+
+        <div style={styles.paragraph}>
+          This Agreement supersedes all prior agreements and tariffs, rates,
+          classifications, and schedules published, filed, or maintained by the
+          Owner-Operator. This Agreement cannot be changed or amended except by
+          a written document signed by all parties, nor can it be assigned or
+          transferred in whole or in part. No third party shall profit from or
+          have access to the provisions of this Agreement. If any term of this
+          Agreement is deemed unenforceable by a court of competent
+          jurisdiction, such provision shall be severed and the remaining parts
+          of this Agreement shall remain in full force and effect. This
+          Agreement shall be governed by, construed in accordance with, and
+          enforced in accordance with the internal laws of the State of Texas,
+          without regard to its rules on conflicts of law.
+        </div>
+
+        <div style={styles.paragraph}>
+          Each party irrevocably and unconditionally submits to the exclusive
+          jurisdiction and venue of the state and federal courts serving state
+          of Texas, and any appellate court thereof, in any suit, action, or
+          proceeding arising out of or relating to this Agreement, and
+          irrevocably and unconditionally waives any claim or defense that any
+          such suit, action, or proceeding brought in any such court has been
+          brought in an inconvenient forum. Each party further acknowledges that
+          a final decision in any such suit, action, or procedure shall be
+          conclusive and may be enforced in other countries in accordance with
+          applicable law.
+        </div>
+
+        <div style={styles.paragraph}>
+          Notices shall be sent by certified mail, return receipt requested, or
+          by nationally recognized overnight courier with receipt needed, to
+          each party executing this Agreement at the address shown below, or to
+          any other address provided in a written notice according to this
+          provision.
+        </div>
+
+        <div style={styles.paragraph}>
+          Nothing in this Agreement will be construed or have the effect of
+          promising Owner-Operator a specific amount of business or specific
+          loads.
+        </div>
+
+        <div style={styles.paragraph}>
+          This Agreement is only applicable to the Owner-Operator and the
+          Company party (or parties) performing under this Agreement, and is
+          only enforceable by or against them.
+        </div>
+
+        <div style={styles.signatureRow}>
+          <span style={styles.signatureLabel}>Signature</span>
+          <input
+            type="text"
+            style={styles.signatureInput}
+            placeholder="William Thomas"
+            onChange={(e) =>
+              handleChange("agreement11Signature", e.target.value)
+            }
+          />
+        </div>
+
+        <div style={styles.pageNumber}>20</div>
+      </div>
+
+      {/* Page 21 - Acceptance and Acknowledgements */}
+      <div style={styles.page}>
+        <div style={styles.sectionTitle}>
+          12. ACCEPTANCE AND ACKNOWLEDGEMENTS
+        </div>
+
+        <div style={styles.paragraph}>
+          I am authorized to execute the contract set out above dated between
+          AXPER LLC
+        </div>
+
+        <div style={styles.paragraph}>
+          and{" "}
+          <input
+            type="text"
+            style={{ ...styles.input, minWidth: "200px" }}
+            placeholder="Expect Xpress LLC"
+            onChange={(e) => handleChange("acceptanceCompany", e.target.value)}
+          />{" "}
+          legally bind to the terms and conditions set forth therein. This
+          electronic signature serves as an original and any electronic version
+          and other signatures are incorporated as if originals into the
+          original document. This electronic signature shall have the same force
+          and effect as an original source. I ACKNOWLEDGE THAT I HAVE READ AND
+        </div>
+
+        <div style={styles.paragraph}>
+          UNDERSTAND THE AGREEMENT AND AGREE TO THE ENTIRETY OF THE TERMS &
+          CONDITIONS CONTAINED THEREIN. THE AGREEMENT SHALL BE BINDING ON{" "}
+          <input
+            type="text"
+            style={{ ...styles.input, minWidth: "80px" }}
+            placeholder="12th"
+            onChange={(e) => handleChange("acceptanceDay", e.target.value)}
+          />{" "}
+          DAY OF{" "}
+          <input
+            type="text"
+            style={{ ...styles.input, minWidth: "100px" }}
+            placeholder="November"
+            onChange={(e) => handleChange("acceptanceMonth", e.target.value)}
+          />
+          , 20
+          <input
+            type="text"
+            style={{ ...styles.input, minWidth: "40px" }}
+            placeholder="25"
+            onChange={(e) => handleChange("acceptanceYear", e.target.value)}
+          />
+          . I UNDERSTAND AND ACKNOWLEDGE THAT IS THE "OWNER-OPERATOR" AS THAT
+          TERM IS USED IN THE AGREEMENT.
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: "60px",
+          }}
+        >
+          <div style={{ flex: 1 }}>
+            <div style={{ ...styles.paragraph, fontWeight: "700" }}>
+              COMPANY:
+            </div>
+            <div style={{ marginTop: "20px" }}>
+              <div style={styles.paragraph}>AXPER LLC</div>
+              <div style={{ marginTop: "20px" }}>
+                <div style={styles.paragraph}>
+                  NAME:{" "}
+                  <span style={{ color: "#2563eb" }}>BIBIZADA WILKINSON</span>
+                </div>
+                <div style={styles.paragraph}>
+                  TITLE: <span style={{ color: "#2563eb" }}>MANAGER</span>
+                </div>
+                <div style={styles.paragraph}>SIGNATURE: _______________</div>
+                <div style={styles.paragraph}>
+                  DATE: <span style={{ color: "#2563eb" }}>23/11/2024</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ flex: 1 }}>
+            <div style={{ ...styles.paragraph, fontWeight: "700" }}>
+              OWNER-OPERATOR:
+            </div>
+            <div style={{ marginTop: "20px" }}>
+              <div style={styles.paragraph}>
+                <input
+                  type="text"
+                  style={{ ...styles.input, minWidth: "200px" }}
+                  placeholder="Expect Xpress LLC"
+                  onChange={(e) =>
+                    handleChange("acceptanceOwnerCompany", e.target.value)
+                  }
+                />
+              </div>
+              <div style={{ marginTop: "20px" }}>
+                <div style={styles.paragraph}>
+                  PRINTED NAME:{" "}
+                  <input
+                    type="text"
+                    style={{ ...styles.input, minWidth: "150px" }}
+                    placeholder="William Thomas"
+                    onChange={(e) =>
+                      handleChange("acceptanceOwnerName", e.target.value)
+                    }
+                  />
+                </div>
+                <div style={styles.paragraph}>
+                  TITLE:{" "}
+                  <input
+                    type="text"
+                    style={{ ...styles.input, minWidth: "150px" }}
+                    placeholder="Owner Operator"
+                    onChange={(e) =>
+                      handleChange("acceptanceOwnerTitle", e.target.value)
+                    }
+                  />
+                </div>
+                <div style={styles.paragraph}>
+                  SIGNATURE:{" "}
+                  <input
+                    type="text"
+                    style={{ ...styles.input, minWidth: "150px" }}
+                    placeholder="William Thomas"
+                    onChange={(e) =>
+                      handleChange("acceptanceOwnerSignature", e.target.value)
+                    }
+                  />
+                </div>
+                <div style={styles.paragraph}>
+                  DATE:{" "}
+                  <input
+                    type="text"
+                    style={{ ...styles.input, minWidth: "100px" }}
+                    placeholder="11/12/2025"
+                    onChange={(e) =>
+                      handleChange("acceptanceOwnerDate", e.target.value)
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={styles.pageNumber}>21</div>
+      </div>
+
+      {/* Page 22 - Appendix to Application */}
+      <div style={styles.page}>
+        <div style={styles.sectionTitle}>APPENDIX TO APPLICATION</div>
+
+        <div style={styles.sectionTitle}>CERTIFICATE OF INSURANCE</div>
+
+        <div style={styles.paragraph}>Additional Insured:</div>
+        <div style={{ ...styles.paragraph, fontWeight: "700" }}>AXPER LLC</div>
+        <div style={styles.paragraph}>1673 REED DR</div>
+        <div style={styles.paragraph}>KRUM, TX, 76249</div>
+
+        <div style={{ ...styles.paragraph, marginTop: "30px" }}>
+          Insurance coverage and limits required:
+        </div>
+
+        <div style={{ marginLeft: "40px", marginTop: "20px" }}>
+          <div style={styles.paragraph}>
+            • Commercial Auto Coverage: Trucking for Hire Operations
+          </div>
+          <div style={styles.paragraph}>
+            • $1,000,000 Primary Commercial Auto Liability CSL
+          </div>
+          <div style={styles.paragraph}>
+            • $1,000,000 Commercial General Liability
+          </div>
+          <div style={styles.paragraph}>
+            • $100,000 Broad Form Cargo with max $1,000 deductible
+          </div>
+          <div style={styles.paragraph}>
+            • Unlimited Radius of Operations (Full time with NO radius coverage
+            restrictions) 200, 300 or 500-mile radius with a few runs outside
+            this radius per year is NOT acceptable!
+          </div>
+          <div style={styles.paragraph}>
+            • AXPER LLC must be listed as additional insured in regard to
+            General and Auto Liability Certificates must also show listed
+            Vehicles (Year, Make, VIN#) as well as all listed drivers!
+          </div>
+          <div style={{ ...styles.paragraph, fontWeight: "700" }}>
+            ***MUST BE AN ACORD FORM***
+          </div>
+        </div>
+
+        <div style={styles.pageNumber}>22</div>
+      </div>
+
+      {/* Page 23 - Appendix to Agreement */}
+      <div style={styles.page}>
+        <div style={styles.sectionTitle}>APPENDIX TO AGREEMENT</div>
+
+        <div style={styles.sectionTitle}>DRIVER INSTRUCTIONS</div>
+
+        <div style={{ ...styles.sectionTitle, fontSize: "12px" }}>I BIDS</div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>A.</span> ALL BIDS ARE PLACED FOR 15
+          MINUTES.
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>B</span>. WHEN THE CLIENT ASKS TO HOLD TRUCK
+          YOU MUST HOLD THE TRUCKS FOR 20 MINUTES MORE.
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>C</span>. WHEN YOU ARE BIDDING A DIRECT RUN
+          YOU MUST COUNT PROPERLY HOURS OF DRIVING, GIVE CORRECT TRANSIT TIME TO
+          THE DISPATCHER BEFORE BIDDING AND GUARANTEE THAT YOUR TRUCK ARRIVES
+          FOR PICK UP AND DELIVERY AS SOON AS POSSIBLE.
+        </div>
+
+        <div
+          style={{
+            ...styles.sectionTitle,
+            fontSize: "12px",
+            marginTop: "30px",
+          }}
+        >
+          a. APPOINTMENTS.
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>A</span>. APPOINTMENTS CANNOT BE FAILED. WE
+          DO EXPEDITED LOADS WHICH MEANS TIME-CRITICAL.
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>B</span>. IF YOU OR YOUR DRIVER CANNOT MEET
+          THE APPOINTMENT (NOT ENOUGH HOURS ON THE LOG BOOK OR ANY OTHER REASON)
+          YOU HAVE TO SKIP THE LOAD BEFORE BIDDING.
+        </div>
+
+        <div
+          style={{
+            ...styles.sectionTitle,
+            fontSize: "12px",
+            marginTop: "30px",
+          }}
+        >
+          b. INSTRUCTIONS.
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>A</span>. BOOKED LOAD CAN BE PROVIDED WITH
+          THE INSTRUCTIONS (PRINT DOCUMENTS PRIOR TO PICK UP, WHICH MUST BE
+          FOLLOWED BY YOU AND YOUR DRIVER(S).
+        </div>
+
+        <div
+          style={{
+            ...styles.sectionTitle,
+            fontSize: "12px",
+            marginTop: "30px",
+          }}
+        >
+          c. STOPS.
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>A</span>. IN CASE, WHEN YOU OR YOUR
+          DRIVER(S) NEED TO TAKE A REST OR MAKE A STOP TO REFUEL IT'S A MUST TO
+          NOTIFY TO OPERATIONS (940-281-5452) WITH LOCATION OF THE STOP AND ETA
+          WHEN TRUCK WILL BE ON ROUTE AGAIN. WHEN YOU OR YOUR DRIVER(S) RESTARTS
+          DRIVING IT'S A MUST TO NOTIFY OPERATIONS THAT TRUCK BACK ON THE ROUTE
+          AGAIN.
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>B</span>. IN CASE, WHEN YOU OR YOUR
+          DRIVER(S) HAS UNEXPECTED ISSUE ON THE ROAD IT'S
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>A</span> MUST TO REPORT ABOUT THE SITUATION
+          IMMEDIATELY TO OPERATIONS (940-281-5452) AND GIVE ALL THE INFORMATION
+          ON WHAT HAPPENED,
+        </div>
+
+        <div style={styles.pageNumber}>23</div>
+      </div>
+
+      {/* Page 24 - Hand Loading/Unloading */}
+      <div style={styles.page}>
+        <div style={styles.paragraph}>
+          ETA, SEND PICTURE OF THE LOAD IN THE TRUCK (IN CASE OF CAR ACCIDENT),
+          RECEIPT FROM REPAIR SHOP (IF PROBLEM WITH THE VEHICLE) OR OTHER
+          PROVES.
+        </div>
+
+        <div
+          style={{
+            ...styles.sectionTitle,
+            fontSize: "12px",
+            marginTop: "30px",
+          }}
+        >
+          d. HAND LOADING/UNLOADING
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>A.</span> IF SHIPPER OR CONSIGNEE ASKS TO
+          LOAD/UNLOAD TRUCK BY HANDS YOU OR YOUR DRIVER(S) MUST REPORT THIS TO
+          THE OPERATIONS (940-281-5452) NO TOUCH TO THE LOAD WHILE THE
+          DISPATCHER WILL INFORM IF WE YOU NEED TO DO IT OR NOT
+        </div>
+
+        <div style={styles.paragraph}>
+          <span style={styles.bold}>B</span>. IF THE TRUCK WAS LOADED/UNLOADED
+          BY THE DRIVER WITHOUT CONFIRMING WITH
+        </div>
+
+        <div
+          style={{
+            ...styles.paragraph,
+            textAlign: "center",
+            fontWeight: "700",
+            marginTop: "30px",
+          }}
+        >
+          THE DISPATCHER NO EXTRA MONEY CAN BE REQUESTED.
+        </div>
+
+        <div style={styles.pageNumber}>24</div>
+      </div>
+
+      {/* Page 25 - Contact Information */}
+      <div style={styles.page}>
+        <div style={styles.sectionTitle}>CONTACT INFORMATION</div>
+
+        <div style={{ marginTop: "40px" }}>
+          <div style={styles.paragraph}>
+            •Please send the signed copy of the contract to AXPER LLC via
+          </div>
+          <div style={styles.paragraph}>email to: hr@axpergroup.com</div>
+
+          <div style={styles.paragraph}>
+            •24/7 Operations phone (940-281-5452)
+          </div>
+
+          <div style={styles.paragraph}>
+            •Pictures of the freight to: ops@axpergroup.com
+          </div>
+
+          <div style={styles.paragraph}>•Email POD to: ops@axpergroup.com</div>
+
+          <div style={styles.paragraph}>•Hard copy of the POD to:</div>
+
+          <div style={{ ...styles.paragraph, fontWeight: "700" }}>
+            AXPER LLC
+          </div>
+          <div style={styles.paragraph}>1673 REED DR</div>
+          <div style={styles.paragraph}>KRUM, TX, 76249</div>
+        </div>
+
+        <div style={styles.pageNumber}>25</div>
       </div>
     </div>
   );
