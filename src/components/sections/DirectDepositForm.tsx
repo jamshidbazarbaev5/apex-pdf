@@ -4,6 +4,7 @@ import { updateFormData } from '@/store/formSlice';
 import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
 import { SignButton } from '../ui/SignButton';
+import { getRequiredFieldClasses } from '@/lib/fieldValidation';
 
 // Row component for the table structure
 const FormRow = ({ 
@@ -18,12 +19,14 @@ const FormRow = ({
   name: any; 
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
-}) => (
+}) => {
+  const borderClasses = getRequiredFieldClasses(name, '');
+  return (
   <div className={`flex border-b border-black last:border-b-0 h-12 ${className}`}>
     <div className="w-[230px] pl-3 pr-2 border-r border-black flex items-center shrink-0 bg-white">
       <span className="text-[13px] font-bold text-black uppercase font-serif tracking-wide leading-none pt-1">{label}</span>
     </div>
-    <div className="flex-1 relative bg-transparent flex items-center">
+    <div className={`flex-1 relative bg-transparent flex items-center ${borderClasses ? 'border-r-2 border-red-500' : ''}`}>
       <input
         type="text"
         name={name}
@@ -33,7 +36,8 @@ const FormRow = ({
       />
     </div>
   </div>
-);
+)
+};
 
 export const DirectDepositForm: React.FC = () => {
   const dispatch = useAppDispatch();

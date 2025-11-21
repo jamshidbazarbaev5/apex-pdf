@@ -124,6 +124,51 @@ export interface FormData {
   acceptanceOwnerTitle: string;
   acceptanceOwnerSignature: string;
   acceptanceOwnerDate: string;
+
+  // Certification & Requirements
+  applicantDate: string;
+  accidentWaiverDate: string;
+
+  // Vendor & Direct Deposit Fields
+  vendorName: string;
+  vendorAddress: string;
+  vendorCityStateZip: string;
+  vendorPhone: string;
+  vendorEmail: string;
+  bankName: string;
+  routingNumber: string;
+  accountNumber: string;
+  accountTypeChecking: boolean;
+  accountTypeSavings: boolean;
+  accountDate: string;
+
+  // W9 - Complete Tax Classification Fields
+  entityName: string;
+  businessName: string;
+  individualSoleProprietor: boolean;
+  cCorporation: boolean;
+  sCorporation: boolean;
+  partnership: boolean;
+  trustEstate: boolean;
+  llc: boolean;
+  llcText: string;
+  other: boolean;
+  otherText: string;
+  exemptPayeeCode: string;
+  fatcaReportingCode: string;
+  taxpayerAddress: string;
+  taxpayerCityStateZip: string;
+  taxpayerAccountNumber: string;
+  requesterNameAddress: string;
+  socialSecurity1: string;
+  socialSecurity2: string;
+  socialSecurity3: string;
+  employerId1: string;
+  employerId2: string;
+
+  // Attachments & Files
+  attachments: File[];
+  signature: File | null;
 }
 
 const initialState: FormData = {
@@ -250,6 +295,51 @@ const initialState: FormData = {
   acceptanceOwnerTitle: "",
   acceptanceOwnerSignature: "",
   acceptanceOwnerDate: "",
+
+  // Certification & Requirements
+  applicantDate: "",
+  accidentWaiverDate: "",
+
+  // Vendor & Direct Deposit Fields
+  vendorName: "",
+  vendorAddress: "",
+  vendorCityStateZip: "",
+  vendorPhone: "",
+  vendorEmail: "",
+  bankName: "",
+  routingNumber: "",
+  accountNumber: "",
+  accountTypeChecking: false,
+  accountTypeSavings: false,
+  accountDate: "",
+
+  // W9 - Complete Tax Classification Fields
+  entityName: "",
+  businessName: "",
+  individualSoleProprietor: false,
+  cCorporation: false,
+  sCorporation: false,
+  partnership: false,
+  trustEstate: false,
+  llc: false,
+  llcText: "",
+  other: false,
+  otherText: "",
+  exemptPayeeCode: "",
+  fatcaReportingCode: "",
+  taxpayerAddress: "",
+  taxpayerCityStateZip: "",
+  taxpayerAccountNumber: "",
+  requesterNameAddress: "",
+  socialSecurity1: "",
+  socialSecurity2: "",
+  socialSecurity3: "",
+  employerId1: "",
+  employerId2: "",
+
+  // Attachments & Files
+  attachments: [],
+  signature: null,
 };
 
 const formSlice = createSlice({

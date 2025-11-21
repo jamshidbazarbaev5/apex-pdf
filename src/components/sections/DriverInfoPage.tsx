@@ -2,12 +2,14 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { updateFormData } from '@/store/formSlice';
 import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
+import { getRequiredFieldClasses } from '@/lib/fieldValidation';
 
 const Row = ({ label, className = "", name, value, onChange }: { label: string, className?: string, name?: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) => {
+  const borderClasses = getRequiredFieldClasses(name || '', 'border-b border-black');
   return (
     <div className={`flex items-end gap-4 mb-2 ${className}`}>
       <span className="font-serif text-black text-[13px] uppercase shrink-0 w-[240px] font-bold leading-tight">{label}</span>
-      <div className="flex-1 border-b border-black relative top-[4px]">
+      <div className={`flex-1 ${borderClasses} relative top-1`}>
         <input 
           name={name}
           value={value}

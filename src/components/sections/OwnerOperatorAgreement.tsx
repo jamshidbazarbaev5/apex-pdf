@@ -3,6 +3,7 @@ import { updateFormData } from "@/store/formSlice";
 import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
 import { SignButton } from "@/components/ui/SignButton";
 import { SignatureDisplay } from "@/components/ui/SignatureDisplay";
+import { getRequiredFieldClasses } from "@/lib/fieldValidation";
 
 export default function OwnerOperatorAgreement() {
   const dispatch = useAppDispatch();
@@ -10,6 +11,16 @@ export default function OwnerOperatorAgreement() {
 
   const handleChange = (field: string, value: string) => {
     dispatch(updateFormData({ [field]: value }));
+  };
+
+  const getInputStyle = (fieldName: string) => {
+    const isRequired = getRequiredFieldClasses(fieldName);
+    const baseStyle = {
+      ...styles.input,
+      borderBottomColor: isRequired ? "#ef4444" : "#000",
+      borderBottomWidth: isRequired ? "2px" : "1px",
+    };
+    return baseStyle;
   };
 
   const isMobile = window.innerWidth < 768;
@@ -182,14 +193,14 @@ export default function OwnerOperatorAgreement() {
           THIS AGREEMENT made this day of{" "}
           <input
             type="text"
-            style={styles.input}
+            style={getInputStyle("agreementDay")}
             placeholder="Nov 12th"
             onChange={(e) => handleChange("agreementDay", e.target.value)}
           />
           , 20
           <input
             type="text"
-            style={{ ...styles.input, minWidth: "30px" }}
+            style={{ ...getInputStyle("agreementYear"), minWidth: "30px" }}
             placeholder="25"
             onChange={(e) => handleChange("agreementYear", e.target.value)}
           />{" "}
@@ -197,7 +208,7 @@ export default function OwnerOperatorAgreement() {
           at 1673 Reed Dr, Krum, TX, 76249) and OWNER-OPERATOR,{" "}
           <input
             type="text"
-            style={{ ...styles.input, minWidth: "180px" }}
+            style={{ ...getInputStyle("agreementOwnerOperator"), minWidth: "180px" }}
             placeholder="Expect Xpress LLC"
             onChange={(e) =>
               handleChange("agreementOwnerOperator", e.target.value)
@@ -209,7 +220,7 @@ export default function OwnerOperatorAgreement() {
           (located at{" "}
           <input
             type="text"
-            style={{ ...styles.input, minWidth: "400px" }}
+            style={{ ...getInputStyle("agreementOwnerAddress"), minWidth: "400px" }}
             placeholder="50 Agnes St Ste 205"
             onChange={(e) =>
               handleChange("agreementOwnerAddress", e.target.value)
@@ -1199,7 +1210,7 @@ export default function OwnerOperatorAgreement() {
           CONDITIONS CONTAINED THEREIN. THE AGREEMENT SHALL BE BINDING ON{" "}
           <input
             type="text"
-            style={{ ...styles.input, minWidth: "80px" }}
+            style={{ ...getInputStyle("acceptanceDay"), minWidth: "80px" }}
             placeholder="12th"
             value={formData.acceptanceDay || ""}
             onChange={(e) => handleChange("acceptanceDay", e.target.value)}
@@ -1207,7 +1218,7 @@ export default function OwnerOperatorAgreement() {
           DAY OF{" "}
           <input
             type="text"
-            style={{ ...styles.input, minWidth: "100px" }}
+            style={{ ...getInputStyle("acceptanceMonth"), minWidth: "100px" }}
             placeholder="November"
             value={formData.acceptanceMonth || ""}
             onChange={(e) => handleChange("acceptanceMonth", e.target.value)}
@@ -1215,7 +1226,7 @@ export default function OwnerOperatorAgreement() {
           , 20
           <input
             type="text"
-            style={{ ...styles.input, minWidth: "40px" }}
+            style={{ ...getInputStyle("acceptanceYear"), minWidth: "40px" }}
             placeholder="25"
             value={formData.acceptanceYear || ""}
             onChange={(e) => handleChange("acceptanceYear", e.target.value)}
@@ -1268,7 +1279,7 @@ export default function OwnerOperatorAgreement() {
               <div style={styles.paragraph}>
                 <input
                   type="text"
-                  style={{ ...styles.input, minWidth: "200px" }}
+                  style={{ ...getInputStyle("acceptanceOwnerCompany"), minWidth: "200px" }}
                   placeholder="Expect Xpress LLC"
                   value={formData.acceptanceOwnerCompany || ""}
                   onChange={(e) =>
@@ -1281,7 +1292,7 @@ export default function OwnerOperatorAgreement() {
                   PRINTED NAME:{" "}
                   <input
                     type="text"
-                    style={{ ...styles.input, minWidth: "150px" }}
+                    style={{ ...getInputStyle("acceptanceOwnerName"), minWidth: "150px" }}
                     placeholder="William Thomas"
                     value={formData.acceptanceOwnerName || ""}
                     onChange={(e) =>
@@ -1293,7 +1304,7 @@ export default function OwnerOperatorAgreement() {
                   TITLE:{" "}
                   <input
                     type="text"
-                    style={{ ...styles.input, minWidth: "150px" }}
+                    style={{ ...getInputStyle("acceptanceOwnerTitle"), minWidth: "150px" }}
                     placeholder="Owner Operator"
                     value={formData.acceptanceOwnerTitle || ""}
                     onChange={(e) =>

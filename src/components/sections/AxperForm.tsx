@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
 import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
 import { SignButton } from "@/components/ui/SignButton";
+import { getRequiredFieldClasses } from "@/lib/fieldValidation";
 
 export default function AxperForm() {
   const dispatch = useAppDispatch();
@@ -9,6 +10,15 @@ export default function AxperForm() {
 
   const handleChange = (field: string, value: string | boolean) => {
     dispatch(updateFormData({ [field]: value }));
+  };
+
+  const getInputStyle = (fieldName: string) => {
+    const isRequired = getRequiredFieldClasses(fieldName);
+    return {
+      ...styles.input,
+      borderBottomColor: isRequired ? "#ef4444" : "#000",
+      borderBottomWidth: isRequired ? "2px" : "1.5px",
+    };
   };
 
   const styles = {

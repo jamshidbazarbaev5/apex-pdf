@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { updateFormData } from '@/store/formSlice';
 import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
+import { getRequiredFieldClasses } from '@/lib/fieldValidation';
 
 const InfoRow = ({ label, name }: { label: string, name?: string }) => {
   const dispatch = useAppDispatch();
@@ -15,11 +16,12 @@ const InfoRow = ({ label, name }: { label: string, name?: string }) => {
   };
 
   const fieldValue = name ? String(formData[name as keyof typeof formData] || '') : '';
+  const borderClasses = getRequiredFieldClasses(name || '', 'border-b border-black');
 
   return (
     <div className="flex items-end gap-4 mb-3">
       <span className="font-serif text-black text-[14px] uppercase shrink-0 w-[200px] font-bold">{label}</span>
-      <div className="flex-1 border-b border-black relative top-[4px]">
+      <div className={`flex-1 ${borderClasses} relative top-1`}>
          <input
           type="text"
           name={name}

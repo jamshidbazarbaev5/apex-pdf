@@ -3,6 +3,7 @@ import { SignButton } from "@/components/ui/SignButton";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
 import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
+import { getRequiredFieldClasses } from "@/lib/fieldValidation";
 
 const W9Form: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -86,7 +87,7 @@ const W9Form: React.FC = () => {
                   name="w9Name"
                   value={formData.w9Name}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
-                  className="w-full border-b border-black outline-none bg-transparent text-[10pt] py-1"
+                  className={`w-full outline-none bg-transparent text-[10pt] py-1 ${getRequiredFieldClasses('entityName', 'border-b border-black')}`}
                 />
               </div>
             </div>
@@ -106,7 +107,7 @@ const W9Form: React.FC = () => {
                   name="w9BusinessName"
                   value={formData.w9BusinessName}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
-                  className="w-full border-b border-black outline-none bg-transparent text-[10pt] py-1"
+                  className={`w-full outline-none bg-transparent text-[10pt] py-1 ${getRequiredFieldClasses('businessName', 'border-b border-black')}`}
                 />
               </div>
             </div>
