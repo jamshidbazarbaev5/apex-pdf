@@ -2,7 +2,7 @@ import React from 'react';
 import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
 
-export const W9Page4: React.FC = () => {
+export const W9Page4: React.FC<{ pageNumber?: number }> = ({  }) => {
   return (
     <DocumentSheet className="text-[10px] leading-[1.3] text-black">
       <AutoSaveStatus />

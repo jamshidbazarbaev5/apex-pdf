@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { updateFormData } from '@/store/formSlice';
-import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
+// import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
 import { SignButton } from '../ui/SignButton';
 import { getRequiredFieldClasses } from '@/lib/fieldValidation';
@@ -12,13 +12,15 @@ const FormRow = ({
   value, 
   name, 
   onChange,
-  className = ""
+  className = "",
+  type = "text"
 }: { 
   label: string; 
   value: string; 
   name: any; 
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  type?: string;
 }) => {
   const borderClasses = getRequiredFieldClasses(name, '');
   return (
@@ -28,7 +30,7 @@ const FormRow = ({
     </div>
     <div className={`flex-1 relative bg-transparent flex items-center ${borderClasses ? 'border-r-2 border-red-500' : ''}`}>
       <input
-        type="text"
+        type={type}
         name={name}
         value={value}
         onChange={onChange}
@@ -39,7 +41,7 @@ const FormRow = ({
 )
 };
 
-export const DirectDepositForm: React.FC = () => {
+export const DirectDepositForm: React.FC<{ pageNumber?: number }> = ({  }) => {
   const dispatch = useAppDispatch();
   const formData = useAppSelector(state => state.form);
 
@@ -58,7 +60,7 @@ export const DirectDepositForm: React.FC = () => {
            <span className="text-[56px] text-[#3b5073] font-sans font-medium tracking-tight leading-none">Axper</span>
         </div>
 
-        <AutoSaveStatus />
+        {/* <AutoSaveStatus /> */}
 
         {/* Title */}
         <div className="mb-10 text-center">
@@ -73,11 +75,11 @@ export const DirectDepositForm: React.FC = () => {
             <h3 className="text-center font-bold text-[17px] uppercase font-serif tracking-wider">Vendor Information</h3>
           </div>
           <div className="bg-white">
-             <FormRow label="VENDOR NAME" name="vendorName" value={String(formData.companyName || '')} onChange={handleChange} />
-             <FormRow label="ADDRESS" name="companyRegisteredAddress" value={String(formData.companyRegisteredAddress || '')} onChange={handleChange} />
-             <FormRow label="CITY, STATE, ZIP" name="companyCityStateZip" value={String(formData.companyCityStateZip || '')} onChange={handleChange} />
-             <FormRow label="PHONE NUMBER" name="companyPhoneNumber" value={String(formData.companyPhoneNumber || '')} onChange={handleChange} />
-             <FormRow label="EMAIL" name="companyEmail" value={String(formData.companyEmail || '')} onChange={handleChange} />
+             <FormRow label="VENDOR NAME" name="vendorName" value={String(formData.vendorName || '')} onChange={handleChange} />
+             <FormRow label="ADDRESS" name="vendorAddress" value={String(formData.vendorAddress || '')} onChange={handleChange} />
+             <FormRow label="CITY, STATE, ZIP" name="vendorCityStateZip" value={String(formData.vendorCityStateZip || '')} onChange={handleChange} />
+             <FormRow label="PHONE NUMBER" name="vendorPhone" value={String(formData.vendorPhone || '')} onChange={handleChange} />
+             <FormRow label="EMAIL" name="vendorEmail" type="email" value={String(formData.vendorEmail || '')} onChange={handleChange} />
           </div>
         </div>
 
@@ -87,9 +89,9 @@ export const DirectDepositForm: React.FC = () => {
             <h3 className="text-center font-bold text-[17px] uppercase font-serif tracking-wider">Account Information</h3>
           </div>
           <div className="bg-white">
-            <FormRow label="BANK NAME" name="companyName" value={String(formData.companyName || '')} onChange={handleChange} />
-            <FormRow label="ROUTING NUMBER" name="companyMcNumber" value={String(formData.companyMcNumber || '')} onChange={handleChange} />
-            <FormRow label="ACCOUNT NUMBER" name="companyDotNumber" value={String(formData.companyDotNumber || '')} onChange={handleChange} />
+            <FormRow label="BANK NAME" name="bankName" value={String(formData.bankName || '')} onChange={handleChange} />
+            <FormRow label="ROUTING NUMBER" name="routingNumber" value={String(formData.routingNumber || '')} onChange={handleChange} />
+            <FormRow label="ACCOUNT NUMBER" name="accountNumber" value={String(formData.accountNumber || '')} onChange={handleChange} />
             
             {/* Custom Account Type Row */}
             <div className="flex h-12">
@@ -165,11 +167,11 @@ export const DirectDepositForm: React.FC = () => {
 
           <div className="flex items-end gap-4">
             <span className="text-[18px] shrink-0 font-serif min-w-40 text-black">Date</span>
-            <div className="flex-1 border-b border-black relative h-8">
+            <div className={`flex-1 border-b border-black relative h-8 ${getRequiredFieldClasses('accountDate', '')}`}>
                <input 
                 type="date"
-                name="date1"
-                value={String(formData.date1 || '')}
+                name="accountDate"
+                value={String(formData.accountDate || '')}
                 onChange={handleChange}
                 className="w-full bg-transparent border-none outline-none text-[17px] font-sans px-8 pb-1 absolute bottom-0 text-black"
               />

@@ -1,24 +1,15 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
-import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
+// import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
 import { SignButton } from "@/components/ui/SignButton";
 import { getRequiredFieldClasses } from "@/lib/fieldValidation";
 
-export default function AxperForm() {
+export default function AxperForm({ pageNumber = 5 }: { pageNumber?: number }) {
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.form);
 
   const handleChange = (field: string, value: string | boolean) => {
     dispatch(updateFormData({ [field]: value }));
-  };
-
-  const getInputStyle = (fieldName: string) => {
-    const isRequired = getRequiredFieldClasses(fieldName);
-    return {
-      ...styles.input,
-      borderBottomColor: isRequired ? "#ef4444" : "#000",
-      borderBottomWidth: isRequired ? "2px" : "1.5px",
-    };
   };
 
   const styles = {
@@ -169,11 +160,19 @@ export default function AxperForm() {
     dateField: {
       minWidth: "200px",
     },
+    pageNumber: {
+      textAlign: "center" as const,
+      marginTop: "50px",
+      fontSize: "12px",
+      color: "#000",
+      fontWeight: "400" as const,
+      fontFamily: "'Times New Roman', Times, serif",
+    },
   };
 
   return (
     <div style={styles.container}>
-      <AutoSaveStatus />
+      {/* <AutoSaveStatus /> */}
       
       {/* Page 1 - Owner & Driver Information */}
     
@@ -240,14 +239,22 @@ export default function AxperForm() {
           <div style={styles.dateField}>
             <div style={styles.label}>Date</div>
             <input
-              type="text"
-              style={styles.input}
-              value={formData.date1}
-              onChange={(e) => handleChange("date1", e.target.value)}
+              type="date"
+              style={{
+                ...styles.input,
+                borderBottomColor: getRequiredFieldClasses('applicantDate') ? '#ef4444' : '#000'
+              }}
+              value={formData.applicantDate}
+              onChange={(e) => handleChange("applicantDate", e.target.value)}
             />
           </div>
         </div>
 
+        <div style={styles.pageNumber}>{pageNumber}</div>
+      </div>
+
+      {/* Page - Accident Waiver and Release of Liability */}
+      <div style={styles.page}>
         <div style={styles.documentTitle}>
           Accident Waiver and Release of Liability
         </div>
@@ -290,13 +297,18 @@ export default function AxperForm() {
           <div style={styles.dateField}>
             <div style={styles.label}>Date</div>
             <input
-              type="text"
-              style={styles.input}
-              value={formData.date2}
-              onChange={(e) => handleChange("date2", e.target.value)}
+              type="date"
+              style={{
+                ...styles.input,
+                borderBottomColor: getRequiredFieldClasses('accidentWaiverDate') ? '#ef4444' : '#000'
+              }}
+              value={formData.accidentWaiverDate}
+              onChange={(e) => handleChange("accidentWaiverDate", e.target.value)}
             />
           </div>
         </div>
+
+        <div style={styles.pageNumber}>{pageNumber + 1}</div>
       </div>
     </div>
   );

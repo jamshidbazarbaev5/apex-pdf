@@ -2,7 +2,7 @@
 import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
 
-export const PrivacyActNoticePage = () => {
+export const PrivacyActNoticePage = ({  }: { pageNumber?: number }) => {
   return (
     <DocumentSheet>
       <AutoSaveStatus />

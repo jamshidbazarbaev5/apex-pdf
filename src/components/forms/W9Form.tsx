@@ -2,10 +2,10 @@ import React from "react";
 import { SignButton } from "@/components/ui/SignButton";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
-import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
+// import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
 import { getRequiredFieldClasses } from "@/lib/fieldValidation";
 
-const W9Form: React.FC = () => {
+const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.form);
 
@@ -15,7 +15,7 @@ const W9Form: React.FC = () => {
 
   return (
     <div className="w-full max-w-none mx-auto bg-white font-serif text-black">
-      <AutoSaveStatus />
+      {/* <AutoSaveStatus /> */}
       {/* PAGE 1 */}
       <div className="w-[8.5in] mx-auto p-0 print:p-0 mb-8">
         <div className="border border-black">
@@ -84,8 +84,8 @@ const W9Form: React.FC = () => {
                 </div>
                 <input
                   type="text"
-                  name="w9Name"
-                  value={formData.w9Name}
+                  name="entityName"
+                  value={formData.entityName}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
                   className={`w-full outline-none bg-transparent text-[10pt] py-1 ${getRequiredFieldClasses('entityName', 'border-b border-black')}`}
                 />
@@ -99,13 +99,13 @@ const W9Form: React.FC = () => {
               </div>
               <div className="flex-1 p-2">
                 <div className="text-[16px] leading-tight mb-1">
-                  Business name/disregarded entity name, if different from
-                  above.
+                  Business name/disregarded entity name. Do not enter an
+                  individual's name.
                 </div>
                 <input
                   type="text"
-                  name="w9BusinessName"
-                  value={formData.w9BusinessName}
+                  name="businessName"
+                  value={formData.businessName}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
                   className={`w-full outline-none bg-transparent text-[10pt] py-1 ${getRequiredFieldClasses('businessName', 'border-b border-black')}`}
                 />
@@ -537,7 +537,7 @@ const W9Form: React.FC = () => {
                 <div className="w-32 p-2">
                   <div className="text-[16px] mb-1">Date</div>
                   <input
-                    type="text"
+                    type="date"
                     name="date1"
                     value={formData.date1}
                     onChange={(e) => handleChange(e.target.name, e.target.value)}

@@ -1,11 +1,11 @@
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { updateFormData } from '@/store/formSlice';
-import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
+// import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
 import { getRequiredFieldClasses } from '@/lib/fieldValidation';
 
-const InfoRow = ({ label, name }: { label: string, name?: string }) => {
+const InfoRow = ({ label, name, type = 'text' }: { label: string, name?: string, type?: string }) => {
   const dispatch = useAppDispatch();
   const formData = useAppSelector(state => state.form);
   
@@ -23,7 +23,7 @@ const InfoRow = ({ label, name }: { label: string, name?: string }) => {
       <span className="font-serif text-black text-[14px] uppercase shrink-0 w-[200px] font-bold">{label}</span>
       <div className={`flex-1 ${borderClasses} relative top-1`}>
          <input
-          type="text"
+          type={type}
           name={name}
           value={fieldValue}
           onChange={handleChange}
@@ -79,7 +79,7 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
          <span className="text-[56px] text-[#3b5073] font-sans font-medium tracking-tight leading-none">Axper</span>
       </div>
 
-      <AutoSaveStatus />
+      {/* <AutoSaveStatus /> */}
 
       <div className="flex justify-center mb-10">
         <h2 className="text-[#1e4e8c] font-bold font-serif text-[18px] uppercase tracking-wide">
@@ -93,7 +93,7 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
         <InfoRow label="YEAR:" name="vehicleYear" />
         <InfoRow label="PLATE NUMBER:" name="vehiclePlateNumber" />
         <InfoRow label="STATE:" name="vehicleState" />
-        <InfoRow label="EXPIRATION DATE:" name="vehicleExpirationDate" />
+        <InfoRow label="EXPIRATION DATE:" name="vehicleExpirationDate" type="date" />
         <InfoRow label="VIN NUMBER:" name="vehicleVinNumber" />
       </div>
 
@@ -114,9 +114,9 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
              </div>
         </div>
 
-         <div className="grid grid-cols-[200px_1fr_1fr_1fr] divide-x divide-black border-b border-black min-h-[48px]">
+         <div className="grid grid-cols-[200px_1fr_1fr_1fr] divide-x divide-black border-b border-black min-h-12">
              <div className="p-2 flex items-center font-serif text-[14px] pl-3 font-bold">DOOR OPENING DIMS:</div>
-             <div className="relative">
+             <div className={`relative ${getRequiredFieldClasses('vehicleDoorOpeningLength', 'border-r-2 border-red-500')}`}>
                 <input 
                   type="text" 
                   value={String(formData.vehicleDoorOpeningLength || '')}
@@ -124,7 +124,7 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
                   className="w-full h-full text-center font-sans bg-transparent outline-none focus:bg-blue-50/50" 
                 />
              </div>
-             <div className="relative">
+             <div className={`relative ${getRequiredFieldClasses('vehicleDoorOpeningWidth', 'border-r-2 border-red-500')}`}>
                 <input 
                   type="text" 
                   value={String(formData.vehicleDoorOpeningWidth || '')}
@@ -132,7 +132,7 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
                   className="w-full h-full text-center font-sans bg-transparent outline-none focus:bg-blue-50/50" 
                 />
              </div>
-             <div className="relative">
+             <div className={`relative ${getRequiredFieldClasses('vehicleDoorOpeningHeight', 'border-r-2 border-red-500')}`}>
                 <input 
                   type="text" 
                   value={String(formData.vehicleDoorOpeningHeight || '')}
@@ -141,9 +141,9 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
                 />
              </div>
          </div>
-         <div className="grid grid-cols-[200px_1fr_1fr_1fr] divide-x divide-black border-b border-black min-h-[48px]">
+         <div className="grid grid-cols-[200px_1fr_1fr_1fr] divide-x divide-black border-b border-black min-h-12">
              <div className="p-2 flex items-center font-serif text-[14px] pl-3 font-bold">DIMS INSIDE:</div>
-             <div className="relative">
+             <div className={`relative ${getRequiredFieldClasses('vehicleDimsInsideLength', 'border-r-2 border-red-500')}`}>
                 <input 
                   type="text" 
                   value={String(formData.vehicleDimsInsideLength || '')}
@@ -151,7 +151,7 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
                   className="w-full h-full text-center font-sans bg-transparent outline-none focus:bg-blue-50/50" 
                 />
              </div>
-             <div className="relative">
+             <div className={`relative ${getRequiredFieldClasses('vehicleDimsInsideWidth', 'border-r-2 border-red-500')}`}>
                 <input 
                   type="text" 
                   value={String(formData.vehicleDimsInsideWidth || '')}
@@ -159,7 +159,7 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
                   className="w-full h-full text-center font-sans bg-transparent outline-none focus:bg-blue-50/50" 
                 />
              </div>
-             <div className="relative">
+             <div className={`relative ${getRequiredFieldClasses('vehicleDimsInsideHeight', 'border-r-2 border-red-500')}`}>
                 <input 
                   type="text" 
                   value={String(formData.vehicleDimsInsideHeight || '')}
@@ -168,9 +168,9 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
                 />
              </div>
          </div>
-          <div className="grid grid-cols-[200px_1fr_1fr_1fr] divide-x divide-black min-h-[48px]">
+          <div className="grid grid-cols-[200px_1fr_1fr_1fr] divide-x divide-black min-h-12">
              <div className="p-2 flex items-center font-serif text-[14px] pl-3 font-bold">PAYLOAD</div>
-             <div className="col-span-3 relative">
+             <div className={`col-span-3 relative ${getRequiredFieldClasses('vehiclePayload', 'border-r-2 border-red-500')}`}>
                 <input 
                   type="text" 
                   value={String(formData.vehiclePayload || '')}
@@ -200,7 +200,7 @@ export const VehicleInfoPage = ({ pageNumber = 5 }: { pageNumber?: number }) => 
       </div>
 
        <div className="absolute bottom-12 left-0 right-0 text-center">
-        <span className="font-serif text-xl">{pageNumber}</span>
+        <span className="font-serif text-xs">{pageNumber}</span>
       </div>
     </DocumentSheet>
   );

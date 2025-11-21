@@ -1,6 +1,6 @@
-import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
+// import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 
-export default function RequirementsInfo() {
+export default function RequirementsInfo({ pageNumber = 1 }: { pageNumber?: number }) {
   const styles = {
     container: {
       minHeight: '100vh',
@@ -58,14 +58,14 @@ export default function RequirementsInfo() {
     pageNumber: {
       textAlign: 'center' as const,
       marginTop: '50px',
-      fontSize: '13px',
+      fontSize: '18px',
       color: '#666'
     }
   };
 
   return (
     <div style={styles.container}>
-      <AutoSaveStatus />
+      {/* <AutoSaveStatus /> */}
       {/* Page 1 - Basic Requirements */}
       <div style={styles.page}>
         <div style={styles.header}>
@@ -113,7 +113,7 @@ export default function RequirementsInfo() {
           </li>
         </ul>
 
-        {/* <div style={styles.pageNumber}>1</div> */}
+        <div style={styles.pageNumber}>{pageNumber}</div>
       </div>
 
       {/* Page 2 - Vehicle Requirements */}
@@ -147,7 +147,7 @@ export default function RequirementsInfo() {
           </li>
         </ul>
 
-        {/* <div style={styles.pageNumber}>2</div> */}
+        <div style={styles.pageNumber}>{pageNumber + 1}</div>
       </div>
     </div>
   );

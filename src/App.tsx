@@ -2,10 +2,12 @@ import "./App.css";
 import "./index.css";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "sonner";
 import W9FormDemo from "./core/pages/page";
 import AxperForm from "./components/sections/AxperForm";
 import GeneralInfo from "./components/sections/GeneralInfo";
 import RequirementsInfo from "./components/sections/RequirementsInfo";
+import { ClearDataButton } from "./components/ui/ClearDataButton";
 // import HomePage from "./components/sections/HomePage";
 
 const queryClient = new QueryClient();
@@ -13,6 +15,8 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+          <ClearDataButton />
+          <Toaster position="top-right" />
           <Routes>
             {/* Public routes */}
 

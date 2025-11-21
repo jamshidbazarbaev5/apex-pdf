@@ -166,3 +166,53 @@ export function getRequiredFieldClasses(
   }
   return baseClasses;
 }
+
+/**
+ * Validates email format
+ * @param email - Email address to validate
+ * @returns true if valid email format
+ */
+export function isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+/**
+ * Validates date format (YYYY-MM-DD)
+ * @param date - Date string to validate
+ * @returns true if valid ISO date format
+ */
+export function isValidDateFormat(date: string): boolean {
+  if (!date) return true; // Empty dates are allowed
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateRegex.test(date)) return false;
+  
+  // Additional check: verify it's a valid date
+  const dateObj = new Date(date + 'T00:00:00');
+  return !isNaN(dateObj.getTime());
+}
+
+/**
+ * Get error message for email validation
+ * @param email - Email address to validate
+ * @returns Error message or empty string if valid
+ */
+export function getEmailValidationError(email: string): string {
+  if (!email) return "Email is required";
+  if (!isValidEmail(email)) return "Enter a valid email address.";
+  return "";
+}
+
+/**
+ * Get error message for date validation
+ * @param date - Date string to validate
+ * @returns Error message or empty string if valid
+ */
+export function getDateValidationError(date: string): string {
+  if (!date) return ""; // Empty dates handled by required field check
+  if (!isValidDateFormat(date)) {
+    return "Date has wrong format. Use one of these formats instead: YYYY-MM-DD.";
+  }
+  return "";
+}
+

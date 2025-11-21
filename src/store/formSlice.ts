@@ -1,5 +1,47 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
+export interface DriverVehicle {
+  // Driver Info
+  driver_first_name: string;
+  driver_last_name: string;
+  driver_date_of_birth: string;
+  driver_address: string;
+  driver_city: string;
+  driver_state: string;
+  driver_zip_code: string;
+  driver_cell_phone: string;
+  driver_emergency_number: string;
+  driver_us_citizen: boolean;
+  driver_green_card: boolean;
+  driver_twic_tsa: boolean;
+  driver_hazmat_certified: boolean;
+
+  // Vehicle Info
+  vehicle_make: string;
+  vehicle_model: string;
+  vehicle_year: string;
+  vehicle_plate_number: string;
+  vehicle_state: string;
+  vehicle_expiration_date: string;
+  vehicle_vin_number: string;
+  vehicle_door_length: string;
+  vehicle_door_width: string;
+  vehicle_door_height: string;
+  vehicle_inside_length: string;
+  vehicle_inside_width: string;
+  vehicle_inside_height: string;
+  vehicle_payload_lbs: string;
+  vehicle_air_ride: boolean;
+  vehicle_dock_high: boolean;
+  vehicle_pallet_jack: boolean;
+  vehicle_ramps: boolean;
+  vehicle_straps: boolean;
+  vehicle_blankets: boolean;
+  vehicle_lift_gate: boolean;
+  vehicle_e_tracks: boolean;
+  vehicle_load_bars: boolean;
+}
+
 export interface FormData {
   // Owner Info
   ownerFirstName: string;
@@ -169,6 +211,9 @@ export interface FormData {
   // Attachments & Files
   attachments: File[];
   signature: File | null;
+
+  // Multiple Drivers with Vehicles
+  drivers: DriverVehicle[];
 }
 
 const initialState: FormData = {
@@ -340,6 +385,9 @@ const initialState: FormData = {
   // Attachments & Files
   attachments: [],
   signature: null,
+
+  // Multiple Drivers with Vehicles
+  drivers: [],
 };
 
 const formSlice = createSlice({
@@ -350,11 +398,35 @@ const formSlice = createSlice({
       return { ...state, ...action.payload };
     },
     setFormData: (_state, action: PayloadAction<FormData>) => {
-      return action.payload;
+      const newState = action.payload;
+      // Ensure drivers array is always initialized
+      if (!newState.drivers) {
+        newState.drivers = [];
+      }
+      return newState;
     },
     clearFormData: () => initialState,
+    addDriver: (state, action: PayloadAction<DriverVehicle>) => {
+      if (!state.drivers) {
+        state.drivers = [];
+      }
+      state.drivers.push(action.payload);
+    },
+    updateDriver: (state, action: PayloadAction<{ index: number; data: Partial<DriverVehicle> }>) => {
+      if (!state.drivers) {
+        state.drivers = [];
+      }
+      if (state.drivers[action.payload.index]) {
+        state.drivers[action.payload.index] = { ...state.drivers[action.payload.index], ...action.payload.data };
+      }
+    },
+    removeDriver: (state, action: PayloadAction<number>) => {
+      if (state.drivers) {
+        state.drivers.splice(action.payload, 1);
+      }
+    },
   },
 });
 
-export const { updateFormData, setFormData, clearFormData } = formSlice.actions;
+export const { updateFormData, setFormData, clearFormData, addDriver, updateDriver, removeDriver } = formSlice.actions;
 export default formSlice.reducer;

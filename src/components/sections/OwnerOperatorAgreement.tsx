@@ -5,9 +5,31 @@ import { SignButton } from "@/components/ui/SignButton";
 import { SignatureDisplay } from "@/components/ui/SignatureDisplay";
 import { getRequiredFieldClasses } from "@/lib/fieldValidation";
 
-export default function OwnerOperatorAgreement() {
+export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6 }: { pageNumber?: number }) {
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.form);
+
+  // Page number calculator for dynamic pages
+  const pageNumbers = {
+    page1: startPageNumber,
+    page2: startPageNumber + 1,
+    page3: startPageNumber + 2,
+    page4: startPageNumber + 3,
+    page5: startPageNumber + 4,
+    page6: startPageNumber + 5,
+    page7: startPageNumber + 6,
+    page8: startPageNumber + 7,
+    page9: startPageNumber + 8,
+    page10: startPageNumber + 9,
+    page11: startPageNumber + 10,
+    page12: startPageNumber + 11,
+    page13: startPageNumber + 12,
+    page14: startPageNumber + 13,
+    page15: startPageNumber + 14,
+    page16: startPageNumber + 15,
+    page17: startPageNumber + 16,
+    page18: startPageNumber + 17,
+  };
 
   const handleChange = (field: string, value: string) => {
     dispatch(updateFormData({ [field]: value }));
@@ -275,7 +297,7 @@ export default function OwnerOperatorAgreement() {
           Company in
         </div>
 
-        <div style={styles.pageNumber}>7</div>
+        <div style={styles.pageNumber}>{pageNumbers.page2}</div>
       </div>
 
       {/* Page 8 - Agreement Continuation */}
@@ -355,7 +377,7 @@ export default function OwnerOperatorAgreement() {
           the correct number of vacant miles.
         </div>
 
-        <div style={styles.pageNumber}>8</div>
+        <div style={styles.pageNumber}>{pageNumbers.page3}</div>
       </div>
 
       {/* Page 9 - Section 1.10 */}
@@ -380,7 +402,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>9</div>
+        <div style={styles.pageNumber}>{pageNumbers.page4}</div>
       </div>
 
       {/* Page 10 - Payment Section */}
@@ -445,7 +467,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>10</div>
+        <div style={styles.pageNumber}>{pageNumbers.page5}</div>
       </div>
 
       {/* Page 11 - Deductions Section */}
@@ -523,7 +545,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>11</div>
+        <div style={styles.pageNumber}>{pageNumbers.page6}</div>
       </div>
 
       {/* Page 12 - Claims Section */}
@@ -592,7 +614,7 @@ export default function OwnerOperatorAgreement() {
           services under this Agreement.
         </div>
 
-        <div style={styles.pageNumber}>12</div>
+        <div style={styles.pageNumber}>{pageNumbers.page7}</div>
       </div>
 
       {/* Page 13 - Claims Continuation */}
@@ -623,7 +645,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>13</div>
+        <div style={styles.pageNumber}>{pageNumbers.page8}</div>
       </div>
 
       {/* Page 14 - Recovery and Updates Policy */}
@@ -717,7 +739,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>14</div>
+        <div style={styles.pageNumber}>{pageNumbers.page9}</div>
       </div>
 
       {/* Page 15 - Termination Policy */}
@@ -792,7 +814,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>15</div>
+        <div style={styles.pageNumber}>{pageNumbers.page10}</div>
       </div>
 
       {/* Page 16 - Compensation Policy */}
@@ -843,7 +865,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>16</div>
+        <div style={styles.pageNumber}>{pageNumbers.page11}</div>
       </div>
 
       {/* Page 17 - General Information */}
@@ -925,7 +947,7 @@ export default function OwnerOperatorAgreement() {
           prior to relocating.
         </div>
 
-        <div style={styles.pageNumber}>17</div>
+        <div style={styles.pageNumber}>{pageNumbers.page12}</div>
       </div>
 
       {/* Page 18 - General Information Continued */}
@@ -1031,7 +1053,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>18</div>
+        <div style={styles.pageNumber}>{pageNumbers.page13}</div>
       </div>
 
       {/* Page 19 - Non-Solicitation and Confidentiality */}
@@ -1109,7 +1131,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>19</div>
+        <div style={styles.pageNumber}>{pageNumbers.page14}</div>
       </div>
 
       {/* Page 20 - Other */}
@@ -1175,7 +1197,7 @@ export default function OwnerOperatorAgreement() {
           />
         </div>
 
-        <div style={styles.pageNumber}>20</div>
+        <div style={styles.pageNumber}>{pageNumbers.page15}</div>
       </div>
 
       {/* Page 21 - Acceptance and Acknowledgements */}
@@ -1325,8 +1347,8 @@ export default function OwnerOperatorAgreement() {
                 <div style={styles.paragraph}>
                   DATE:{" "}
                   <input
-                    type="text"
-                    style={{ ...styles.input, minWidth: "100px" }}
+                    type="date"
+                    style={{ ...getInputStyle("acceptanceOwnerDate"), minWidth: "100px" }}
                     placeholder="11/12/2025"
                     value={formData.acceptanceOwnerDate || ""}
                     onChange={(e) =>
@@ -1339,7 +1361,7 @@ export default function OwnerOperatorAgreement() {
           </div>
         </div>
 
-        <div style={styles.pageNumber}>21</div>
+        <div style={styles.pageNumber}>{pageNumbers.page16}</div>
       </div>
 
       {/* Page 22 - Appendix to Application */}
@@ -1385,7 +1407,7 @@ export default function OwnerOperatorAgreement() {
           </div>
         </div>
 
-        <div style={styles.pageNumber}>22</div>
+        <div style={styles.pageNumber}>{pageNumbers.page17}</div>
       </div>
 
       {/* Page 23 - Appendix to Agreement */}
@@ -1480,7 +1502,7 @@ export default function OwnerOperatorAgreement() {
           ON WHAT HAPPENED,
         </div>
 
-        <div style={styles.pageNumber}>23</div>
+        <div style={styles.pageNumber}>{pageNumbers.page18}</div>
       </div>
 
       {/* Page 24 - Hand Loading/Unloading */}
@@ -1524,7 +1546,7 @@ export default function OwnerOperatorAgreement() {
           THE DISPATCHER NO EXTRA MONEY CAN BE REQUESTED.
         </div>
 
-        <div style={styles.pageNumber}>24</div>
+        <div style={styles.pageNumber}>{pageNumbers.page1}</div>
       </div>
 
       {/* Page 25 - Contact Information */}

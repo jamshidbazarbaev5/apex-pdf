@@ -1,10 +1,10 @@
-import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
+// import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
 
-export const CertificationPage = () => {
+export const CertificationPage = ({  }: { pageNumber?: number }) => {
   return (
     <DocumentSheet>
-      <AutoSaveStatus />
+      {/* <AutoSaveStatus /> */}
       <div className="font-sans text-[10px] leading-tight text-black h-full">
          {/* Header */}
          <div className="flex justify-between border-b-2 border-black pb-1 mb-4 font-bold text-[12px]">

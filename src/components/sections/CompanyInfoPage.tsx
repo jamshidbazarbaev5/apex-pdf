@@ -1,11 +1,11 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { updateFormData } from '@/store/formSlice';
-import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
+// import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
 import { getRequiredFieldClasses } from '@/lib/fieldValidation';
 
-const InfoRow = ({ label, name }: { label: string, name?: string }) => {
+const InfoRow = ({ label, name, type = 'text' }: { label: string, name?: string, type?: string }) => {
   const dispatch = useAppDispatch();
   const formData = useAppSelector(state => state.form);
   
@@ -23,7 +23,7 @@ const InfoRow = ({ label, name }: { label: string, name?: string }) => {
       <span className="font-serif text-black text-[14px] uppercase shrink-0 w-[280px] font-bold">{label}</span>
       <div className={`flex-1 ${borderClasses} relative top-1`}>
         <input
-          type="text"
+          type={type}
           name={name}
           value={fieldValue}
           onChange={handleChange}
@@ -34,7 +34,7 @@ const InfoRow = ({ label, name }: { label: string, name?: string }) => {
   );
 };
 
-export const CompanyInfoPage = () => {
+export const CompanyInfoPage = ({ pageNumber = 2 }: { pageNumber?: number }) => {
   return (
     <DocumentSheet>
       {/* Logo */}
@@ -42,7 +42,7 @@ export const CompanyInfoPage = () => {
          <span className="text-[56px] text-[#3b5073] font-sans font-medium tracking-tight leading-none">Axper</span>
       </div>
 
-      <AutoSaveStatus />
+      {/* <AutoSaveStatus /> */}
 
       {/* Header */}
       <div className="flex justify-center mb-12">
@@ -57,7 +57,7 @@ export const CompanyInfoPage = () => {
         <InfoRow label="COMPANY'S REGISTERED ADDRESS:" name="companyRegisteredAddress" />
         <InfoRow label="CITY, STATE AND ZIP-CODE:" name="companyCityStateZip" />
         <InfoRow label="PHONE NUMBER:" name="companyPhoneNumber" />
-        <InfoRow label="EMAIL:" name="companyEmail" />
+        <InfoRow label="EMAIL:" name="companyEmail" type="email" />
         <InfoRow label="WEB-SITE:" name="companyWebsite" />
         <InfoRow label="MC NUMBER:" name="companyMcNumber" />
         <InfoRow label="DOT NUMBER:" name="companyDotNumber" />
@@ -65,7 +65,7 @@ export const CompanyInfoPage = () => {
 
       {/* Footer Page Number */}
       <div className="absolute bottom-12 left-0 right-0 text-center">
-        <span className="font-serif text-xl">3</span>
+        <span className="font-serif text-15">{pageNumber}</span>
       </div>
     </DocumentSheet>
   );

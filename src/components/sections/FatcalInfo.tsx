@@ -1,10 +1,10 @@
-import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
+// import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
 import { DocumentSheet } from './DocumentSheet';
 
-export const FatcaInfoPage = () => {
+export const FatcaInfoPage = ({ }: { pageNumber?: number }) => {
   return (
     <DocumentSheet>
-      <AutoSaveStatus />
+      {/* <AutoSaveStatus /> */}
       <div className="font-sans text-[11px] leading-snug text-black text-justify h-full">
          {/* Header */}
          <div className="flex justify-between border-b-2 border-black pb-1 mb-6 font-bold text-[12px]">
