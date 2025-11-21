@@ -40,3 +40,53 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Mobile horizontal scroll for all forms and pages */
+@media (max-width: 900px) {
+  /* Enable smooth scrolling for all overflow containers */
+  [style*="overflowX: auto"],
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+  }
+
+  /* Ensure form pages maintain their width for horizontal scroll */
+  [style*="minWidth: 850px"] {
+    min-width: 850px;
+  }
+
+  /* W-9 form specific scroll */
+  .w-\[8\.5in\] {
+    width: 8.5in;
+  }
+
+  /* DocumentSheet scroll support */
+  .min-w-\[850px\] {
+    min-width: 850px;
+  }
+}
+
+/* Smooth scrolling across all browsers */
+body {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar while keeping functionality (optional, can be removed for visible scrollbar) */
+@media (max-width: 900px) {
+  [style*="overflowX: auto"]::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  [style*="overflowX: auto"]::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  [style*="overflowX: auto"]::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+  }
+
+  [style*="overflowX: auto"]::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}

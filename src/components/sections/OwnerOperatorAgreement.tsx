@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
-import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
 import { SignButton } from "@/components/ui/SignButton";
 import { SignatureDisplay } from "@/components/ui/SignatureDisplay";
 import { getRequiredFieldClasses } from "@/lib/fieldValidation";
@@ -55,20 +54,25 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
       backgroundColor: "#ffffff",
       WebkitFontSmoothing: "antialiased" as const,
       MozOsxFontSmoothing: "grayscale" as const,
+      overflowX: "auto" as const,
+      WebkitOverflowScrolling: "touch" as const,
     },
     page: {
       maxWidth: "8.5in",
       width: "100%",
       margin: "0 auto 40px",
       background: "white",
-      padding: isMobile ? "30px 20px" : "60px 70px",
+      padding: isMobile ? "30px 40px" : "60px 70px",
       boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
       position: "relative" as const,
       boxSizing: "border-box" as const,
+      minWidth: isMobile ? "850px" : "auto",
     },
     header: {
       textAlign: "center" as const,
       marginBottom: isMobile ? "30px" : "50px",
+      wordBreak: "break-word" as const,
+      overflowWrap: "break-word" as const,
     },
     companyName: {
       color: "#2563eb",
@@ -76,6 +80,8 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
       fontSize: isMobile ? "18px" : "24px",
       marginBottom: "10px",
       letterSpacing: "0.5px",
+      wordBreak: "break-word" as const,
+      overflowWrap: "break-word" as const,
     },
     companyInfo: {
       color: "#2563eb",
@@ -83,6 +89,8 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
       fontSize: isMobile ? "14px" : "18px",
       marginBottom: "10px",
       letterSpacing: "0.3px",
+      wordBreak: "break-word" as const,
+      overflowWrap: "break-word" as const,
     },
     title: {
       color: "#2563eb",
@@ -91,6 +99,8 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
       marginTop: "20px",
       marginBottom: isMobile ? "30px" : "50px",
       letterSpacing: "0.5px",
+      wordBreak: "break-word" as const,
+      overflowWrap: "break-word" as const,
     },
     sectionTitle: {
       color: "#2563eb",
@@ -201,7 +211,7 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
 
   return (
     <div style={styles.container}>
-      <AutoSaveStatus />
+      {/* <AutoSaveStatus /> */}
       {/* Page 7 - Agreement Header */}
       <div style={styles.page}>
         <div style={styles.header}>

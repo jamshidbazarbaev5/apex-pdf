@@ -6,7 +6,9 @@ export default function RequirementsInfo({ pageNumber = 1 }: { pageNumber?: numb
       minHeight: '100vh',
       // background: '#f5f5f5',
       padding: '40px 20px',
-      fontFamily: "'Times New Roman', serif"
+      fontFamily: "'Times New Roman', serif",
+      overflowX: 'auto' as const,
+      WebkitOverflowScrolling: 'touch' as const,
     },
     page: {
       maxWidth: '850px',
@@ -15,6 +17,7 @@ export default function RequirementsInfo({ pageNumber = 1 }: { pageNumber?: numb
       padding: '60px',
       boxShadow: '0 0 10px rgba(0,0,0,0.1)',
       minHeight: '100vh',
+      minWidth: '850px',
       display: 'flex',
       flexDirection: 'column' as const,
       justifyContent: 'center'

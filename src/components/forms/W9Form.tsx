@@ -14,7 +14,7 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
   };
 
   return (
-    <div className="w-full max-w-none mx-auto bg-white font-serif text-black">
+    <div className="w-full max-w-none mx-auto bg-white font-serif text-black overflow-x-auto md:overflow-x-visible min-w-[8.5in] md:min-w-0" style={{ WebkitOverflowScrolling: 'touch' }}>
       {/* <AutoSaveStatus /> */}
       {/* PAGE 1 */}
       <div className="w-[8.5in] mx-auto p-0 print:p-0 mb-8">

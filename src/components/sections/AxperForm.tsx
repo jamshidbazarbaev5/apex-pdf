@@ -20,6 +20,8 @@ export default function AxperForm({ pageNumber = 5 }: { pageNumber?: number }) {
     //   backgroundColor: "#f5f5f5",
       WebkitFontSmoothing: "antialiased" as const,
       MozOsxFontSmoothing: "grayscale" as const,
+      overflowX: "auto" as const,
+      WebkitOverflowScrolling: "touch" as const,
     },
     page: {
       maxWidth: "850px",
@@ -27,6 +29,11 @@ export default function AxperForm({ pageNumber = 5 }: { pageNumber?: number }) {
       background: "white",
       padding: "60px 80px",
       boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+      minWidth: "850px",
+      "@media (max-width: 900px)": {
+        minWidth: "100vw",
+        padding: "60px 60px",
+      },
     },
     sectionTitle: {
       color: "#2563eb",
