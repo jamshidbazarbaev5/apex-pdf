@@ -1,3 +1,5 @@
+import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
+
 export default function GeneralInfo() {
   const styles = {
     container: {
@@ -68,6 +70,7 @@ export default function GeneralInfo() {
 
   return (
     <div style={styles.container}>
+      <AutoSaveStatus />
       {/* Page 1 - General Information */}
       <div style={styles.page}>
         <div style={styles.sectionTitle}>9. GENERAL INFORMATION</div>

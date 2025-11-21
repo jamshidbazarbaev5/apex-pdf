@@ -115,7 +115,7 @@
     }
     body {
         @apply bg-background text-foreground;
-        font-family: "Times New Roman", Times, serif;
+        font-family: "Open Sans", sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
@@ -125,7 +125,7 @@
     input,
     textarea,
     select {
-        font-family: "Times New Roman", Times, serif;
+        font-family: "Open Sans", sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }

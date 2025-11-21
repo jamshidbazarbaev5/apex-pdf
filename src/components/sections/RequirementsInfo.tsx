@@ -1,3 +1,5 @@
+import { AutoSaveStatus } from '@/components/ui/AutoSaveStatus';
+
 export default function RequirementsInfo() {
   const styles = {
     container: {
@@ -63,6 +65,7 @@ export default function RequirementsInfo() {
 
   return (
     <div style={styles.container}>
+      <AutoSaveStatus />
       {/* Page 1 - Basic Requirements */}
       <div style={styles.page}>
         <div style={styles.header}>

@@ -1,17 +1,23 @@
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
+import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
+import { SignButton } from "@/components/ui/SignButton";
+import { SignatureDisplay } from "@/components/ui/SignatureDisplay";
 
 export default function OwnerOperatorAgreement() {
   const dispatch = useAppDispatch();
+  const formData = useAppSelector((state) => state.form);
 
   const handleChange = (field: string, value: string) => {
     dispatch(updateFormData({ [field]: value }));
   };
 
+  const isMobile = window.innerWidth < 768;
+
   const styles = {
     container: {
       minHeight: "100vh",
-      padding: "20px",
+      padding: isMobile ? "10px" : "20px",
       fontFamily: "'Times New Roman', Times, serif",
       backgroundColor: "#ffffff",
       WebkitFontSmoothing: "antialiased" as const,
@@ -22,73 +28,77 @@ export default function OwnerOperatorAgreement() {
       width: "100%",
       margin: "0 auto 40px",
       background: "white",
-      padding: "60px 70px",
+      padding: isMobile ? "30px 20px" : "60px 70px",
       boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
       position: "relative" as const,
       boxSizing: "border-box" as const,
     },
     header: {
       textAlign: "center" as const,
-      marginBottom: "50px",
+      marginBottom: isMobile ? "30px" : "50px",
     },
     companyName: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "24px",
+      fontSize: isMobile ? "18px" : "24px",
       marginBottom: "10px",
       letterSpacing: "0.5px",
     },
     companyInfo: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "18px",
+      fontSize: isMobile ? "14px" : "18px",
       marginBottom: "10px",
       letterSpacing: "0.3px",
     },
     title: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "18px",
+      fontSize: isMobile ? "14px" : "18px",
       marginTop: "20px",
-      marginBottom: "50px",
+      marginBottom: isMobile ? "30px" : "50px",
       letterSpacing: "0.5px",
     },
     sectionTitle: {
       color: "#2563eb",
       fontWeight: "700" as const,
-      fontSize: "14px",
-      marginTop: "40px",
-      marginBottom: "30px",
+      fontSize: isMobile ? "12px" : "14px",
+      marginTop: isMobile ? "25px" : "40px",
+      marginBottom: isMobile ? "20px" : "30px",
       letterSpacing: "0.5px",
       textAlign: "center" as const,
     },
     paragraph: {
-      fontSize: "16px",
-      lineHeight: "1.8",
+      fontSize: isMobile ? "14px" : "16px",
+      lineHeight: "1.6",
       textAlign: "left" as const,
-      marginBottom: "18px",
+      marginBottom: isMobile ? "12px" : "18px",
       color: "#000",
       fontWeight: "400" as const,
+      wordBreak: "break-word" as const,
     },
     agreementText: {
-      fontSize: "16px",
-      lineHeight: "1.8",
-      marginBottom: "18px",
+      fontSize: isMobile ? "14px" : "16px",
+      lineHeight: "1.6",
+      marginBottom: isMobile ? "12px" : "18px",
       color: "#000",
       fontWeight: "400" as const,
+      wordBreak: "break-word" as const,
     },
     input: {
       border: "none",
       borderBottom: "1px solid #000",
       outline: "none",
-      fontSize: "16px",
+      fontSize: isMobile ? "14px" : "16px",
       color: "#000",
       padding: "0 4px 2px 4px",
       background: "transparent",
       fontFamily: "'Times New Roman', Times, serif",
       fontWeight: "400" as const,
-      minWidth: "80px",
+      minWidth: isMobile ? "60px" : "80px",
       display: "inline-block",
+      maxWidth: isMobile ? "100%" : "auto",
+      boxSizing: "border-box" as const,
     },
     bold: {
       fontWeight: "700" as const,
@@ -127,10 +137,10 @@ export default function OwnerOperatorAgreement() {
     },
     signatureRow: {
       display: "flex",
-      alignItems: "flex-end",
+      alignItems: "center",
       marginTop: "60px",
-      gap: "40px",
-      justifyContent: "flex-end",
+      gap: "15px",
+      justifyContent: "center",
     },
     signatureLabel: {
       fontSize: "16px",
@@ -158,6 +168,7 @@ export default function OwnerOperatorAgreement() {
 
   return (
     <div style={styles.container}>
+      <AutoSaveStatus />
       {/* Page 7 - Agreement Header */}
       <div style={styles.page}>
         <div style={styles.header}>
@@ -349,13 +360,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement1Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement1Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement1Signature"
           />
         </div>
 
@@ -408,19 +418,19 @@ export default function OwnerOperatorAgreement() {
             type="text"
             style={{ ...styles.input, minWidth: "300px" }}
             placeholder="admin@expectxpress.com"
+            value={formData.paymentEmail || ""}
             onChange={(e) => handleChange("paymentEmail", e.target.value)}
           />
         </div>
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement2Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement2Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement2Signature"
           />
         </div>
 
@@ -493,13 +503,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement3Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement3Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement3Signature"
           />
         </div>
 
@@ -594,13 +603,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement4Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement4Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement4Signature"
           />
         </div>
 
@@ -629,13 +637,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement5Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement5Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement5Signature"
           />
         </div>
 
@@ -690,13 +697,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement6Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement6Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement6Signature"
           />
         </div>
 
@@ -766,13 +772,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement7Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement7Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement7Signature"
           />
         </div>
 
@@ -818,13 +823,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement8Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement8Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement8Signature"
           />
         </div>
 
@@ -1007,13 +1011,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement9Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement9Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement9Signature"
           />
         </div>
 
@@ -1086,13 +1089,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement10Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement10Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement10Signature"
           />
         </div>
 
@@ -1153,13 +1155,12 @@ export default function OwnerOperatorAgreement() {
 
         <div style={styles.signatureRow}>
           <span style={styles.signatureLabel}>Signature</span>
-          <input
-            type="text"
-            style={styles.signatureInput}
-            placeholder="William Thomas"
-            onChange={(e) =>
-              handleChange("agreement11Signature", e.target.value)
+          <SignButton
+            onChange={(value) =>
+              handleChange("agreement11Signature", value)
             }
+            placeholder="Click to add signature"
+            fieldName="agreement11Signature"
           />
         </div>
 
@@ -1183,6 +1184,7 @@ export default function OwnerOperatorAgreement() {
             type="text"
             style={{ ...styles.input, minWidth: "200px" }}
             placeholder="Expect Xpress LLC"
+            value={formData.acceptanceCompany || ""}
             onChange={(e) => handleChange("acceptanceCompany", e.target.value)}
           />{" "}
           legally bind to the terms and conditions set forth therein. This
@@ -1199,6 +1201,7 @@ export default function OwnerOperatorAgreement() {
             type="text"
             style={{ ...styles.input, minWidth: "80px" }}
             placeholder="12th"
+            value={formData.acceptanceDay || ""}
             onChange={(e) => handleChange("acceptanceDay", e.target.value)}
           />{" "}
           DAY OF{" "}
@@ -1206,6 +1209,7 @@ export default function OwnerOperatorAgreement() {
             type="text"
             style={{ ...styles.input, minWidth: "100px" }}
             placeholder="November"
+            value={formData.acceptanceMonth || ""}
             onChange={(e) => handleChange("acceptanceMonth", e.target.value)}
           />
           , 20
@@ -1213,6 +1217,7 @@ export default function OwnerOperatorAgreement() {
             type="text"
             style={{ ...styles.input, minWidth: "40px" }}
             placeholder="25"
+            value={formData.acceptanceYear || ""}
             onChange={(e) => handleChange("acceptanceYear", e.target.value)}
           />
           . I UNDERSTAND AND ACKNOWLEDGE THAT IS THE "OWNER-OPERATOR" AS THAT
@@ -1240,7 +1245,14 @@ export default function OwnerOperatorAgreement() {
                 <div style={styles.paragraph}>
                   TITLE: <span style={{ color: "#2563eb" }}>MANAGER</span>
                 </div>
-                <div style={styles.paragraph}>SIGNATURE: _______________</div>
+                <div style={styles.paragraph}>
+                  SIGNATURE:{" "}
+                  <SignatureDisplay
+                    value={formData.companySignature}
+                    label="Company Signature"
+                    isReadOnly={true}
+                  />
+                </div>
                 <div style={styles.paragraph}>
                   DATE: <span style={{ color: "#2563eb" }}>23/11/2024</span>
                 </div>
@@ -1258,6 +1270,7 @@ export default function OwnerOperatorAgreement() {
                   type="text"
                   style={{ ...styles.input, minWidth: "200px" }}
                   placeholder="Expect Xpress LLC"
+                  value={formData.acceptanceOwnerCompany || ""}
                   onChange={(e) =>
                     handleChange("acceptanceOwnerCompany", e.target.value)
                   }
@@ -1270,6 +1283,7 @@ export default function OwnerOperatorAgreement() {
                     type="text"
                     style={{ ...styles.input, minWidth: "150px" }}
                     placeholder="William Thomas"
+                    value={formData.acceptanceOwnerName || ""}
                     onChange={(e) =>
                       handleChange("acceptanceOwnerName", e.target.value)
                     }
@@ -1281,20 +1295,20 @@ export default function OwnerOperatorAgreement() {
                     type="text"
                     style={{ ...styles.input, minWidth: "150px" }}
                     placeholder="Owner Operator"
+                    value={formData.acceptanceOwnerTitle || ""}
                     onChange={(e) =>
                       handleChange("acceptanceOwnerTitle", e.target.value)
                     }
                   />
                 </div>
-                <div style={styles.paragraph}>
-                  SIGNATURE:{" "}
-                  <input
-                    type="text"
-                    style={{ ...styles.input, minWidth: "150px" }}
-                    placeholder="William Thomas"
-                    onChange={(e) =>
-                      handleChange("acceptanceOwnerSignature", e.target.value)
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "15px", marginBottom: "18px" }}>
+                  <span style={{ fontSize: "16px", fontWeight: "700" }}>Signature</span>
+                  <SignButton
+                    onChange={(value) =>
+                      handleChange("acceptanceOwnerSignature", value)
                     }
+                    placeholder="Click to add signature"
+                    fieldName="acceptanceOwnerSignature"
                   />
                 </div>
                 <div style={styles.paragraph}>
@@ -1303,6 +1317,7 @@ export default function OwnerOperatorAgreement() {
                     type="text"
                     style={{ ...styles.input, minWidth: "100px" }}
                     placeholder="11/12/2025"
+                    value={formData.acceptanceOwnerDate || ""}
                     onChange={(e) =>
                       handleChange("acceptanceOwnerDate", e.target.value)
                     }
