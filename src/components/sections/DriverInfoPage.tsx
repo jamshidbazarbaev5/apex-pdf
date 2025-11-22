@@ -98,14 +98,7 @@ export const DriverInfoPage = ({ pageNumber = 4 }: { pageNumber?: number }) => {
       <div className="flex justify-center mb-8">
         <div className="text-center">
           <AddDriverButton />
-          <p className="text-sm text-gray-600 mt-2 max-w-lg">
-            <strong>How to add multiple drivers:</strong>
-          </p>
-          <p className="text-sm text-gray-600 mt-1 max-w-lg">
-            The first driver is filled in the fields below. When you click "Add Driver & Vehicle", 
-            it creates an empty new page for the next driver. Fill in the new driver's information 
-            and click "Add Driver & Vehicle" again for more drivers. Click submit to send all drivers together.
-          </p>
+         
         </div>
       </div>
 
