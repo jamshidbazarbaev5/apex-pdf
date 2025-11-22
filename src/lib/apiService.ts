@@ -8,16 +8,16 @@ import type { FormData } from "@/store/formSlice";
  */
 function dataUrlToFile(dataUrl: string, fileName: string): File | null {
   try {
-    if (!dataUrl.startsWith('data:')) {
+    if (!dataUrl.startsWith("data:")) {
       return null;
     }
 
     // Extract the MIME type
     const matches = dataUrl.match(/^data:([^;]+);base64,/);
-    const mimeType = matches ? matches[1] : 'image/png';
+    const mimeType = matches ? matches[1] : "image/png";
 
     // Decode the base64 string
-    const bstr = atob(dataUrl.split(',')[1]);
+    const bstr = atob(dataUrl.split(",")[1]);
     const n = bstr.length;
     const u8arr = new Uint8Array(n);
     for (let i = 0; i < n; i++) {
@@ -27,7 +27,7 @@ function dataUrlToFile(dataUrl: string, fileName: string): File | null {
     // Create and return File object
     return new File([u8arr], fileName, { type: mimeType });
   } catch (error) {
-    console.error('Error converting data URL to file:', error);
+    console.error("Error converting data URL to file:", error);
     return null;
   }
 }
@@ -39,7 +39,7 @@ function dataUrlToFile(dataUrl: string, fileName: string): File | null {
  */
 function getSignatureFile(signatureDataUrl: string): File | null {
   if (!signatureDataUrl) return null;
-  return dataUrlToFile(signatureDataUrl, 'signature.png');
+  return dataUrlToFile(signatureDataUrl, "signature.png");
 }
 
 /**
@@ -48,7 +48,7 @@ function getSignatureFile(signatureDataUrl: string): File | null {
  * @returns Date in YYYY-MM-DD format or empty string
  */
 function formatDateToISO(dateValue: string): string {
-  if (!dateValue) return '';
+  if (!dateValue) return "";
 
   // If already in YYYY-MM-DD format, return as is
   if (/^\d{4}-\d{2}-\d{2}$/.test(dateValue)) {
@@ -59,11 +59,11 @@ function formatDateToISO(dateValue: string): string {
   try {
     const date = new Date(dateValue);
     if (isNaN(date.getTime())) {
-      return '';
+      return "";
     }
-    return date.toISOString().split('T')[0];
+    return date.toISOString().split("T")[0];
   } catch (error) {
-    return '';
+    return "";
   }
 }
 
@@ -147,17 +147,18 @@ function mapFormDataToApiFields(formData: FormData): Record<string, any> {
     llcText: "llc_text",
     other: "other",
     otherText: "other_text",
+    w9HasForeignPartners: "foreign_partners",
     exemptPayeeCode: "exempt_payee_code",
     fatcaReportingCode: "fatca_reporting_code",
     taxpayerAddress: "taxpayer_address",
     taxpayerCityStateZip: "taxpayer_city_state_zip",
     taxpayerAccountNumber: "taxpayer_account_number",
     requesterNameAddress: "requester_name_address",
-    socialSecurity1: "social_security_1",
-    socialSecurity2: "social_security_2",
-    socialSecurity3: "social_security_3",
-    employerId1: "employer_id_1",
-    employerId2: "employer_id_2",
+    social_security_1: "social_security_1",
+    social_security_2: "social_security_2",
+    social_security_3: "social_security_3",
+    employer_id_1: "employer_id_1",
+    employer_id_2: "employer_id_2",
   };
 
   const apiData: Record<string, any> = {};
@@ -182,7 +183,7 @@ function mapFormDataToApiFields(formData: FormData): Record<string, any> {
 export async function submitFormData(
   formData: FormData,
   attachments: File[] = [],
-  signature: File | null = null
+  signature: File | null = null,
 ): Promise<any> {
   try {
     const formDataToSend = new FormData();
@@ -193,7 +194,7 @@ export async function submitFormData(
       if (value !== undefined && value !== null && value !== "") {
         // Format dates to YYYY-MM-DD if they're date fields
         let valueToAppend = String(value);
-        if (key.includes('date') || key.includes('Date')) {
+        if (key.includes("date") || key.includes("Date")) {
           valueToAppend = formatDateToISO(String(value));
           if (!valueToAppend) return; // Skip if date formatting fails
         }
@@ -206,105 +207,215 @@ export async function submitFormData(
       formData.drivers.forEach((driver, index) => {
         // Add driver fields - only append if value exists
         if (driver.driver_first_name) {
-          formDataToSend.append(`drivers[${index}]driver_first_name`, driver.driver_first_name);
+          formDataToSend.append(
+            `drivers[${index}]driver_first_name`,
+            driver.driver_first_name,
+          );
         }
         if (driver.driver_last_name) {
-          formDataToSend.append(`drivers[${index}]driver_last_name`, driver.driver_last_name);
+          formDataToSend.append(
+            `drivers[${index}]driver_last_name`,
+            driver.driver_last_name,
+          );
         }
-        
+
         // Format driver date of birth
         if (driver.driver_date_of_birth) {
           const formattedDOB = formatDateToISO(driver.driver_date_of_birth);
           if (formattedDOB) {
-            formDataToSend.append(`drivers[${index}]driver_date_of_birth`, formattedDOB);
+            formDataToSend.append(
+              `drivers[${index}]driver_date_of_birth`,
+              formattedDOB,
+            );
           }
         }
-        
+
         if (driver.driver_address) {
-          formDataToSend.append(`drivers[${index}]driver_address`, driver.driver_address);
+          formDataToSend.append(
+            `drivers[${index}]driver_address`,
+            driver.driver_address,
+          );
         }
         if (driver.driver_city) {
-          formDataToSend.append(`drivers[${index}]driver_city`, driver.driver_city);
+          formDataToSend.append(
+            `drivers[${index}]driver_city`,
+            driver.driver_city,
+          );
         }
         if (driver.driver_state) {
-          formDataToSend.append(`drivers[${index}]driver_state`, driver.driver_state);
+          formDataToSend.append(
+            `drivers[${index}]driver_state`,
+            driver.driver_state,
+          );
         }
         if (driver.driver_zip_code) {
-          formDataToSend.append(`drivers[${index}]driver_zip_code`, driver.driver_zip_code);
+          formDataToSend.append(
+            `drivers[${index}]driver_zip_code`,
+            driver.driver_zip_code,
+          );
         }
         if (driver.driver_cell_phone) {
-          formDataToSend.append(`drivers[${index}]driver_cell_phone`, driver.driver_cell_phone);
+          formDataToSend.append(
+            `drivers[${index}]driver_cell_phone`,
+            driver.driver_cell_phone,
+          );
         }
         if (driver.driver_emergency_number) {
-          formDataToSend.append(`drivers[${index}]driver_emergency_number`, driver.driver_emergency_number);
+          formDataToSend.append(
+            `drivers[${index}]driver_emergency_number`,
+            driver.driver_emergency_number,
+          );
         }
-        
+
         // Always append boolean fields (they have defined values)
-        formDataToSend.append(`drivers[${index}]driver_us_citizen`, String(driver.driver_us_citizen));
-        formDataToSend.append(`drivers[${index}]driver_green_card`, String(driver.driver_green_card));
-        formDataToSend.append(`drivers[${index}]driver_twic_tsa`, String(driver.driver_twic_tsa));
-        formDataToSend.append(`drivers[${index}]driver_hazmat_certified`, String(driver.driver_hazmat_certified));
+        formDataToSend.append(
+          `drivers[${index}]driver_us_citizen`,
+          String(driver.driver_us_citizen),
+        );
+        formDataToSend.append(
+          `drivers[${index}]driver_green_card`,
+          String(driver.driver_green_card),
+        );
+        formDataToSend.append(
+          `drivers[${index}]driver_twic_tsa`,
+          String(driver.driver_twic_tsa),
+        );
+        formDataToSend.append(
+          `drivers[${index}]driver_hazmat_certified`,
+          String(driver.driver_hazmat_certified),
+        );
 
         // Add vehicle fields - only append if value exists
         if (driver.vehicle_make) {
-          formDataToSend.append(`drivers[${index}]vehicle_make`, driver.vehicle_make);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_make`,
+            driver.vehicle_make,
+          );
         }
         if (driver.vehicle_model) {
-          formDataToSend.append(`drivers[${index}]vehicle_model`, driver.vehicle_model);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_model`,
+            driver.vehicle_model,
+          );
         }
         if (driver.vehicle_year) {
-          formDataToSend.append(`drivers[${index}]vehicle_year`, driver.vehicle_year);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_year`,
+            driver.vehicle_year,
+          );
         }
         if (driver.vehicle_plate_number) {
-          formDataToSend.append(`drivers[${index}]vehicle_plate_number`, driver.vehicle_plate_number);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_plate_number`,
+            driver.vehicle_plate_number,
+          );
         }
         if (driver.vehicle_state) {
-          formDataToSend.append(`drivers[${index}]vehicle_state`, driver.vehicle_state);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_state`,
+            driver.vehicle_state,
+          );
         }
-        
+
         // Format vehicle expiration date
         if (driver.vehicle_expiration_date) {
-          const formattedExpDate = formatDateToISO(driver.vehicle_expiration_date);
+          const formattedExpDate = formatDateToISO(
+            driver.vehicle_expiration_date,
+          );
           if (formattedExpDate) {
-            formDataToSend.append(`drivers[${index}]vehicle_expiration_date`, formattedExpDate);
+            formDataToSend.append(
+              `drivers[${index}]vehicle_expiration_date`,
+              formattedExpDate,
+            );
           }
         }
-        
+
         if (driver.vehicle_vin_number) {
-          formDataToSend.append(`drivers[${index}]vehicle_vin_number`, driver.vehicle_vin_number);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_vin_number`,
+            driver.vehicle_vin_number,
+          );
         }
         if (driver.vehicle_door_length) {
-          formDataToSend.append(`drivers[${index}]vehicle_door_length`, driver.vehicle_door_length);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_door_length`,
+            driver.vehicle_door_length,
+          );
         }
         if (driver.vehicle_door_width) {
-          formDataToSend.append(`drivers[${index}]vehicle_door_width`, driver.vehicle_door_width);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_door_width`,
+            driver.vehicle_door_width,
+          );
         }
         if (driver.vehicle_door_height) {
-          formDataToSend.append(`drivers[${index}]vehicle_door_height`, driver.vehicle_door_height);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_door_height`,
+            driver.vehicle_door_height,
+          );
         }
         if (driver.vehicle_inside_length) {
-          formDataToSend.append(`drivers[${index}]vehicle_inside_length`, driver.vehicle_inside_length);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_inside_length`,
+            driver.vehicle_inside_length,
+          );
         }
         if (driver.vehicle_inside_width) {
-          formDataToSend.append(`drivers[${index}]vehicle_inside_width`, driver.vehicle_inside_width);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_inside_width`,
+            driver.vehicle_inside_width,
+          );
         }
         if (driver.vehicle_inside_height) {
-          formDataToSend.append(`drivers[${index}]vehicle_inside_height`, driver.vehicle_inside_height);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_inside_height`,
+            driver.vehicle_inside_height,
+          );
         }
         if (driver.vehicle_payload_lbs) {
-          formDataToSend.append(`drivers[${index}]vehicle_payload_lbs`, driver.vehicle_payload_lbs);
+          formDataToSend.append(
+            `drivers[${index}]vehicle_payload_lbs`,
+            driver.vehicle_payload_lbs,
+          );
         }
-        
+
         // Always append boolean vehicle fields
-        formDataToSend.append(`drivers[${index}]vehicle_air_ride`, String(driver.vehicle_air_ride));
-        formDataToSend.append(`drivers[${index}]vehicle_dock_high`, String(driver.vehicle_dock_high));
-        formDataToSend.append(`drivers[${index}]vehicle_pallet_jack`, String(driver.vehicle_pallet_jack));
-        formDataToSend.append(`drivers[${index}]vehicle_ramps`, String(driver.vehicle_ramps));
-        formDataToSend.append(`drivers[${index}]vehicle_straps`, String(driver.vehicle_straps));
-        formDataToSend.append(`drivers[${index}]vehicle_blankets`, String(driver.vehicle_blankets));
-        formDataToSend.append(`drivers[${index}]vehicle_lift_gate`, String(driver.vehicle_lift_gate));
-        formDataToSend.append(`drivers[${index}]vehicle_e_tracks`, String(driver.vehicle_e_tracks));
-        formDataToSend.append(`drivers[${index}]vehicle_load_bars`, String(driver.vehicle_load_bars));
+        formDataToSend.append(
+          `drivers[${index}]vehicle_air_ride`,
+          String(driver.vehicle_air_ride),
+        );
+        formDataToSend.append(
+          `drivers[${index}]vehicle_dock_high`,
+          String(driver.vehicle_dock_high),
+        );
+        formDataToSend.append(
+          `drivers[${index}]vehicle_pallet_jack`,
+          String(driver.vehicle_pallet_jack),
+        );
+        formDataToSend.append(
+          `drivers[${index}]vehicle_ramps`,
+          String(driver.vehicle_ramps),
+        );
+        formDataToSend.append(
+          `drivers[${index}]vehicle_straps`,
+          String(driver.vehicle_straps),
+        );
+        formDataToSend.append(
+          `drivers[${index}]vehicle_blankets`,
+          String(driver.vehicle_blankets),
+        );
+        formDataToSend.append(
+          `drivers[${index}]vehicle_lift_gate`,
+          String(driver.vehicle_lift_gate),
+        );
+        formDataToSend.append(
+          `drivers[${index}]vehicle_e_tracks`,
+          String(driver.vehicle_e_tracks),
+        );
+        formDataToSend.append(
+          `drivers[${index}]vehicle_load_bars`,
+          String(driver.vehicle_load_bars),
+        );
       });
     }
 
@@ -325,25 +436,35 @@ export async function submitFormData(
     }
 
     // Add company signature file (from /sign.png in public folder)
-    if (formData.companySignature && formData.companySignature.startsWith('/')) {
+    if (
+      formData.companySignature &&
+      formData.companySignature.startsWith("/")
+    ) {
       try {
         const response = await fetch(formData.companySignature);
         if (response.ok) {
           const blob = await response.blob();
-          const companySignatureFile = new File([blob], 'company-signature.png', { type: 'image/png' });
+          const companySignatureFile = new File(
+            [blob],
+            "company-signature.png",
+            { type: "image/png" },
+          );
           formDataToSend.append("company_signature", companySignatureFile);
         }
       } catch (error) {
-        console.warn('Could not load company signature file:', error);
+        console.warn("Could not load company signature file:", error);
       }
     }
 
-    console.log('Submitting form data with drivers:', formData.drivers);
+    console.log("Submitting form data with drivers:", formData.drivers);
 
-    const response = await fetch("https://axpergroup.com/api/v1/pdf-contract-form/", {
-      method: "POST",
-      body: formDataToSend,
-    });
+    const response = await fetch(
+      "https://axpergroup.com/api/v1/pdf-contract-form/",
+      {
+        method: "POST",
+        body: formDataToSend,
+      },
+    );
 
     if (!response.ok) {
       throw new Error(`API Error: ${response.status} ${response.statusText}`);

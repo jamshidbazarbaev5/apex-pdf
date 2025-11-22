@@ -3,14 +3,18 @@ import { useAppSelector } from "@/store/hooks";
 import { useNavigate } from "react-router-dom";
 import { submitFormData, validateFormData } from "@/lib/apiService";
 import { DocumentSheet } from "./DocumentSheet";
+import { useFieldNavigation } from "@/hooks/useFieldNavigation";
+import { FieldNavigator } from "@/components/ui/FieldNavigator";
 // import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
 
-export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({ }) => {
+export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({}) => {
   const formData = useAppSelector((state) => state.form);
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  const { goToFirstUnfilledField, totalUnfilledCount } = useFieldNavigation();
 
   const handleSubmit = async () => {
     setErrorMessage("");
@@ -18,7 +22,9 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({ }) => {
 
     // Check if at least one file is uploaded
     if (!formData.attachments || formData.attachments.length === 0) {
-      setErrorMessage("Please upload at least one document before submitting the form.");
+      setErrorMessage(
+        "Please upload at least one document before submitting the form.",
+      );
       return;
     }
 
@@ -26,35 +32,38 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({ }) => {
     let dataToValidate = { ...formData };
 
     // If no drivers are in the array but driver fields are filled, automatically add the driver
-    if ((!formData.drivers || formData.drivers.length === 0) && formData.driverFirstName) {
+    if (
+      (!formData.drivers || formData.drivers.length === 0) &&
+      formData.driverFirstName
+    ) {
       const autoDriver = {
-        driver_first_name: String(formData.driverFirstName || ''),
-        driver_last_name: String(formData.driverLastName || ''),
-        driver_date_of_birth: String(formData.driverDateOfBirth || ''),
-        driver_address: String(formData.driverAddress || ''),
-        driver_city: String(formData.driverCity || ''),
-        driver_state: String(formData.driverState || ''),
-        driver_zip_code: String(formData.driverZipCode || ''),
-        driver_cell_phone: String(formData.driverCellPhone || ''),
-        driver_emergency_number: String(formData.driverEmergencyNumber || ''),
+        driver_first_name: String(formData.driverFirstName || ""),
+        driver_last_name: String(formData.driverLastName || ""),
+        driver_date_of_birth: String(formData.driverDateOfBirth || ""),
+        driver_address: String(formData.driverAddress || ""),
+        driver_city: String(formData.driverCity || ""),
+        driver_state: String(formData.driverState || ""),
+        driver_zip_code: String(formData.driverZipCode || ""),
+        driver_cell_phone: String(formData.driverCellPhone || ""),
+        driver_emergency_number: String(formData.driverEmergencyNumber || ""),
         driver_us_citizen: Boolean(formData.driverUsCitizen),
         driver_green_card: Boolean(formData.driverGreenCard),
         driver_twic_tsa: Boolean(formData.driverTwicTsa),
         driver_hazmat_certified: Boolean(formData.driverHazmatCertified),
-        vehicle_make: String(formData.vehicleMake || ''),
-        vehicle_model: String(formData.vehicleModel || ''),
-        vehicle_year: String(formData.vehicleYear || ''),
-        vehicle_plate_number: String(formData.vehiclePlateNumber || ''),
-        vehicle_state: String(formData.vehicleState || ''),
-        vehicle_expiration_date: String(formData.vehicleExpirationDate || ''),
-        vehicle_vin_number: String(formData.vehicleVinNumber || ''),
-        vehicle_door_length: String(formData.vehicleDoorOpeningLength || ''),
-        vehicle_door_width: String(formData.vehicleDoorOpeningWidth || ''),
-        vehicle_door_height: String(formData.vehicleDoorOpeningHeight || ''),
-        vehicle_inside_length: String(formData.vehicleDimsInsideLength || ''),
-        vehicle_inside_width: String(formData.vehicleDimsInsideWidth || ''),
-        vehicle_inside_height: String(formData.vehicleDimsInsideHeight || ''),
-        vehicle_payload_lbs: String(formData.vehiclePayload || ''),
+        vehicle_make: String(formData.vehicleMake || ""),
+        vehicle_model: String(formData.vehicleModel || ""),
+        vehicle_year: String(formData.vehicleYear || ""),
+        vehicle_plate_number: String(formData.vehiclePlateNumber || ""),
+        vehicle_state: String(formData.vehicleState || ""),
+        vehicle_expiration_date: String(formData.vehicleExpirationDate || ""),
+        vehicle_vin_number: String(formData.vehicleVinNumber || ""),
+        vehicle_door_length: String(formData.vehicleDoorOpeningLength || ""),
+        vehicle_door_width: String(formData.vehicleDoorOpeningWidth || ""),
+        vehicle_door_height: String(formData.vehicleDoorOpeningHeight || ""),
+        vehicle_inside_length: String(formData.vehicleDimsInsideLength || ""),
+        vehicle_inside_width: String(formData.vehicleDimsInsideWidth || ""),
+        vehicle_inside_height: String(formData.vehicleDimsInsideHeight || ""),
+        vehicle_payload_lbs: String(formData.vehiclePayload || ""),
         vehicle_air_ride: Boolean(formData.vehicleAirRide),
         vehicle_dock_high: Boolean(formData.vehicleDockHigh),
         vehicle_pallet_jack: Boolean(formData.vehiclePalletJack),
@@ -71,7 +80,15 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({ }) => {
     // Validate form data
     const validation = validateFormData(dataToValidate);
     if (!validation.isValid) {
-      setErrorMessage(`Please fill all required fields:\n${validation.errors.join("\n")}`);
+      setErrorMessage(
+        `Please fill all required fields:\n${validation.errors.join("\n")}`,
+      );
+
+      // Automatically navigate to the first unfilled required field
+      setTimeout(() => {
+        goToFirstUnfilledField();
+      }, 100);
+
       return;
     }
 
@@ -81,7 +98,7 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({ }) => {
       const response = await submitFormData(
         dataToValidate,
         formData.attachments,
-        formData.signature
+        formData.signature,
       );
 
       setSuccessMessage("Form submitted successfully!");
@@ -92,7 +109,8 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({ }) => {
       //   navigate("/");
       // }, 2000);
     } catch (error) {
-      const errorMsg = error instanceof Error ? error.message : "An unknown error occurred";
+      const errorMsg =
+        error instanceof Error ? error.message : "An unknown error occurred";
       setErrorMessage(`Failed to submit form: ${errorMsg}`);
       console.error("Submission error:", error);
     } finally {
@@ -106,14 +124,20 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({ }) => {
 
       <div className="max-w-4xl mx-auto py-8">
         {/* Header */}
-      
 
-     
+        {/* Field Navigator - Only show if there are unfilled fields or after validation error */}
+        {(totalUnfilledCount > 0 || errorMessage) && (
+          <div className="mb-6">
+            <FieldNavigator showFieldInfo={true} />
+          </div>
+        )}
 
         {/* Error Message */}
         {errorMessage && (
           <div className="border-l-4 border-red-500 bg-red-50 p-4 mb-6 rounded">
-            <p className="text-red-800 whitespace-pre-line font-semibold">{errorMessage}</p>
+            <p className="text-red-800 whitespace-pre-line font-semibold">
+              {errorMessage}
+            </p>
           </div>
         )}
 
@@ -152,8 +176,8 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({ }) => {
         {/* Footer Note */}
         <div className="text-center mt-8 text-sm text-gray-600">
           <p>
-            By submitting this form, you confirm that all information provided is accurate
-            and complete.
+            By submitting this form, you confirm that all information provided
+            is accurate and complete.
           </p>
         </div>
       </div>

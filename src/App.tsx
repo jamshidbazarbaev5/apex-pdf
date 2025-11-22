@@ -15,52 +15,29 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-          <ClearDataButton />
-          <Toaster position="top-right" />
-          <Routes>
-            {/* Public routes */}
+      <ClearDataButton />
+      <Toaster position="top-right" />
+      <Routes>
+        {/* Public routes */}
 
-            {/* Protected routes wrapped in Layout */}
-            <Route
-              element={
-                  <>
-                    <Outlet />
-                  </>
-              }
-            >
-           
-          
+        {/* Protected routes wrapped in Layout */}
+        <Route
+          element={
+            <>
+              <Outlet />
+            </>
+          }
+        ></Route>
 
-            </Route>
+        {/* Fullscreen POS route - outside Layout wrapper for touch interface */}
+        <Route path="/main" element={<W9FormDemo />} />
+        <Route path="/axper" element={<AxperForm />} />
+        <Route path="/general-info" element={<GeneralInfo />} />
+        <Route path="/requirements" element={<RequirementsInfo />} />
 
-            {/* Fullscreen POS route - outside Layout wrapper for touch interface */}
-            <Route
-              path="/main"
-              element={
-                <W9FormDemo/>
-              }
-            />
-             <Route
-              path="/axper"
-              element={
-                <AxperForm/>
-              }
-            />
-             <Route
-              path="/general-info"
-              element={
-                <GeneralInfo/>
-              }
-            />
-             <Route
-              path="/requirements"
-              element={
-                <RequirementsInfo/>
-              }
-            />
-
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
+        <Route path="/" element={<Navigate to="/main" />} />
+        <Route path="*" element={<Navigate to="/main" />} />
+      </Routes>
     </QueryClientProvider>
   );
 }

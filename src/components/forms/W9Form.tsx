@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
 // import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
 
-const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
+const W9Form: React.FC<{ pageNumber?: number }> = ({}) => {
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.form);
 
@@ -13,7 +13,10 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
   };
 
   return (
-    <div className="w-full max-w-none mx-auto bg-white font-serif text-black overflow-x-auto md:overflow-x-visible min-w-[8.5in] md:min-w-0" style={{ WebkitOverflowScrolling: 'touch' }}>
+    <div
+      className="w-full max-w-none mx-auto bg-white font-serif text-black overflow-x-auto md:overflow-x-visible min-w-[8.5in] md:min-w-0"
+      style={{ WebkitOverflowScrolling: "touch" }}
+    >
       {/* <AutoSaveStatus /> */}
       {/* PAGE 1 */}
       <div className="w-[8.5in] mx-auto p-0 print:p-0 mb-8">
@@ -134,9 +137,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9IndividualSoleProprietor"
-                        checked={formData.w9IndividualSoleProprietor}
-                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
+                        name="individualSoleProprietor"
+                        checked={formData.individualSoleProprietor}
+                        onChange={(e) =>
+                          handleChange(e.target.name, e.target.checked)
+                        }
                         className="w-3 h-3 border border-black"
                       />
                       <span>Individual/sole proprietor</span>
@@ -144,9 +149,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9CCorporation"
-                        checked={formData.w9CCorporation}
-                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
+                        name="cCorporation"
+                        checked={formData.cCorporation}
+                        onChange={(e) =>
+                          handleChange(e.target.name, e.target.checked)
+                        }
                         className="w-3 h-3 border border-black"
                       />
                       <span>C corporation</span>
@@ -154,9 +161,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9SCorporation"
-                        checked={formData.w9SCorporation}
-                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
+                        name="sCorporation"
+                        checked={formData.sCorporation}
+                        onChange={(e) =>
+                          handleChange(e.target.name, e.target.checked)
+                        }
                         className="w-3 h-3 border border-black"
                       />
                       <span>S corporation</span>
@@ -164,9 +173,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9Partnership"
-                        checked={formData.w9Partnership}
-                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
+                        name="partnership"
+                        checked={formData.partnership}
+                        onChange={(e) =>
+                          handleChange(e.target.name, e.target.checked)
+                        }
                         className="w-3 h-3 border border-black"
                       />
                       <span>Partnership</span>
@@ -174,9 +185,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9TrustEstate"
-                        checked={formData.w9TrustEstate}
-                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
+                        name="trustEstate"
+                        checked={formData.trustEstate}
+                        onChange={(e) =>
+                          handleChange(e.target.name, e.target.checked)
+                        }
                         className="w-3 h-3 border border-black"
                       />
                       <span>Trust/estate</span>
@@ -186,9 +199,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-start gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9LLC"
-                        checked={formData.w9LLC}
-                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
+                        name="llc"
+                        checked={formData.llc}
+                        onChange={(e) =>
+                          handleChange(e.target.name, e.target.checked)
+                        }
                         className="w-3 h-3 border border-black mt-0.5"
                       />
                       <div>
@@ -210,9 +225,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     </label>
                     <input
                       type="text"
-                      name="w9LlcClassification"
-                      value={formData.w9LlcClassification}
-                      onChange={(e) => handleChange(e.target.name, e.target.value)}
+                      name="llcText"
+                      value={formData.llcText}
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
                       className="ml-5 w-12 border-b border-black outline-none bg-transparent text-[10pt] mt-1"
                     />
                   </div>
@@ -220,13 +237,25 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9Other"
-                        checked={formData.w9Other}
-                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
+                        name="other"
+                        checked={formData.other}
+                        onChange={(e) =>
+                          handleChange(e.target.name, e.target.checked)
+                        }
                         className="w-3 h-3 border border-black"
                       />
                       <span>Other (see instructions) </span>
                     </label>
+                    <input
+                      type="text"
+                      name="otherText"
+                      value={formData.otherText}
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
+                      className="ml-5 w-24 border-b border-black outline-none bg-transparent text-[10pt] mt-1"
+                      placeholder="Specify"
+                    />
                   </div>
                 </div>
 
@@ -243,7 +272,9 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                       type="checkbox"
                       name="w9HasForeignPartners"
                       checked={formData.w9HasForeignPartners}
-                      onChange={(e) => handleChange(e.target.name, e.target.checked)}
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.checked)
+                      }
                       className="w-3 h-3 border border-black ml-2"
                     />
                   </div>
@@ -261,8 +292,8 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                 </div>
                 <input
                   type="text"
-                  name="w9ExemptPayeeCode"
-                  value={formData.w9ExemptPayeeCode}
+                  name="exemptPayeeCode"
+                  value={formData.exemptPayeeCode}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
                   className="w-full border border-black outline-none bg-transparent text-[10pt] px-1 py-0.5 mb-3"
                 />
@@ -272,8 +303,8 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                 </div>
                 <input
                   type="text"
-                  name="w9FatcaCode"
-                  value={formData.w9FatcaCode}
+                  name="fatcaReportingCode"
+                  value={formData.fatcaReportingCode}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
                   className="w-full border border-black outline-none bg-transparent text-[10pt] px-1 py-0.5 mb-3"
                 />
@@ -297,9 +328,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     </div>
                     <input
                       type="text"
-                      name="w9Address"
-                      value={formData.w9Address}
-                      onChange={(e) => handleChange(e.target.name, e.target.value)}
+                      name="taxpayerAddress"
+                      value={formData.taxpayerAddress}
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
                       className="w-full border-b border-black outline-none bg-transparent text-[10pt] py-1"
                     />
                   </div>
@@ -314,9 +347,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     </div>
                     <input
                       type="text"
-                      name="w9CityStateZip"
-                      value={formData.w9CityStateZip}
-                      onChange={(e) => handleChange(e.target.name, e.target.value)}
+                      name="taxpayerCityStateZip"
+                      value={formData.taxpayerCityStateZip}
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
                       className="w-full border-b border-black outline-none bg-transparent text-[10pt] py-1"
                     />
                   </div>
@@ -327,7 +362,12 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                 <div className="text-[16px] leading-tight">
                   Requester's name and address (optional)
                 </div>
-                <textarea className="w-full h-20 mt-1 outline-none bg-transparent text-[9pt] resize-none" />
+                <textarea
+                  name="requesterNameAddress"
+                  value={formData.requesterNameAddress}
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  className="w-full h-20 mt-1 outline-none bg-transparent text-[9pt] resize-none"
+                />
               </div>
             </div>
 
@@ -342,8 +382,8 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                 </div>
                 <input
                   type="text"
-                  name="w9AccountNumbers"
-                  value={formData.w9AccountNumbers}
+                  name="taxpayerAccountNumber"
+                  value={formData.taxpayerAccountNumber}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
                   className="w-full border-b border-black outline-none bg-transparent text-[10pt] py-1"
                 />
@@ -382,60 +422,262 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     for guidelines on whose number to enter.
                   </div>
                 </div>
-                <div className="w-[2.8in]">
+                <div className="w-[3-in]">
                   <div className="border border-black p-2">
                     <div className="text-[8pt] font-bold mb-2">
                       Social security number
                     </div>
-                    <div className="flex gap-1 mb-3">
+                    <div className="flex gap-1 mb-3 items-center justify-center">
+                      {/* First 3 digits */}
                       <input
                         type="text"
-                        name="w9Ssn1"
-                        value={formData.w9Ssn1}
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                        maxLength={3}
-                        className="w-12 h-8 border border-black text-center outline-none bg-transparent text-[12pt]"
+                        value={(formData.social_security_1 || "").charAt(0)}
+                        onChange={(e) => {
+                          const newValue =
+                            (formData.social_security_1 || "").substring(1) ||
+                            "";
+                          handleChange(
+                            "social_security_1",
+                            e.target.value + newValue.padEnd(2, ""),
+                          );
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
                       />
-                      <span className="text-xl flex items-center">–</span>
                       <input
                         type="text"
-                        name="w9Ssn2"
-                        value={formData.w9Ssn2}
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                        maxLength={2}
-                        className="w-10 h-8 border border-black text-center outline-none bg-transparent text-[12pt]"
+                        value={(formData.social_security_1 || "").charAt(1)}
+                        onChange={(e) => {
+                          const current = formData.social_security_1 || "";
+                          const newValue =
+                            current.charAt(0) +
+                            e.target.value +
+                            current.charAt(2);
+                          handleChange("social_security_1", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
                       />
-                      <span className="text-xl flex items-center">–</span>
                       <input
                         type="text"
-                        name="w9Ssn3"
-                        value={formData.w9Ssn3}
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                        maxLength={4}
-                        className="w-14 h-8 border border-black text-center outline-none bg-transparent text-[12pt]"
+                        value={(formData.social_security_1 || "").charAt(2)}
+                        onChange={(e) => {
+                          const current = formData.social_security_1 || "";
+                          const newValue =
+                            current.substring(0, 2) + e.target.value;
+                          handleChange("social_security_1", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+
+                      <span className="text-xl font-bold mx-1">–</span>
+
+                      {/* Middle 2 digits */}
+                      <input
+                        type="text"
+                        value={(formData.social_security_2 || "").charAt(0)}
+                        onChange={(e) => {
+                          const current = formData.social_security_2 || "";
+                          const newValue = e.target.value + current.charAt(1);
+                          handleChange("social_security_2", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.social_security_2 || "").charAt(1)}
+                        onChange={(e) => {
+                          const current = formData.social_security_2 || "";
+                          const newValue = current.charAt(0) + e.target.value;
+                          handleChange("social_security_2", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+
+                      <span className="text-xl font-bold mx-1">–</span>
+
+                      {/* Last 4 digits */}
+                      <input
+                        type="text"
+                        value={(formData.social_security_3 || "").charAt(0)}
+                        onChange={(e) => {
+                          const current = formData.social_security_3 || "";
+                          const newValue =
+                            e.target.value + current.substring(1).padEnd(3, "");
+                          handleChange("social_security_3", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.social_security_3 || "").charAt(1)}
+                        onChange={(e) => {
+                          const current = formData.social_security_3 || "";
+                          const newValue =
+                            current.charAt(0) +
+                            e.target.value +
+                            current.substring(2).padEnd(2, "");
+                          handleChange("social_security_3", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.social_security_3 || "").charAt(2)}
+                        onChange={(e) => {
+                          const current = formData.social_security_3 || "";
+                          const newValue =
+                            current.substring(0, 2) +
+                            e.target.value +
+                            current.charAt(3);
+                          handleChange("social_security_3", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.social_security_3 || "").charAt(3)}
+                        onChange={(e) => {
+                          const current = formData.social_security_3 || "";
+                          const newValue =
+                            current.substring(0, 3) + e.target.value;
+                          handleChange("social_security_3", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
                       />
                     </div>
                     <div className="text-[8pt] text-center mb-1">or</div>
                     <div className="text-[8pt] font-bold mb-2">
                       Employer identification number
                     </div>
-                    <div className="flex gap-1 justify-center">
+                    <div className="flex gap-1 justify-center items-center">
+                      {/* First 2 digits of EIN */}
                       <input
                         type="text"
-                        name="w9Ein1"
-                        value={formData.w9Ein1}
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                        maxLength={2}
-                        className="w-10 h-8 border border-black text-center outline-none bg-transparent text-[12pt]"
+                        value={(formData.employer_id_1 || "").charAt(0)}
+                        onChange={(e) => {
+                          const current = formData.employer_id_1 || "";
+                          const newValue = e.target.value + current.charAt(1);
+                          handleChange("employer_id_1", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
                       />
-                      <span className="text-xl flex items-center">–</span>
                       <input
                         type="text"
-                        name="w9Ein2"
-                        value={formData.w9Ein2}
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                        maxLength={7}
-                        className="w-20 h-8 border border-black text-center outline-none bg-transparent text-[12pt]"
+                        value={(formData.employer_id_1 || "").charAt(1)}
+                        onChange={(e) => {
+                          const current = formData.employer_id_1 || "";
+                          const newValue = current.charAt(0) + e.target.value;
+                          handleChange("employer_id_1", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+
+                      <span className="text-xl font-bold mx-1">–</span>
+
+                      {/* Last 7 digits of EIN */}
+                      <input
+                        type="text"
+                        value={(formData.employer_id_2 || "").charAt(0)}
+                        onChange={(e) => {
+                          const current = formData.employer_id_2 || "";
+                          const newValue =
+                            e.target.value + current.substring(1).padEnd(6, "");
+                          handleChange("employer_id_2", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.employer_id_2 || "").charAt(1)}
+                        onChange={(e) => {
+                          const current = formData.employer_id_2 || "";
+                          const newValue =
+                            current.charAt(0) +
+                            e.target.value +
+                            current.substring(2).padEnd(5, "");
+                          handleChange("employer_id_2", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.employer_id_2 || "").charAt(2)}
+                        onChange={(e) => {
+                          const current = formData.employer_id_2 || "";
+                          const newValue =
+                            current.substring(0, 2) +
+                            e.target.value +
+                            current.substring(3).padEnd(4, "");
+                          handleChange("employer_id_2", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.employer_id_2 || "").charAt(3)}
+                        onChange={(e) => {
+                          const current = formData.employer_id_2 || "";
+                          const newValue =
+                            current.substring(0, 3) +
+                            e.target.value +
+                            current.substring(4).padEnd(3, "");
+                          handleChange("employer_id_2", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.employer_id_2 || "").charAt(4)}
+                        onChange={(e) => {
+                          const current = formData.employer_id_2 || "";
+                          const newValue =
+                            current.substring(0, 4) +
+                            e.target.value +
+                            current.substring(5).padEnd(2, "");
+                          handleChange("employer_id_2", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.employer_id_2 || "").charAt(5)}
+                        onChange={(e) => {
+                          const current = formData.employer_id_2 || "";
+                          const newValue =
+                            current.substring(0, 5) +
+                            e.target.value +
+                            current.charAt(6);
+                          handleChange("employer_id_2", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
+                      />
+                      <input
+                        type="text"
+                        value={(formData.employer_id_2 || "").charAt(6)}
+                        onChange={(e) => {
+                          const current = formData.employer_id_2 || "";
+                          const newValue =
+                            current.substring(0, 6) + e.target.value;
+                          handleChange("employer_id_2", newValue);
+                        }}
+                        maxLength={1}
+                        className="w-8 h-8 border border-black text-center outline-none bg-transparent text-[12pt] font-bold"
                       />
                     </div>
                   </div>
@@ -502,10 +744,12 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <SignButton
                       value={formData.signature1}
                       onChange={(value) => {
-                        dispatch(updateFormData({ 
-                          signature1: value,
-                          globalSignature: value,
-                        }));
+                        dispatch(
+                          updateFormData({
+                            signature1: value,
+                            globalSignature: value,
+                          }),
+                        );
                       }}
                       placeholder="Click to add signature"
                     />
@@ -517,7 +761,9 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     type="date"
                     name="date1"
                     value={formData.date1}
-                    onChange={(e) => handleChange(e.target.name, e.target.value)}
+                    onChange={(e) =>
+                      handleChange(e.target.name, e.target.value)
+                    }
                     className="w-full border-b border-black outline-none bg-transparent text-[10pt] h-8"
                   />
                 </div>
@@ -602,7 +848,7 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
 
       {/* PAGE 2 */}
       <div className="w-[8.5in] mx-auto p-0 print:p-0">
-        <div className='border-1 border-black'>
+        <div className="border-1 border-black">
           {/* Page Header */}
           <div className="flex justify-between items-start px-3 py-2 border-b border-black">
             <div className="text-[8pt]">Form W-9 (Rev. 3-2024)</div>

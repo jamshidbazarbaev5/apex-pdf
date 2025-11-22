@@ -76,7 +76,7 @@ export const REQUIRED_FIELDS = new Set([
 /**
  * Maps camelCase field names to API field names for validation
  */
-const fieldNameMapping: Record<string, string> = {
+export const fieldNameMapping: Record<string, string> = {
   companyName: "company_name",
   companyRegisteredAddress: "company_registered_address",
   companyCityStateZip: "company_city_state_zip",
@@ -143,21 +143,31 @@ const fieldNameMapping: Record<string, string> = {
  * @param driverIndex - Optional driver index for dynamic field names
  * @returns true if field is required
  */
-export function isRequiredField(fieldName: string, driverIndex?: number): boolean {
+export function isRequiredField(
+  fieldName: string,
+  driverIndex?: number,
+): boolean {
   // Try to find mapping for camelCase or snake_case
   let apiFieldName = fieldNameMapping[fieldName];
-  
+
   // If not found in mapping, check if it's already an API field name (snake_case)
   if (!apiFieldName) {
     apiFieldName = fieldName;
   }
-  
+
   // If driverIndex is provided and the field is a driver/vehicle field, update the index
-  if (driverIndex !== undefined && apiFieldName && apiFieldName.includes('drivers[')) {
+  if (
+    driverIndex !== undefined &&
+    apiFieldName &&
+    apiFieldName.includes("drivers[")
+  ) {
     // Replace drivers[0] with drivers[driverIndex]
-    apiFieldName = apiFieldName.replace(/drivers\[\d+\]/, `drivers[${driverIndex}]`);
+    apiFieldName = apiFieldName.replace(
+      /drivers\[\d+\]/,
+      `drivers[${driverIndex}]`,
+    );
   }
-  
+
   return REQUIRED_FIELDS.has(apiFieldName);
 }
 
@@ -171,7 +181,7 @@ export function isRequiredField(fieldName: string, driverIndex?: number): boolea
 export function getRequiredFieldClasses(
   fieldName: string,
   baseClasses: string = "",
-  driverIndex?: number
+  driverIndex?: number,
 ): string {
   if (isRequiredField(fieldName, driverIndex)) {
     return `${baseClasses} border-red-500`;
@@ -198,9 +208,9 @@ export function isValidDateFormat(date: string): boolean {
   if (!date) return true; // Empty dates are allowed
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
   if (!dateRegex.test(date)) return false;
-  
+
   // Additional check: verify it's a valid date
-  const dateObj = new Date(date + 'T00:00:00');
+  const dateObj = new Date(date + "T00:00:00");
   return !isNaN(dateObj.getTime());
 }
 
@@ -227,4 +237,3 @@ export function getDateValidationError(date: string): string {
   }
   return "";
 }
-

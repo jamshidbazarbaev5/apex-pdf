@@ -208,11 +208,11 @@ export interface FormData {
   taxpayerCityStateZip: string;
   taxpayerAccountNumber: string;
   requesterNameAddress: string;
-  socialSecurity1: string;
-  socialSecurity2: string;
-  socialSecurity3: string;
-  employerId1: string;
-  employerId2: string;
+  social_security_1: string;
+  social_security_2: string;
+  social_security_3: string;
+  employer_id_1: string;
+  employer_id_2: string;
 
   // Attachments & Files
   attachments: File[];
@@ -388,11 +388,11 @@ const initialState: FormData = {
   taxpayerCityStateZip: "",
   taxpayerAccountNumber: "",
   requesterNameAddress: "",
-  socialSecurity1: "",
-  socialSecurity2: "",
-  socialSecurity3: "",
-  employerId1: "",
-  employerId2: "",
+  social_security_1: "",
+  social_security_2: "",
+  social_security_3: "",
+  employer_id_1: "",
+  employer_id_2: "",
 
   // Attachments & Files
   attachments: [],
@@ -424,12 +424,18 @@ const formSlice = createSlice({
       }
       state.drivers.push(action.payload);
     },
-    updateDriver: (state, action: PayloadAction<{ index: number; data: Partial<DriverVehicle> }>) => {
+    updateDriver: (
+      state,
+      action: PayloadAction<{ index: number; data: Partial<DriverVehicle> }>,
+    ) => {
       if (!state.drivers) {
         state.drivers = [];
       }
       if (state.drivers[action.payload.index]) {
-        state.drivers[action.payload.index] = { ...state.drivers[action.payload.index], ...action.payload.data };
+        state.drivers[action.payload.index] = {
+          ...state.drivers[action.payload.index],
+          ...action.payload.data,
+        };
       }
     },
     removeDriver: (state, action: PayloadAction<number>) => {
@@ -440,5 +446,12 @@ const formSlice = createSlice({
   },
 });
 
-export const { updateFormData, setFormData, clearFormData, addDriver, updateDriver, removeDriver } = formSlice.actions;
+export const {
+  updateFormData,
+  setFormData,
+  clearFormData,
+  addDriver,
+  updateDriver,
+  removeDriver,
+} = formSlice.actions;
 export default formSlice.reducer;
