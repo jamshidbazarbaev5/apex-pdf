@@ -40,9 +40,9 @@ export const DriverInfoPage = ({ pageNumber = 4 }: { pageNumber?: number }) => {
           name={name}
           checked={name ? Boolean(formData[name as keyof typeof formData]) : false}
           onChange={(e) => name && handleChange(name, e.target.checked)}
-          className="peer appearance-none w-full h-full cursor-pointer absolute inset-0 z-10" 
+          className="peer appearance-none w-full h-full cursor-pointer absolute inset-0 z-20" 
         />
-        <svg className="w-5 h-5 text-black opacity-0 peer-checked:opacity-100 pointer-events-none relative -top-1 left-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+        <svg className="w-5 h-5 text-black opacity-0 peer-checked:opacity-100 pointer-events-none relative -top-1 left-0.5 z-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
         </svg>
       </div>
@@ -119,8 +119,8 @@ export const DriverInfoPage = ({ pageNumber = 4 }: { pageNumber?: number }) => {
       <div className="max-w-[400px] mx-auto pl-20">
         <CheckboxItem label="US CITIZEN" name="driverUsCitizen" />
         <CheckboxItem label="GREEN CARD" name="driverGreenCard" />
-        <CheckboxItem label="TWIC or TSA" />
-        <CheckboxItem label="HAZMAT CERTIFIED" />
+        <CheckboxItem label="TWIC or TSA" name="driverTwicTsa" />
+        <CheckboxItem label="HAZMAT CERTIFIED" name="driverHazmatCertified" />
       </div>
 
       <div className="absolute bottom-8 left-0 right-0 text-center">

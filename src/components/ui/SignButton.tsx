@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./button";
 import { SignatureModal } from "./SignatureModal";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -9,7 +9,6 @@ interface SignButtonProps {
   onChange: (signature: string) => void;
   label?: string;
   placeholder?: string;
-  fieldName?: string; // Name of the field being signed (e.g., "signature1", "agreement1Signature")
 }
 
 export function SignButton({
@@ -17,7 +16,6 @@ export function SignButton({
   onChange,
   label = "Signature",
   placeholder = "Click to add signature",
-  fieldName,
 }: SignButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [signatureImage, setSignatureImage] = useState<string | undefined>(
@@ -25,25 +23,21 @@ export function SignButton({
   );
   const dispatch = useAppDispatch();
   const globalSignature = useAppSelector((state) => state.form.globalSignature);
-  const hasAutoFilled = useRef(false);
 
-  // Check if this field is empty but global signature exists - auto-fill it (only once)
+  // Sync with global signature whenever it changes
   useEffect(() => {
-    if (!value && globalSignature && fieldName && !hasAutoFilled.current) {
-      hasAutoFilled.current = true;
+    if (globalSignature && globalSignature !== signatureImage) {
       setSignatureImage(globalSignature);
       onChange(globalSignature);
     }
-  }, [globalSignature, fieldName]); // Removed onChange and value from dependencies
+  }, [globalSignature]);
 
   const handleSign = (signature: string) => {
     setSignatureImage(signature);
     onChange(signature);
 
-    // If this is the first signature (global is empty), set it as global
-    if (!globalSignature && fieldName) {
-      dispatch(updateFormData({ globalSignature: signature }));
-    }
+    // Always update the global signature to sync across all fields
+    dispatch(updateFormData({ globalSignature: signature }));
   };
 
   const handleClear = (e: React.MouseEvent) => {

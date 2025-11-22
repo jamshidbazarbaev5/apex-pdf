@@ -125,8 +125,14 @@ export interface FormData {
   // W9 Form Fields
   w9Name: string;
   w9BusinessName: string;
-  w9TaxClassification: string;
+  w9IndividualSoleProprietor: boolean;
+  w9CCorporation: boolean;
+  w9SCorporation: boolean;
+  w9Partnership: boolean;
+  w9TrustEstate: boolean;
+  w9LLC: boolean;
   w9LlcClassification: string;
+  w9Other: boolean;
   w9ExemptPayeeCode: string;
   w9FatcaCode: string;
   w9Address: string;
@@ -299,8 +305,14 @@ const initialState: FormData = {
   // W9 Form Fields
   w9Name: "",
   w9BusinessName: "",
-  w9TaxClassification: "",
+  w9IndividualSoleProprietor: false,
+  w9CCorporation: false,
+  w9SCorporation: false,
+  w9Partnership: false,
+  w9TrustEstate: false,
+  w9LLC: false,
   w9LlcClassification: "",
+  w9Other: false,
   w9ExemptPayeeCode: "",
   w9FatcaCode: "",
   w9Address: "",

@@ -5,8 +5,8 @@ import { DocumentSheet } from './DocumentSheet';
 import { getRequiredFieldClasses } from '@/lib/fieldValidation';
 import { toast } from 'sonner';
 
-const InfoRow = ({ label, name, type = "text", value, onChange }: { label: string, name?: string, type?: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) => {
-  const borderClasses = getRequiredFieldClasses(name || '', 'border-b border-black');
+const InfoRow = ({ label, name, type = "text", value, onChange, driverIndex }: { label: string, name?: string, type?: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void, driverIndex?: number }) => {
+  const borderClasses = getRequiredFieldClasses(name || '', 'border-b border-black', driverIndex);
 
   return (
     <div className="flex items-end gap-4 mb-3">
@@ -105,44 +105,51 @@ export const VehicleDetailsPage = ({ driverIndex, pageNumber = 5 }: VehicleDetai
           label="MAKE:" 
           name="vehicle_make" 
           value={String(driver.vehicle_make || '')} 
-          onChange={(e) => handleChange('vehicle_make', e.target.value)} 
+          onChange={(e) => handleChange('vehicle_make', e.target.value)}
+          driverIndex={driverIndex}
         />
         <InfoRow 
           label="MODEL:" 
           name="vehicle_model" 
           value={String(driver.vehicle_model || '')} 
-          onChange={(e) => handleChange('vehicle_model', e.target.value)} 
+          onChange={(e) => handleChange('vehicle_model', e.target.value)}
+          driverIndex={driverIndex}
         />
         <InfoRow 
           label="YEAR:" 
           name="vehicle_year" 
           value={String(driver.vehicle_year || '')} 
-          onChange={(e) => handleChange('vehicle_year', e.target.value)} 
+          onChange={(e) => handleChange('vehicle_year', e.target.value)}
+          driverIndex={driverIndex}
         />
         <InfoRow 
           label="PLATE NUMBER:" 
           name="vehicle_plate_number" 
           value={String(driver.vehicle_plate_number || '')} 
-          onChange={(e) => handleChange('vehicle_plate_number', e.target.value)} 
+          onChange={(e) => handleChange('vehicle_plate_number', e.target.value)}
+          driverIndex={driverIndex}
         />
         <InfoRow 
           label="STATE:" 
           name="vehicle_state" 
           value={String(driver.vehicle_state || '')} 
-          onChange={(e) => handleChange('vehicle_state', e.target.value)} 
+          onChange={(e) => handleChange('vehicle_state', e.target.value)}
+          driverIndex={driverIndex}
         />
         <InfoRow 
           label="EXPIRATION DATE:" 
           name="vehicle_expiration_date" 
           type="date"
           value={String(driver.vehicle_expiration_date || '')} 
-          onChange={(e) => handleChange('vehicle_expiration_date', e.target.value)} 
+          onChange={(e) => handleChange('vehicle_expiration_date', e.target.value)}
+          driverIndex={driverIndex}
         />
         <InfoRow 
           label="VIN NUMBER:" 
           name="vehicle_vin_number" 
           value={String(driver.vehicle_vin_number || '')} 
-          onChange={(e) => handleChange('vehicle_vin_number', e.target.value)} 
+          onChange={(e) => handleChange('vehicle_vin_number', e.target.value)}
+          driverIndex={driverIndex}
         />
       </div>
 
@@ -165,7 +172,7 @@ export const VehicleDetailsPage = ({ driverIndex, pageNumber = 5 }: VehicleDetai
 
          <div className="grid grid-cols-[200px_1fr_1fr_1fr] divide-x divide-black border-b border-black min-h-12">
              <div className="p-2 flex items-center font-serif text-[14px] pl-3 font-bold">DOOR OPENING DIMS:</div>
-             <div className={`relative ${getRequiredFieldClasses('vehicle_door_length', 'border-r-2 border-red-500')}`}>
+             <div className={`relative ${getRequiredFieldClasses('vehicle_door_length', 'border-r-2 border-red-500', driverIndex)}`}>
                 <input 
                   type="text" 
                   value={String(driver.vehicle_door_length || '')}
@@ -173,7 +180,7 @@ export const VehicleDetailsPage = ({ driverIndex, pageNumber = 5 }: VehicleDetai
                   className="w-full h-full text-center font-sans bg-transparent outline-none focus:bg-blue-50/50" 
                 />
              </div>
-             <div className={`relative ${getRequiredFieldClasses('vehicle_door_width', 'border-r-2 border-red-500')}`}>
+             <div className={`relative ${getRequiredFieldClasses('vehicle_door_width', 'border-r-2 border-red-500', driverIndex)}`}>
                 <input 
                   type="text" 
                   value={String(driver.vehicle_door_width || '')}
@@ -181,7 +188,7 @@ export const VehicleDetailsPage = ({ driverIndex, pageNumber = 5 }: VehicleDetai
                   className="w-full h-full text-center font-sans bg-transparent outline-none focus:bg-blue-50/50" 
                 />
              </div>
-             <div className={`relative ${getRequiredFieldClasses('vehicle_door_height', 'border-r-2 border-red-500')}`}>
+             <div className={`relative ${getRequiredFieldClasses('vehicle_door_height', 'border-r-2 border-red-500', driverIndex)}`}>
                 <input 
                   type="text" 
                   value={String(driver.vehicle_door_height || '')}
@@ -192,7 +199,7 @@ export const VehicleDetailsPage = ({ driverIndex, pageNumber = 5 }: VehicleDetai
          </div>
          <div className="grid grid-cols-[200px_1fr_1fr_1fr] divide-x divide-black border-b border-black min-h-12">
              <div className="p-2 flex items-center font-serif text-[14px] pl-3 font-bold">DIMS INSIDE:</div>
-             <div className={`relative ${getRequiredFieldClasses('vehicle_inside_length', 'border-r-2 border-red-500')}`}>
+             <div className={`relative ${getRequiredFieldClasses('vehicle_inside_length', 'border-r-2 border-red-500', driverIndex)}`}>
                 <input 
                   type="text" 
                   value={String(driver.vehicle_inside_length || '')}
@@ -200,7 +207,7 @@ export const VehicleDetailsPage = ({ driverIndex, pageNumber = 5 }: VehicleDetai
                   className="w-full h-full text-center font-sans bg-transparent outline-none focus:bg-blue-50/50" 
                 />
              </div>
-             <div className={`relative ${getRequiredFieldClasses('vehicle_inside_width', 'border-r-2 border-red-500')}`}>
+             <div className={`relative ${getRequiredFieldClasses('vehicle_inside_width', 'border-r-2 border-red-500', driverIndex)}`}>
                 <input 
                   type="text" 
                   value={String(driver.vehicle_inside_width || '')}
@@ -208,7 +215,7 @@ export const VehicleDetailsPage = ({ driverIndex, pageNumber = 5 }: VehicleDetai
                   className="w-full h-full text-center font-sans bg-transparent outline-none focus:bg-blue-50/50" 
                 />
              </div>
-             <div className={`relative ${getRequiredFieldClasses('vehicle_inside_height', 'border-r-2 border-red-500')}`}>
+             <div className={`relative ${getRequiredFieldClasses('vehicle_inside_height', 'border-r-2 border-red-500', driverIndex)}`}>
                 <input 
                   type="text" 
                   value={String(driver.vehicle_inside_height || '')}
@@ -219,7 +226,7 @@ export const VehicleDetailsPage = ({ driverIndex, pageNumber = 5 }: VehicleDetai
          </div>
           <div className="grid grid-cols-[200px_1fr_1fr_1fr] divide-x divide-black min-h-12">
              <div className="p-2 flex items-center font-serif text-[14px] pl-3 font-bold">PAYLOAD</div>
-             <div className={`col-span-3 relative ${getRequiredFieldClasses('vehicle_payload_lbs', 'border-r-2 border-red-500')}`}>
+             <div className={`col-span-3 relative ${getRequiredFieldClasses('vehicle_payload_lbs', 'border-r-2 border-red-500', driverIndex)}`}>
                 <input 
                   type="text" 
                   value={String(driver.vehicle_payload_lbs || '')}

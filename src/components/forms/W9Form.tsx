@@ -3,7 +3,6 @@ import { SignButton } from "@/components/ui/SignButton";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
 // import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
-import { getRequiredFieldClasses } from "@/lib/fieldValidation";
 
 const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
   const dispatch = useAppDispatch();
@@ -87,7 +86,7 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                   name="entityName"
                   value={formData.entityName}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
-                  className={`w-full outline-none bg-transparent text-[10pt] py-1 ${getRequiredFieldClasses('entityName', 'border-b border-black')}`}
+                  className="w-full outline-none bg-transparent text-[10pt] py-1 border-b border-black"
                 />
               </div>
             </div>
@@ -107,7 +106,7 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                   name="businessName"
                   value={formData.businessName}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
-                  className={`w-full outline-none bg-transparent text-[10pt] py-1 ${getRequiredFieldClasses('businessName', 'border-b border-black')}`}
+                  className="w-full outline-none bg-transparent text-[10pt] py-1 border-b border-black"
                 />
               </div>
             </div>
@@ -135,12 +134,9 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9TaxClassification"
-                        value="individual"
-                        checked={formData.w9TaxClassification === "individual"}
-                        onChange={(e) =>
-                          handleChange(e.target.name, e.target.checked ? "individual" : "")
-                        }
+                        name="w9IndividualSoleProprietor"
+                        checked={formData.w9IndividualSoleProprietor}
+                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
                         className="w-3 h-3 border border-black"
                       />
                       <span>Individual/sole proprietor</span>
@@ -148,12 +144,9 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9TaxClassification"
-                        value="c-corp"
-                        checked={formData.w9TaxClassification === "c-corp"}
-                        onChange={(e) =>
-                          handleChange(e.target.name, e.target.checked ? "c-corp" : "")
-                        }
+                        name="w9CCorporation"
+                        checked={formData.w9CCorporation}
+                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
                         className="w-3 h-3 border border-black"
                       />
                       <span>C corporation</span>
@@ -161,12 +154,9 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9TaxClassification"
-                        value="s-corp"
-                        checked={formData.w9TaxClassification === "s-corp"}
-                        onChange={(e) =>
-                          handleChange(e.target.name, e.target.checked ? "s-corp" : "")
-                        }
+                        name="w9SCorporation"
+                        checked={formData.w9SCorporation}
+                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
                         className="w-3 h-3 border border-black"
                       />
                       <span>S corporation</span>
@@ -174,12 +164,9 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9TaxClassification"
-                        value="partnership"
-                        checked={formData.w9TaxClassification === "partnership"}
-                        onChange={(e) =>
-                          handleChange(e.target.name, e.target.checked ? "partnership" : "")
-                        }
+                        name="w9Partnership"
+                        checked={formData.w9Partnership}
+                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
                         className="w-3 h-3 border border-black"
                       />
                       <span>Partnership</span>
@@ -187,12 +174,9 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9TaxClassification"
-                        value="trust"
-                        checked={formData.w9TaxClassification === "trust"}
-                        onChange={(e) =>
-                          handleChange(e.target.name, e.target.checked ? "trust" : "")
-                        }
+                        name="w9TrustEstate"
+                        checked={formData.w9TrustEstate}
+                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
                         className="w-3 h-3 border border-black"
                       />
                       <span>Trust/estate</span>
@@ -202,12 +186,9 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-start gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9TaxClassification"
-                        value="llc"
-                        checked={formData.w9TaxClassification === "llc"}
-                        onChange={(e) =>
-                          handleChange(e.target.name, e.target.checked ? "llc" : "")
-                        }
+                        name="w9LLC"
+                        checked={formData.w9LLC}
+                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
                         className="w-3 h-3 border border-black mt-0.5"
                       />
                       <div>
@@ -239,12 +220,9 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                     <label className="flex items-center gap-1.5">
                       <input
                         type="checkbox"
-                        name="w9TaxClassification"
-                        value="other"
-                        checked={formData.w9TaxClassification === "other"}
-                        onChange={(e) =>
-                          handleChange(e.target.name, e.target.checked ? "other" : "")
-                        }
+                        name="w9Other"
+                        checked={formData.w9Other}
+                        onChange={(e) => handleChange(e.target.name, e.target.checked)}
                         className="w-3 h-3 border border-black"
                       />
                       <span>Other (see instructions) </span>
@@ -530,7 +508,6 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({  }) => {
                         }));
                       }}
                       placeholder="Click to add signature"
-                      fieldName="w9Signature"
                     />
                   </div>
                 </div>

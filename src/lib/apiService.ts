@@ -120,6 +120,7 @@ function mapFormDataToApiFields(formData: FormData): Record<string, any> {
     acceptanceOwnerName: "acceptance_printed_name",
     acceptanceOwnerTitle: "acceptance_title",
     acceptanceOwnerDate: "acceptance_date",
+    companySignatureDate: "company_signature_date",
 
     // Vendor & Direct Deposit
     vendorName: "vendor_name",
@@ -323,6 +324,20 @@ export async function submitFormData(
       formDataToSend.append("signature", signatureFile);
     }
 
+    // Add company signature file (from /sign.png in public folder)
+    if (formData.companySignature && formData.companySignature.startsWith('/')) {
+      try {
+        const response = await fetch(formData.companySignature);
+        if (response.ok) {
+          const blob = await response.blob();
+          const companySignatureFile = new File([blob], 'company-signature.png', { type: 'image/png' });
+          formDataToSend.append("company_signature", companySignatureFile);
+        }
+      } catch (error) {
+        console.warn('Could not load company signature file:', error);
+      }
+    }
+
     console.log('Submitting form data with drivers:', formData.drivers);
 
     const response = await fetch("https://axpergroup.com/api/v1/pdf-contract-form/", {
@@ -396,10 +411,6 @@ export function validateFormData(formData: FormData): {
     "routingNumber",
     "accountNumber",
     "accountDate",
-
-    // W9 Form
-    "entityName",
-    "businessName",
   ];
 
   requiredFields.forEach((field) => {

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface SignatureDisplayProps {
   value?: string;
   label?: string;
@@ -11,24 +13,21 @@ export function SignatureDisplay({
   isReadOnly = true,
   className = "",
 }: SignatureDisplayProps) {
+  const [imageError, setImageError] = useState(false);
+
   // If value starts with /, it's a public path, otherwise it's a data URL
-  const signatureSrc = value
-    ? value.startsWith("/")
-      ? value
-      : value
-    : null;
+  const signatureSrc = value && value.trim() ? value : null;
 
   return (
     <div className={className}>
-      {signatureSrc ? (
+      {signatureSrc && !imageError ? (
         <div className="relative inline-block">
           <img
             src={signatureSrc}
             alt={label}
             className="h-16 border border-gray-300 rounded bg-white"
-            onError={(e) => {
-              // Fallback if image doesn't load
-              e.currentTarget.style.display = "none";
+            onError={() => {
+              setImageError(true);
             }}
           />
         </div>

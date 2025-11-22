@@ -12,8 +12,13 @@ const preloadedState = (() => {
 
   const savedForm = loadFormFromDraft();
   if (savedForm) {
+    // Ensure companySignature has a fallback if not set
+    const mergedForm = {
+      ...savedForm,
+      companySignature: savedForm.companySignature || "/sign.png",
+    } as FormData;
     return {
-      form: savedForm as FormData,
+      form: mergedForm,
     };
   }
   return undefined;

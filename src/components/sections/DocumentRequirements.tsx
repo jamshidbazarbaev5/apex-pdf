@@ -152,27 +152,42 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({ pageNu
         </div>
       </div>
 
+      {(!attachments || attachments.length === 0) && (
+        <div className="bg-red-50 border-l-4 border-red-500 p-4">
+          <p className="text-sm text-red-800">
+            <span className="font-bold">⚠️ Error:</span> At least one file must be uploaded before submission.
+          </p>
+        </div>
+      )}
+
       {attachments && attachments.length > 0 && (
         <div className="space-y-3">
           <h3 className="font-bold text-lg text-gray-800">Uploaded Files ({attachments.length}):</h3>
           <div className="space-y-2 max-h-96 overflow-y-auto">
-            {attachments.map((file: File, index: number) => (
-              <div key={`${file.name}-${index}`} className="flex items-center justify-between p-3 bg-gray-100 rounded-lg">
-                <div className="flex items-center gap-3 flex-1 min-w-0">
-                  <span className="text-blue-600 text-lg">📎</span>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-medium text-gray-800 truncate">{file.name}</p>
-                    <p className="text-sm text-gray-600">{(file.size / 1024).toFixed(2)} KB</p>
+            {attachments.map((file: any, index: number) => {
+              // Handle both File objects and file metadata objects from localStorage
+              const fileName = file.name || '';
+              const fileSize = file.size || 0;
+              const fileSizeKB = fileSize > 0 ? (fileSize / 1024).toFixed(2) : '0.00';
+              
+              return (
+                <div key={`${fileName}-${index}`} className="flex items-center justify-between p-3 bg-gray-100 rounded-lg">
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <span className="text-blue-600 text-lg">📎</span>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-gray-800 truncate">{fileName}</p>
+                      <p className="text-sm text-gray-600">{fileSizeKB} KB</p>
+                    </div>
                   </div>
+                  <button
+                    onClick={() => handleRemoveFile(index)}
+                    className="ml-2 px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-sm rounded transition-colors shrink-0"
+                  >
+                    Remove
+                  </button>
                 </div>
-                <button
-                  onClick={() => handleRemoveFile(index)}
-                  className="ml-2 px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-sm rounded transition-colors shrink-0"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}

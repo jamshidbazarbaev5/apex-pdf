@@ -71,10 +71,6 @@ export const REQUIRED_FIELDS = new Set([
   "routing_number",
   "account_number",
   "account_date",
-
-  // W9 Form
-  "entity_name",
-  "business_name",
 ]);
 
 /**
@@ -143,25 +139,41 @@ const fieldNameMapping: Record<string, string> = {
 
 /**
  * Check if a field is required
- * @param fieldName - The camelCase field name
+ * @param fieldName - The camelCase or snake_case field name
+ * @param driverIndex - Optional driver index for dynamic field names
  * @returns true if field is required
  */
-export function isRequiredField(fieldName: string): boolean {
-  const apiFieldName = fieldNameMapping[fieldName];
-  return REQUIRED_FIELDS.has(apiFieldName || fieldName);
+export function isRequiredField(fieldName: string, driverIndex?: number): boolean {
+  // Try to find mapping for camelCase or snake_case
+  let apiFieldName = fieldNameMapping[fieldName];
+  
+  // If not found in mapping, check if it's already an API field name (snake_case)
+  if (!apiFieldName) {
+    apiFieldName = fieldName;
+  }
+  
+  // If driverIndex is provided and the field is a driver/vehicle field, update the index
+  if (driverIndex !== undefined && apiFieldName && apiFieldName.includes('drivers[')) {
+    // Replace drivers[0] with drivers[driverIndex]
+    apiFieldName = apiFieldName.replace(/drivers\[\d+\]/, `drivers[${driverIndex}]`);
+  }
+  
+  return REQUIRED_FIELDS.has(apiFieldName);
 }
 
 /**
  * Get CSS classes for required fields (adds red border)
  * @param fieldName - The camelCase field name
  * @param baseClasses - Base CSS classes
+ * @param driverIndex - Optional driver index for dynamic field names
  * @returns Combined CSS classes
  */
 export function getRequiredFieldClasses(
   fieldName: string,
-  baseClasses: string = ""
+  baseClasses: string = "",
+  driverIndex?: number
 ): string {
-  if (isRequiredField(fieldName)) {
+  if (isRequiredField(fieldName, driverIndex)) {
     return `${baseClasses} border-red-500`;
   }
   return baseClasses;

@@ -5,8 +5,8 @@ import { DocumentSheet } from './DocumentSheet';
 import { getRequiredFieldClasses } from '@/lib/fieldValidation';
 import { toast } from 'sonner';
 
-const Row = ({ label, className = "", name, type = "text", value, onChange }: { label: string, className?: string, name?: string, type?: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) => {
-  const borderClasses = getRequiredFieldClasses(name || '', 'border-b border-black');
+const Row = ({ label, className = "", name, type = "text", value, onChange, driverIndex }: { label: string, className?: string, name?: string, type?: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void, driverIndex?: number }) => {
+  const borderClasses = getRequiredFieldClasses(name || '', 'border-b border-black', driverIndex);
   return (
     <div className={`flex items-end gap-4 mb-2 ${className}`}>
       <span className="font-serif text-black text-[13px] uppercase shrink-0 w-[240px] font-bold leading-tight">{label}</span>
@@ -59,9 +59,9 @@ export const DriverDetailsPage = ({ driverIndex, pageNumber = 4 }: DriverDetails
           name={name}
           checked={name ? Boolean(driver[name as keyof typeof driver]) : false}
           onChange={(e) => name && handleChange(name, e.target.checked)}
-          className="peer appearance-none w-full h-full cursor-pointer absolute inset-0 z-10" 
+          className="peer appearance-none w-full h-full cursor-pointer absolute inset-0 z-20" 
         />
-        <svg className="w-5 h-5 text-black opacity-0 peer-checked:opacity-100 pointer-events-none relative -top-1 left-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+        <svg className="w-5 h-5 text-black opacity-0 peer-checked:opacity-100 pointer-events-none relative -top-1 left-0.5 z-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
         </svg>
       </div>
@@ -104,56 +104,65 @@ export const DriverDetailsPage = ({ driverIndex, pageNumber = 4 }: DriverDetails
           label="FIRST NAME:" 
           name="driver_first_name" 
           value={String(driver.driver_first_name || '')} 
-          onChange={(e) => handleChange('driver_first_name', e.target.value)} 
+          onChange={(e) => handleChange('driver_first_name', e.target.value)}
+          driverIndex={driverIndex}
         />
         <Row 
           label="LAST NAME:" 
           name="driver_last_name" 
           value={String(driver.driver_last_name || '')} 
-          onChange={(e) => handleChange('driver_last_name', e.target.value)} 
+          onChange={(e) => handleChange('driver_last_name', e.target.value)}
+          driverIndex={driverIndex}
         />
         <Row 
           label="DATE OF BIRTH:" 
           name="driver_date_of_birth" 
           type="date"
           value={String(driver.driver_date_of_birth || '')} 
-          onChange={(e) => handleChange('driver_date_of_birth', e.target.value)} 
+          onChange={(e) => handleChange('driver_date_of_birth', e.target.value)}
+          driverIndex={driverIndex}
         />
         <Row 
           label="ADDRESS:" 
           name="driver_address" 
           value={String(driver.driver_address || '')} 
-          onChange={(e) => handleChange('driver_address', e.target.value)} 
+          onChange={(e) => handleChange('driver_address', e.target.value)}
+          driverIndex={driverIndex}
         />
         <Row 
           label="CITY:" 
           name="driver_city" 
           value={String(driver.driver_city || '')} 
-          onChange={(e) => handleChange('driver_city', e.target.value)} 
+          onChange={(e) => handleChange('driver_city', e.target.value)}
+          driverIndex={driverIndex}
         />
         <Row 
           label="STATE:" 
           name="driver_state" 
           value={String(driver.driver_state || '')} 
-          onChange={(e) => handleChange('driver_state', e.target.value)} 
+          onChange={(e) => handleChange('driver_state', e.target.value)}
+          driverIndex={driverIndex}
         />
         <Row 
           label="ZIP CODE:" 
           name="driver_zip_code" 
           value={String(driver.driver_zip_code || '')} 
-          onChange={(e) => handleChange('driver_zip_code', e.target.value)} 
+          onChange={(e) => handleChange('driver_zip_code', e.target.value)}
+          driverIndex={driverIndex}
         />
         <Row 
           label="CELL PHONE:" 
           name="driver_cell_phone" 
           value={String(driver.driver_cell_phone || '')} 
-          onChange={(e) => handleChange('driver_cell_phone', e.target.value)} 
+          onChange={(e) => handleChange('driver_cell_phone', e.target.value)}
+          driverIndex={driverIndex}
         />
         <Row 
           label="EMERGENCY NUMBER/NAME:" 
           name="driver_emergency_number" 
           value={String(driver.driver_emergency_number || '')} 
-          onChange={(e) => handleChange('driver_emergency_number', e.target.value)} 
+          onChange={(e) => handleChange('driver_emergency_number', e.target.value)}
+          driverIndex={driverIndex}
         />
       </div>
 

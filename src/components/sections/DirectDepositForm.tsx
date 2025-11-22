@@ -161,7 +161,6 @@ export const DirectDepositForm: React.FC<{ pageNumber?: number }> = ({  }) => {
               onChange={(signature) => dispatch(updateFormData({ signature1: signature }))}
               label="Vendor Signature"
               placeholder="Click to add signature"
-              fieldName="directDepositSignature"
             />
           </div>
 

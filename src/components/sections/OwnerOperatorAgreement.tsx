@@ -408,7 +408,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement1Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement1Signature"
           />
         </div>
 
@@ -473,7 +472,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement2Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement2Signature"
           />
         </div>
 
@@ -551,7 +549,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement3Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement3Signature"
           />
         </div>
 
@@ -651,7 +648,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement4Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement4Signature"
           />
         </div>
 
@@ -685,7 +681,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement5Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement5Signature"
           />
         </div>
 
@@ -745,7 +740,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement6Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement6Signature"
           />
         </div>
 
@@ -820,7 +814,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement7Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement7Signature"
           />
         </div>
 
@@ -871,7 +864,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement8Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement8Signature"
           />
         </div>
 
@@ -1059,7 +1051,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement9Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement9Signature"
           />
         </div>
 
@@ -1137,7 +1128,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement10Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement10Signature"
           />
         </div>
 
@@ -1203,7 +1193,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
               handleChange("agreement11Signature", value)
             }
             placeholder="Click to add signature"
-            fieldName="agreement11Signature"
           />
         </div>
 
@@ -1351,7 +1340,6 @@ export default function OwnerOperatorAgreement({ pageNumber: startPageNumber = 6
                       handleChange("acceptanceOwnerSignature", value)
                     }
                     placeholder="Click to add signature"
-                    fieldName="acceptanceOwnerSignature"
                   />
                 </div>
                 <div style={styles.paragraph}>

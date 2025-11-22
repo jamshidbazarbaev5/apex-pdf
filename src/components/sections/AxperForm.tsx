@@ -240,7 +240,6 @@ export default function AxperForm({ pageNumber = 5 }: { pageNumber?: number }) {
               onChange={(value) => handleChange("signature1", value)}
               label="Signature"
               placeholder="Click to add signature"
-              fieldName="signature1"
             />
           </div>
           <div style={styles.dateField}>
@@ -298,7 +297,6 @@ export default function AxperForm({ pageNumber = 5 }: { pageNumber?: number }) {
               onChange={(value) => handleChange("signature2", value)}
               label="Signature"
               placeholder="Click to add signature"
-              fieldName="signature2"
             />
           </div>
           <div style={styles.dateField}>
