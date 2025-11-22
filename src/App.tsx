@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ClearDataButton />
+        <ClearDataButton />
       <Toaster position="top-right" />
       <Routes>
         {/* Public routes */}
