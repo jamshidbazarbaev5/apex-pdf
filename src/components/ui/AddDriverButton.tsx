@@ -1,116 +1,74 @@
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { addDriver, updateFormData } from '@/store/formSlice';
-import type { DriverVehicle } from '@/store/formSlice';
-import { toast } from 'sonner';
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addDriver } from "@/store/formSlice";
+import type { DriverVehicle } from "@/store/formSlice";
+import { toast } from "sonner";
 
 export const AddDriverButton = () => {
   const dispatch = useAppDispatch();
-  const formData = useAppSelector(state => state.form);
+  const drivers = useAppSelector((state) => state.form.drivers) || [];
 
   const handleAddDriver = () => {
     try {
-      // Capture the current form data and add it to drivers list
+      // Create a new EMPTY driver entry for the next driver to fill
       const newDriver: DriverVehicle = {
-        driver_first_name: String(formData.driverFirstName || ''),
-        driver_last_name: String(formData.driverLastName || ''),
-        driver_date_of_birth: String(formData.driverDateOfBirth || ''),
-        driver_address: String(formData.driverAddress || ''),
-        driver_city: String(formData.driverCity || ''),
-        driver_state: String(formData.driverState || ''),
-        driver_zip_code: String(formData.driverZipCode || ''),
-        driver_cell_phone: String(formData.driverCellPhone || ''),
-        driver_emergency_number: String(formData.driverEmergencyNumber || ''),
-        driver_us_citizen: Boolean(formData.driverUsCitizen),
-        driver_green_card: Boolean(formData.driverGreenCard),
-        driver_twic_tsa: Boolean(formData.driverTwicTsa),
-        driver_hazmat_certified: Boolean(formData.driverHazmatCertified),
-        vehicle_make: String(formData.vehicleMake || ''),
-        vehicle_model: String(formData.vehicleModel || ''),
-        vehicle_year: String(formData.vehicleYear || ''),
-        vehicle_plate_number: String(formData.vehiclePlateNumber || ''),
-        vehicle_state: String(formData.vehicleState || ''),
-        vehicle_expiration_date: String(formData.vehicleExpirationDate || ''),
-        vehicle_vin_number: String(formData.vehicleVinNumber || ''),
-        vehicle_door_length: String(formData.vehicleDoorOpeningLength || ''),
-        vehicle_door_width: String(formData.vehicleDoorOpeningWidth || ''),
-        vehicle_door_height: String(formData.vehicleDoorOpeningHeight || ''),
-        vehicle_inside_length: String(formData.vehicleDimsInsideLength || ''),
-        vehicle_inside_width: String(formData.vehicleDimsInsideWidth || ''),
-        vehicle_inside_height: String(formData.vehicleDimsInsideHeight || ''),
-        vehicle_payload_lbs: String(formData.vehiclePayload || ''),
-        vehicle_air_ride: Boolean(formData.vehicleAirRide),
-        vehicle_dock_high: Boolean(formData.vehicleDockHigh),
-        vehicle_pallet_jack: Boolean(formData.vehiclePalletJack),
-        vehicle_ramps: Boolean(formData.vehicleRamps),
-        vehicle_straps: Boolean(formData.vehicleStraps),
-        vehicle_blankets: Boolean(formData.vehicleBlankets),
-        vehicle_lift_gate: Boolean(formData.vehicleLiftGate),
-        vehicle_e_tracks: Boolean(formData.vehicleETracks),
-        vehicle_load_bars: Boolean(formData.vehicleLoadBars),
+        driver_first_name: "",
+        driver_last_name: "",
+        driver_date_of_birth: "",
+        driver_address: "",
+        driver_city: "",
+        driver_state: "",
+        driver_zip_code: "",
+        driver_cell_phone: "",
+        driver_emergency_number: "",
+        driver_us_citizen: false,
+        driver_green_card: false,
+        driver_twic_tsa: false,
+        driver_hazmat_certified: false,
+        vehicle_make: "",
+        vehicle_model: "",
+        vehicle_year: "",
+        vehicle_plate_number: "",
+        vehicle_state: "",
+        vehicle_expiration_date: "",
+        vehicle_vin_number: "",
+        vehicle_door_length: "",
+        vehicle_door_width: "",
+        vehicle_door_height: "",
+        vehicle_inside_length: "",
+        vehicle_inside_width: "",
+        vehicle_inside_height: "",
+        vehicle_payload_lbs: "",
+        vehicle_air_ride: false,
+        vehicle_dock_high: false,
+        vehicle_pallet_jack: false,
+        vehicle_ramps: false,
+        vehicle_straps: false,
+        vehicle_blankets: false,
+        vehicle_lift_gate: false,
+        vehicle_e_tracks: false,
+        vehicle_load_bars: false,
       };
 
-      console.log('Adding driver:', newDriver);
+      console.log("Adding new empty driver page:", newDriver);
 
-      // Add driver to drivers array
+      // Add new empty driver to drivers array
       dispatch(addDriver(newDriver));
 
-      // Show success toast
-      const driverName = `${newDriver.driver_first_name} ${newDriver.driver_last_name}`.trim() || 'New Driver';
-      const vehicleInfo = `${newDriver.vehicle_year} ${newDriver.vehicle_make} ${newDriver.vehicle_model}`.trim() || 'New Vehicle';
-      toast.success(`${driverName} and ${vehicleInfo} have been added`);
+      const driverNumber = drivers.length + 1;
+      toast.success(
+        `Driver & Vehicle #${driverNumber} page created. Fill out their information.`,
+      );
 
-      // Clear the form fields for next driver entry
-      dispatch(updateFormData({
-        driverFirstName: '',
-        driverLastName: '',
-        driverDateOfBirth: '',
-        driverAddress: '',
-        driverCity: '',
-        driverState: '',
-        driverZipCode: '',
-        driverCellPhone: '',
-        driverEmergencyNumber: '',
-        driverUsCitizen: false,
-        driverGreenCard: false,
-        driverTwicTsa: false,
-        driverHazmatCertified: false,
-        vehicleMake: '',
-        vehicleModel: '',
-        vehicleYear: '',
-        vehiclePlateNumber: '',
-        vehicleState: '',
-        vehicleExpirationDate: '',
-        vehicleVinNumber: '',
-        vehicleDoorOpeningLength: '',
-        vehicleDoorOpeningWidth: '',
-        vehicleDoorOpeningHeight: '',
-        vehicleDimsInsideLength: '',
-        vehicleDimsInsideWidth: '',
-        vehicleDimsInsideHeight: '',
-        vehiclePayload: '',
-        vehicleAirRide: false,
-        vehicleDockHigh: false,
-        vehiclePalletJack: false,
-        vehicleRamps: false,
-        vehicleStraps: false,
-        vehicleBlankets: false,
-        vehicleLiftGate: false,
-        vehicleETracks: false,
-        vehicleLoadBars: false,
-      }));
-
-      console.log('Driver added successfully!');
+      console.log(`Driver & Vehicle #${driverNumber} page added successfully!`);
     } catch (error) {
-      console.error('Error adding driver:', error);
+      console.error("Error adding driver page:", error);
+      toast.error("Failed to create new driver page. Please try again.");
     }
   };
 
   return (
     <button
-      onClick={() => {
-        console.log('Button clicked!');
-        handleAddDriver();
-      }}
+      onClick={handleAddDriver}
       className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2"
     >
       <svg

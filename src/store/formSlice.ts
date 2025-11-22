@@ -1,5 +1,13 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
+export interface FileMetadata {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  lastModified: number;
+}
+
 export interface DriverVehicle {
   // Driver Info
   driver_first_name: string;
@@ -215,8 +223,8 @@ export interface FormData {
   employer_id_2: string;
 
   // Attachments & Files
-  attachments: File[];
-  signature: File | null;
+  attachments: FileMetadata[];
+  signature: FileMetadata | null;
 
   // Multiple Drivers with Vehicles
   drivers: DriverVehicle[];

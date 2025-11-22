@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { useNavigate } from "react-router-dom";
 import { submitFormData, validateFormData } from "@/lib/apiService";
+import type { DriverVehicle } from "@/store/formSlice";
+import { fileStorage } from "@/lib/fileStorage";
 import { DocumentSheet } from "./DocumentSheet";
 import { useFieldNavigation } from "@/hooks/useFieldNavigation";
 import { FieldNavigator } from "@/components/ui/FieldNavigator";
@@ -28,15 +30,26 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({}) => {
       return;
     }
 
-    // Create a copy of form data to potentially add the auto-generated driver
+    // Get actual File objects from storage
+    const attachmentFiles = formData.attachments
+      .map((metadata) => fileStorage.getFile(metadata.id))
+      .filter((file): file is File => file !== undefined);
+
+    const signatureFile = formData.signature
+      ? fileStorage.getFile(formData.signature.id) || null
+      : null;
+
+    // Create a copy of form data to build the drivers array
     let dataToValidate = { ...formData };
 
-    // If no drivers are in the array but driver fields are filled, automatically add the driver
-    if (
-      (!formData.drivers || formData.drivers.length === 0) &&
-      formData.driverFirstName
-    ) {
-      const autoDriver = {
+    // Build drivers array from three sources:
+    // 1. Initially filled driver/vehicle fields (top of DriverInfoPage) - always included as first driver if filled
+    // 2. Any additional drivers added via "Add Driver & Vehicle" button
+    const driversToSubmit: DriverVehicle[] = [];
+
+    // First, add the initially filled driver if it has at least a name
+    if (formData.driverFirstName) {
+      const initialDriver: DriverVehicle = {
         driver_first_name: String(formData.driverFirstName || ""),
         driver_last_name: String(formData.driverLastName || ""),
         driver_date_of_birth: String(formData.driverDateOfBirth || ""),
@@ -74,8 +87,24 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({}) => {
         vehicle_e_tracks: Boolean(formData.vehicleETracks),
         vehicle_load_bars: Boolean(formData.vehicleLoadBars),
       };
-      dataToValidate.drivers = [autoDriver];
+      driversToSubmit.push(initialDriver);
     }
+
+    // Then add any additional drivers from the drivers array
+    if (formData.drivers && formData.drivers.length > 0) {
+      driversToSubmit.push(...formData.drivers);
+    }
+
+    // Check if we have at least one driver
+    if (driversToSubmit.length === 0) {
+      setErrorMessage(
+        "Please fill in at least the driver first name before submitting.",
+      );
+      return;
+    }
+
+    // Set the drivers array for submission
+    dataToValidate.drivers = driversToSubmit;
 
     // Validate form data
     const validation = validateFormData(dataToValidate);
@@ -95,10 +124,13 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({}) => {
     setIsSubmitting(true);
 
     try {
+      console.log(
+        `Submitting form with ${dataToValidate.drivers?.length || 0} driver(s)`,
+      );
       const response = await submitFormData(
         dataToValidate,
-        formData.attachments,
-        formData.signature,
+        attachmentFiles,
+        signatureFile,
       );
 
       setSuccessMessage("Form submitted successfully!");
