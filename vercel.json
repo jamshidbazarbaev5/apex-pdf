@@ -1,8 +1,11 @@
 {
-    "rewrites": [
-      { "source": "/application/", "destination": "/application/index.html" },
-      { "source": "/application", "destination": "/application/index.html" },
-      { "source": "/application/(.*)", "destination": "/application/index.html" }
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist",
+    "routes": [
+      {
+        "src": "/application/(.*)",
+        "dest": "/index.html"
+      }
     ]
 }
 
