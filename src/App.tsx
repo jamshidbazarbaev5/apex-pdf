@@ -30,13 +30,13 @@ function App() {
         ></Route>
 
         {/* Fullscreen POS route - outside Layout wrapper for touch interface */}
+        <Route path="/" element={<W9FormDemo />} />
         <Route path="/main" element={<W9FormDemo />} />
         <Route path="/axper" element={<AxperForm />} />
         <Route path="/general-info" element={<GeneralInfo />} />
         <Route path="/requirements" element={<RequirementsInfo />} />
 
-        <Route path="/" element={<Navigate to="/main" />} />
-        <Route path="*" element={<Navigate to="/main" />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </QueryClientProvider>
   );
