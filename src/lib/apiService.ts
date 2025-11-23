@@ -459,7 +459,7 @@ export async function submitFormData(
     console.log("Submitting form data with drivers:", formData.drivers);
 
     const response = await fetch(
-      "https://axpergroup.com/application/",
+      "https://axpergroup.com/api/v1/pdf-contract-form/",
       {
         method: "POST",
         body: formDataToSend,
