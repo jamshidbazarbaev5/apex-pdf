@@ -4,24 +4,24 @@ interface Props {
   pageNumber?: number;
 }
 
-export const AgreementAppendix = ({ pageNumber = 18 }: Props) => {
+export const AgreementAppendix = ({ pageNumber = 21 }: Props) => {
   return (
     <>
       {/* Certificate of Insurance */}
       <DocumentSheet>
         <div className="flex justify-center mb-8">
-          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "16px" }}>
+          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "18px" }}>
             APPENDIX TO APPLICATION
           </h2>
         </div>
 
         <div className="flex justify-center mb-8">
-          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "16px" }}>
+          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "18px" }}>
             CERTIFICATE OF INSURANCE
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "16px" }}>
+        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "18px" }}>
           <p className="font-bold">Additional Insured:</p>
           <p className="font-bold">AXPER LLC</p>
           <p>1673 REED DR</p>
@@ -50,19 +50,19 @@ drivers!
         </div>
 
         <div className="absolute bottom-12 left-0 right-0 text-center">
-          <span className="font-serif" style={{ fontSize: "16px" }}>{pageNumber}</span>
+          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber}</span>
         </div>
       </DocumentSheet>
 
       {/* Driver Instructions */}
       <DocumentSheet>
         <div className="flex justify-center mb-8">
-          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "16px" }}>
+          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "18px" }}>
             APPENDIX TO AGREEMENT - DRIVER INSTRUCTIONS
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "16px" }}>
+        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "18px" }}>
           <div className="text-[#1e4e8c] font-bold">I. BIDS</div>
 
           <p>
@@ -115,7 +115,7 @@ drivers!
             DRIVER(S) HAS UNEXPECTED ISSUE ON THE ROAD IT’S
           </p>
           <p>
-            <span className="font-bold">A.</span> I MUST TO REPORT ABOUT THE
+            <span className="font-bold">A.</span>  MUST TO REPORT ABOUT THE
             SITUATION IMMEDIATELY TO OPERATIONS (940-281-5452) AND GIVE ALL THE
             INFORMATION ON WHAT HAPPENED, 25 ETA, SEND PICTURE OF THE LOAD IN
             THE TRUCK (IN CASE OF CAR ACCIDENT), RECEIPT FROM REPAIR SHOP (IF
@@ -127,7 +127,7 @@ drivers!
           </div>
 
           <p>
-            <span className="font-bold">A.</span> I. IF SHIPPER OR CONSIGNEE
+            <span className="font-bold">A.</span>  IF SHIPPER OR CONSIGNEE
             ASKS TO LOAD/UNLOAD TRUCK BY HANDS YOU OR YOUR DRIVER(S) MUST REPORT
             THIS TO THE OPERATIONS (940-281-5452) NO TOUCH TO THE LOAD WHILE THE
             DISPATCHER WILL INFORM IF WE YOU NEED TO DO IT OR NOT
@@ -142,19 +142,19 @@ CONFIRMING WITH
         </div>
 
         <div className="absolute bottom-6 left-0 right-0 text-center">
-          <span className="font-serif" style={{ fontSize: "16px" }}>{pageNumber + 1}</span>
+          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber + 1}</span>
         </div>
       </DocumentSheet>
 
       {/* Contact Information */}
       <DocumentSheet>
         <div className="flex justify-center mb-8">
-          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "16px" }}>
+          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "18px" }}>
             CONTACT INFORMATION
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "16px" }}>
+        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "18px" }}>
           <p>
             • Please send the signed copy of the contract to AXPER LLC via email
             to:{" "}
@@ -180,7 +180,7 @@ CONFIRMING WITH
         </div>
 
         <div className="absolute bottom-12 left-0 right-0 text-center">
-          <span className="font-serif" style={{ fontSize: "16px" }}>{pageNumber + 2}</span>
+          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber + 2}</span>
         </div>
       </DocumentSheet>
     </>

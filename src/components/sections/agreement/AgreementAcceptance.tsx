@@ -8,7 +8,7 @@ interface Props {
   pageNumber?: number;
 }
 
-export const AgreementAcceptance = ({ pageNumber = 17 }: Props) => {
+export const AgreementAcceptance = ({ pageNumber = 20 }: Props) => {
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.form);
 
@@ -19,10 +19,10 @@ export const AgreementAcceptance = ({ pageNumber = 17 }: Props) => {
   return (
     <DocumentSheet>
       <div className="flex justify-center mb-8">
-        <h2 className="text-[#1e4e8c] font-bold font-serif text-base uppercase tracking-wide">12. ACCEPTANCE AND ACKNOWLEDGEMENTS</h2>
+        <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "18px" }}>12. ACCEPTANCE AND ACKNOWLEDGEMENTS</h2>
       </div>
 
-      <div className="max-w-4xl mx-auto space-y-4 font-serif text-black text-base leading-relaxed text-justify">
+      <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "18px" }}>
         <p>
           I am authorized to execute the contract set out above dated between AXPER LLC and{" "}
           <input
@@ -73,7 +73,7 @@ THAT IS THE "OWNER-OPERATOR" AS THAT TERM IS USED IN THE AGREEMENT.
 
         <div className="grid grid-cols-2 gap-8 mt-12">
           <div>
-            <div className="font-bold text-base mb-4">COMPANY:</div>
+            <div className="font-bold" style={{ fontSize: "18px" }}>COMPANY:</div>
             <div className="space-y-3 text-sm">
               <p className="font-bold">AXPER LLC</p>
               <p>NAME: <span className="text-[#2563eb]">BIBIZADA WILKINSON</span></p>
@@ -89,7 +89,7 @@ THAT IS THE "OWNER-OPERATOR" AS THAT TERM IS USED IN THE AGREEMENT.
           </div>
 
           <div>
-            <div className="font-bold text-base mb-4">OWNER-OPERATOR:</div>
+            <div className="font-bold" style={{ fontSize: "18px" }}>OWNER-OPERATOR:</div>
             <div className="space-y-3 text-sm">
               <input
                 type="text"
@@ -148,7 +148,7 @@ THAT IS THE "OWNER-OPERATOR" AS THAT TERM IS USED IN THE AGREEMENT.
       </div>
 
       <div className="absolute bottom-12 left-0 right-0 text-center">
-        <span className="font-serif text-base">{pageNumber}</span>
+        <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber}</span>
       </div>
     </DocumentSheet>
   );

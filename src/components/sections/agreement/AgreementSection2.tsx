@@ -18,10 +18,10 @@ export const AgreementSection2 = ({ pageNumber = 8 }: Props) => {
   return (
     <DocumentSheet>
       <div className="flex justify-center mb-8">
-        <h2 className="text-[#1e4e8c] font-bold font-serif text-base uppercase tracking-wide">2. PAYMENT</h2>
+        <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "18px" }}>2. PAYMENT</h2>
       </div>
 
-      <div className="max-w-4xl mx-auto space-y-4 font-serif text-black text-base leading-relaxed text-justify">
+      <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "18px" }}>
         <p>
           <span className="font-bold">2.1</span> All Bill of Ladings must be emailed to{" "}
           <span className="text-[#2563eb] underline">ops@axpergroup.com</span> via Cam Scan mobile application or equivalent right after delivery. BOLs must be in .pdf format only.
@@ -62,7 +62,7 @@ Saturday/Sunday will be paid in 2-3 days starting from Monday.
 
         <div className="flex gap-8 mt-12">
           <div className="flex-1">
-            <div className="font-bold text-base mb-4">Signature</div>
+            <div className="font-bold" style={{ fontSize: "18px" }}>Signature</div>
             <SignButton
               onChange={(value) => handleChange("agreement2Signature", value)}
               placeholder="Click to add signature"
@@ -71,8 +71,8 @@ Saturday/Sunday will be paid in 2-3 days starting from Monday.
         </div>
       </div>
 
-      <div className="absolute bottom-12 left-0 right-0 text-center">
-        <span className="font-serif text-base">{pageNumber}</span>
+      <div className="absolute bottom-8 left-0 right-0 text-center">
+        <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber}</span>
       </div>
     </DocumentSheet>
   );

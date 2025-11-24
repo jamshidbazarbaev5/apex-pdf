@@ -34,7 +34,7 @@ const InfoRow = ({ label, name, type = 'text' }: { label: string, name?: string,
   );
 };
 
-export const CompanyInfoPage = ({ pageNumber = 2 }: { pageNumber?: number }) => {
+export const CompanyInfoPage = ({ pageNumber = 3 }: { pageNumber?: number }) => {
   return (
     <DocumentSheet>
       {/* Logo */}

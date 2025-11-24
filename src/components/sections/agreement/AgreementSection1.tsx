@@ -26,7 +26,7 @@ export const AgreementSection1 = ({ pageNumber = 6 }: Props) => {
           <div className="text-[#2563eb] font-bold text-xl mt-5 mb-12">Owner-Operator AGREEMENT</div>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black text-base leading-relaxed text-justify">
+        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "18px" }}>
           <p>
             THIS AGREEMENT made this day of{" "}
             <input
@@ -88,8 +88,8 @@ export const AgreementSection1 = ({ pageNumber = 6 }: Props) => {
           </p>
         </div>
 
-        <div className="absolute bottom-12 left-0 right-0 text-center">
-          <span className="font-serif text-base">{pageNumber}</span>
+        <div className="absolute bottom-6 left-0 right-0 text-center">
+          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber}</span>
         </div>
       </DocumentSheet>
 
@@ -140,12 +140,14 @@ the correct number of vacant miles.
           </p>
 
           <p>
-            <span className="font-bold">1.10</span> If the Owner-Operator arrives late to a pick-up or delivery location without notifying Company Dispatch, a 25% fee reduction will be automatically applied.
-          </p>
+            <span className="font-bold">1.10</span> If the Owner-Operator arrives late to a pick-up or delivery location without notifying
+Company Dispatch, a 25% fee reduction will be automatically applied. Owner-Operator must
+notify CompanyDispatch if he or she wishes to complete a collection or delivery earlier than
+scheduled. Otherwise, the Owner-Operator could incur additional costs.</p>
 
           <div className="flex gap-8 mt-12">
             <div className="flex-1">
-              <div className="font-bold text-base mb-4">Signature</div>
+              <div className="font-bold" style={{ fontSize: "18px" }}>Signature</div>
               <SignButton
                 onChange={(value) => handleChange("agreement1Signature", value)}
                 placeholder="Click to add signature"
@@ -154,8 +156,8 @@ the correct number of vacant miles.
           </div>
         </div>
 
-        <div className="absolute bottom-12 left-0 right-0 text-center">
-          <span className="font-serif text-base">{pageNumber + 1}</span>
+        <div className="absolute bottom-8 left-0 right-0 text-center">
+          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber + 1}</span>
         </div>
       </DocumentSheet>
     </>

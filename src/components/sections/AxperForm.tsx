@@ -3,7 +3,7 @@ import { updateFormData } from "@/store/formSlice";
 import { SignButton } from "@/components/ui/SignButton";
 import { DocumentSheet } from "./DocumentSheet";
 
-export default function AxperForm({ pageNumber = 5 }: { pageNumber?: number }) {
+export default function AxperForm({ pageNumber = 6 }: { pageNumber?: number }) {
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.form);
 

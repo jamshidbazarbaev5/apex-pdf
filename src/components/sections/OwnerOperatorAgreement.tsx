@@ -16,8 +16,8 @@ export default function OwnerOperatorAgreement({
       <AgreementSection2 pageNumber={startPageNumber + 2} />
       <AgreementSection3and4 pageNumber={startPageNumber + 3} />
       <AgreementSections5to11 pageNumber={startPageNumber + 5} />
-      <AgreementAcceptance pageNumber={startPageNumber + 11} />
-      <AgreementAppendix pageNumber={startPageNumber + 12} />
+      <AgreementAcceptance pageNumber={startPageNumber + 12} />
+      <AgreementAppendix pageNumber={startPageNumber + 13} />
     </>
   );
 }

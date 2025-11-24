@@ -19,10 +19,10 @@ export const AgreementSection3and4 = ({ pageNumber = 9 }: Props) => {
       {/* Section 3 - Deductions */}
       <DocumentSheet>
         <div className="flex justify-center mb-8">
-          <h2 className="text-[#1e4e8c] font-bold font-serif text-base uppercase tracking-wide">3. DEDUCTIONS, LIABILITY LIMITATION POLICY</h2>
+          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "18px" }}>3. DEDUCTIONS, LIABILITY LIMITATION POLICY</h2>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black text-base leading-relaxed text-justify">
+        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "18px" }}>
           <p>
             <span className="font-bold">3.1</span> If the Owner-Operator departs the cargo facility with damaged goods and fails to notify
 Company Dispatch, he/she is exclusively responsible for any costs, claims, or rate reductions that
@@ -68,7 +68,7 @@ supporting documentation.
 
           <div className="flex gap-8 mt-12">
             <div className="flex-1">
-              <div className="font-bold text-base mb-4">Signature</div>
+              <div className="font-bold" style={{ fontSize: "18px" }}>Signature</div>
               <SignButton
                 onChange={(value) => handleChange("agreement3Signature", value)}
                 placeholder="Click to add signature"
@@ -77,18 +77,18 @@ supporting documentation.
           </div>
         </div>
 
-        <div className="absolute bottom-12 left-0 right-0 text-center">
-          <span className="font-serif text-base">{pageNumber}</span>
+        <div className="absolute bottom-6 left-0 right-0 text-center">
+          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber}</span>
         </div>
       </DocumentSheet>
 
       {/* Section 4 - Claims */}
       <DocumentSheet>
         <div className="flex justify-center mb-8">
-          <h2 className="text-[#1e4e8c] font-bold font-serif text-base uppercase tracking-wide">4. CLAIMS</h2>
+          <h2 className="text-[#1e4e8c] font-bold font-serif uppercase tracking-wide" style={{ fontSize: "18px" }}>4. CLAIMS</h2>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black text-base leading-relaxed text-justify">
+        <div className="max-w-4xl mx-auto space-y-4 font-serif text-black leading-relaxed text-justify" style={{ fontSize: "18px" }}>
           <p className="text-center font-bold">Any claims will be handled in the following manner:</p>
 
           <p>
@@ -150,7 +150,7 @@ waives any immunity it may have unto itself.
 
           <div className="flex gap-8 mt-12">
             <div className="flex-1">
-              <div className="font-bold text-base mb-4">Signature</div>
+              <div className="font-bold" style={{ fontSize: "18px" }}>Signature</div>
               <SignButton
                 onChange={(value) => handleChange("agreement4Signature", value)}
                 placeholder="Click to add signature"
@@ -159,8 +159,8 @@ waives any immunity it may have unto itself.
           </div>
         </div>
 
-        <div className="absolute bottom-12 left-0 right-0 text-center">
-          <span className="font-serif text-base">{pageNumber + 1}</span>
+        <div className="absolute bottom-8 left-0 right-0 text-center">
+          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber + 1}</span>
         </div>
       </DocumentSheet>
     </>

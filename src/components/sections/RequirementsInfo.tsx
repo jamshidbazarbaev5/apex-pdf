@@ -1,7 +1,7 @@
 import { DocumentSheet } from './DocumentSheet';
 
 const BulletItem = ({ children }: { children: React.ReactNode }) => (
-  <li className="font-serif text-black text-[14px] leading-relaxed mb-4 pl-6 relative text-justify">
+  <li className="font-serif text-black text-[18px] leading-relaxed mb-4 pl-6 relative text-justify">
     <span className="absolute left-0">●</span>
     {children}
   </li>

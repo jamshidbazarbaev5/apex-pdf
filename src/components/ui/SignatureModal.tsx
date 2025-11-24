@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Button } from "./button";
+import "./SignatureModal.css";
 
 interface SignatureModalProps {
   isOpen: boolean;
@@ -169,79 +170,61 @@ export function SignatureModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 overflow-hidden">
-      <div className="bg-white w-full max-w-2xl max-h-[95vh] rounded-lg shadow-2xl overflow-hidden flex flex-col">
+    <div className="signature-modal-container">
+      <div className="signature-modal-box">
         {/* Header - No scroll */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-200 shrink-0 bg-white">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900">{title}</h2>
+        <div className="signature-modal-header">
+          <h2>{title}</h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-2xl transition"
+            className="signature-modal-close-btn"
           >
             ✕
           </button>
         </div>
 
         {/* Tabs - No scroll */}
-        <div className="flex gap-2 md:gap-4 border-b border-gray-200 px-6 py-0 overflow-x-auto shrink-0 bg-white">
+        <div className="signature-modal-tabs">
           <button
             onClick={() => setMode("type")}
-            className={`py-4 px-3 md:px-4 text-sm font-medium transition whitespace-nowrap border-b-2 ${
-              mode === "type"
-                ? "border-blue-600 text-blue-600"
-                : "border-transparent text-gray-600 hover:text-gray-900"
-            }`}
+            className={`signature-modal-tab ${mode === "type" ? "active" : ""}`}
           >
             Type
           </button>
           <button
             onClick={() => setMode("draw")}
-            className={`py-4 px-3 md:px-4 text-sm font-medium transition whitespace-nowrap border-b-2 ${
-              mode === "draw"
-                ? "border-blue-600 text-blue-600"
-                : "border-transparent text-gray-600 hover:text-gray-900"
-            }`}
+            className={`signature-modal-tab ${mode === "draw" ? "active" : ""}`}
           >
             Draw
           </button>
           <button
             onClick={() => setMode("upload")}
-            className={`py-4 px-3 md:px-4 text-sm font-medium transition whitespace-nowrap border-b-2 ${
-              mode === "upload"
-                ? "border-blue-600 text-blue-600"
-                : "border-transparent text-gray-600 hover:text-gray-900"
-            }`}
+            className={`signature-modal-tab ${mode === "upload" ? "active" : ""}`}
           >
             Upload
           </button>
         </div>
 
         {/* Content - Scrollable */}
-        <div className="flex-1 overflow-y-auto px-6 py-6">
+        <div className="signature-modal-content">
           {mode === "type" && (
-            <div className="space-y-3 md:space-y-4">
+            <div className="signature-modal-section">
               <div>
-                <label className="block text-xs md:text-sm font-semibold mb-2">
-                  Your Full Name
-                </label>
+                <label>Your Full Name</label>
                 <input
                   type="text"
                   value={typedSignature}
                   onChange={(e) => setTypedSignature(e.target.value)}
                   placeholder="Your Full Name"
-                  className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-md text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
                   autoFocus
                 />
               </div>
 
               <div>
-                <label className="block text-xs md:text-sm font-semibold mb-2">
-                  Signature Style
-                </label>
+                <label>Signature Style</label>
                 <select
                   value={signatureFont}
                   onChange={(e) => setSignatureFont(e.target.value)}
-                  className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-md text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="elegant">Elegant</option>
                   <option value="modern">Modern</option>
@@ -251,25 +234,14 @@ export function SignatureModal({
                 </select>
               </div>
 
-              <div className="p-3 md:p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
-                <p className="text-xs md:text-sm text-gray-600 mb-3 md:mb-4">Preview:</p>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    border: "1px solid #d1d5db",
-                    borderRadius: "0.375rem",
-                    backgroundColor: "#ffffff",
-                    minHeight: "100px",
-                    padding: "16px",
-                  }}
-                >
+              <div className="signature-modal-preview">
+                <p className="signature-modal-preview-title">Preview:</p>
+                <div className="signature-modal-preview-box">
                   {typedSignature ? (
                     <div
                       style={{
                         fontFamily: SIGNATURE_FONTS[signatureFont as keyof typeof SIGNATURE_FONTS],
-                        fontSize: "clamp(36px, 8vw, 60px)",
+                        fontSize: "clamp(28px, 5vw, 48px)",
                         fontStyle: "italic",
                         fontWeight: 400,
                         color: "#1a202c",
@@ -283,12 +255,7 @@ export function SignatureModal({
                       {typedSignature}
                     </div>
                   ) : (
-                    <div
-                      style={{
-                        color: "#a0aec0",
-                        fontSize: "12px",
-                      }}
-                    >
+                    <div style={{color: "#a0aec0", fontSize: "0.875rem"}}>
                       Enter your name to preview
                     </div>
                   )}
@@ -298,8 +265,8 @@ export function SignatureModal({
           )}
 
           {mode === "draw" && (
-            <div className="space-y-3 md:space-y-4">
-              <p className="text-xs md:text-sm text-gray-600">
+            <div className="signature-modal-section">
+              <p style={{fontSize: "0.875rem", color: "#4b5563", margin: "0 0 0.75rem 0"}}>
                 Draw your signature using your mouse, trackpad, or touch.
               </p>
               <canvas
@@ -333,13 +300,13 @@ export function SignatureModal({
                   }
                 }}
                 onTouchEnd={() => setIsDrawing(false)}
-                className="w-full h-48 md:h-64 border-2 border-gray-300 rounded-lg cursor-crosshair bg-white touch-none"
+                className="signature-modal-canvas"
               />
-              <div className="flex justify-end">
+              <div style={{display: "flex", justifyContent: "flex-end"}}>
                 <Button
                   onClick={clearCanvas}
                   variant="outline"
-                  className="px-4 md:px-6 text-sm md:text-base"
+                  className="px-4 py-2 text-sm"
                 >
                   Clear
                 </Button>
@@ -348,13 +315,12 @@ export function SignatureModal({
           )}
 
           {mode === "upload" && (
-            <div className="space-y-3 md:space-y-4">
-              <p className="text-xs md:text-sm text-gray-600">
+            <div className="signature-modal-section">
+              <p style={{fontSize: "0.875rem", color: "#4b5563", margin: "0 0 0.75rem 0"}}>
                 Upload an image of your handwritten signature.
               </p>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 md:p-8 text-center bg-gray-50">
+              <div className="signature-modal-upload">
                 <svg
-                  className="mx-auto h-8 md:h-12 w-8 md:w-12 text-gray-400 mb-3 md:mb-4"
                   stroke="currentColor"
                   fill="none"
                   viewBox="0 0 48 48"
@@ -366,22 +332,18 @@ export function SignatureModal({
                     strokeLinejoin="round"
                   />
                 </svg>
-                <p className="text-xs md:text-sm text-gray-600 mb-1 md:mb-2">
-                  Click to upload or drag and drop
-                </p>
-                <p className="text-xs text-gray-500 mb-3 md:mb-4">
-                  PNG, JPG, GIF up to 10MB
-                </p>
+                <p>Click to upload or drag and drop</p>
+                <p>PNG, JPG, GIF up to 10MB</p>
                 <input
                   ref={fileInputRef}
                   type="file"
                   accept="image/*"
                   onChange={handleFileUpload}
-                  className="hidden"
+                  style={{display: "none"}}
                 />
                 <Button
                   onClick={() => fileInputRef.current?.click()}
-                  className="px-4 md:px-6 text-sm md:text-base"
+                  className="px-4 py-2 text-sm"
                 >
                   Select Image
                 </Button>
@@ -391,20 +353,9 @@ export function SignatureModal({
         </div>
 
         {/* Footer - Always visible, no scroll */}
-        <div className="flex justify-end gap-3 px-6 py-5 border-t border-gray-200 bg-white shrink-0">
-          <Button 
-            onClick={onClose} 
-            variant="outline" 
-            className="px-6 text-sm"
-          >
-            Cancel
-          </Button>
-          <Button 
-            onClick={handleSign} 
-            className="px-8 text-sm bg-blue-600 hover:bg-blue-700 text-white"
-          >
-            Sign
-          </Button>
+        <div className="signature-modal-footer">
+          <button onClick={onClose}>Cancel</button>
+          <button onClick={handleSign} className="primary">Sign</button>
         </div>
       </div>
     </div>

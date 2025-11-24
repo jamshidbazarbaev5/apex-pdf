@@ -25,12 +25,12 @@ const W9FormDemo = () => {
 
   // Calculate dynamic page numbers
   const pageNumbers = {
-    requirementsInfo: 1,
-    companyInfo: 2,
-    driverInfo: 3,
-    vehicleInfo: 4,
-    // Driver detail pages start at page 5
-    firstDriverDetailsStart: 5,
+    requirementsInfo: 1, // Has 2 pages internally: 1 (Basic) and 2 (Vehicle)
+    companyInfo: 3,
+    driverInfo: 4,
+    vehicleInfo: 5,
+    // Driver detail pages start at page 6
+    firstDriverDetailsStart: 6,
     // After all driver pages, remaining pages continue
   };
 
@@ -41,15 +41,15 @@ const W9FormDemo = () => {
 
   // Calculate page numbers for remaining pages
   const remainingPagesStart = driverDetailPagesEndPage + 1;
-  const axperFormPage = remainingPagesStart;
-  const ownerOperatorPage = remainingPagesStart + 1;
-  const w9FormPage = remainingPagesStart + 2;
-  const fatcaPage = remainingPagesStart + 3;
-  const certificationPage = remainingPagesStart + 4;
-  const w9Page4Page = remainingPagesStart + 5;
-  const privacyNoticePage = remainingPagesStart + 6;
-  const directDepositPage = remainingPagesStart + 7;
-  const submitPage = remainingPagesStart + 8;
+  const axperFormPage = remainingPagesStart; // Has 2 pages internally
+  const ownerOperatorPage = remainingPagesStart + 2; // Starts after AxperForm's 2 pages
+  const w9FormPage = remainingPagesStart + 3;
+  const fatcaPage = remainingPagesStart + 4;
+  const certificationPage = remainingPagesStart + 5;
+  const w9Page4Page = remainingPagesStart + 6;
+  const privacyNoticePage = remainingPagesStart + 7;
+  const directDepositPage = remainingPagesStart + 8;
+  const submitPage = remainingPagesStart + 9;
 
   return (
     <>

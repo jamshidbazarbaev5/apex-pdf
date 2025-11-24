@@ -27,7 +27,7 @@ const Row = ({
   );
   return (
     <div className={`flex items-end gap-4 mb-2 ${className}`}>
-      <span className="font-serif text-black text-[13px] uppercase shrink-0 w-[240px] font-bold leading-tight">
+      <span className="font-serif text-black text-[18px] uppercase shrink-0 w-[240px] font-bold leading-tight">
         {label}
       </span>
       <div className={`flex-1 ${borderClasses} relative top-1`}>
