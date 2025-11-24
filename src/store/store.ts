@@ -12,10 +12,18 @@ const preloadedState = (() => {
 
   const savedForm = loadFormFromDraft();
   if (savedForm) {
-    // Ensure companySignature has a fallback if not set
+    // Ensure companySignature has correct path with base prefix
+    // Fix old paths that don't include /application/
+    let companySignature = savedForm.companySignature;
+    if (companySignature === "/sign.png" || companySignature === "sign.png") {
+      companySignature = "/application/sign.png";
+    } else if (!companySignature) {
+      companySignature = "/application/sign.png";
+    }
+    
     const mergedForm = {
       ...savedForm,
-      companySignature: savedForm.companySignature || "/sign.png",
+      companySignature,
     } as FormData;
     return {
       form: mergedForm,

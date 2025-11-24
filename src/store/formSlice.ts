@@ -307,7 +307,7 @@ const initialState: FormData = {
   date2: "",
 
   // Company Signature
-  companySignature: "/sign.png", // Default company signature from public folder
+  companySignature: "/application/sign.png", // Default company signature from public folder
   companySignatureDate: "",
 
   // W9 Form Fields

@@ -16,9 +16,7 @@ export const FieldNavigator: React.FC<FieldNavigatorProps> = ({
   compact = false,
 }) => {
   const {
-    unfilledFields,
     currentField,
-    currentFieldIndex,
     totalUnfilledCount,
     goToFirstUnfilledField,
     goToNextUnfilledField,
@@ -168,7 +166,7 @@ export const FieldNavigator: React.FC<FieldNavigatorProps> = ({
         )}
 
         {/* Field list (optional, collapsed by default) */}
-        {!compact && (
+        {/* {!compact && (
           <details className="text-sm">
             <summary className="cursor-pointer text-yellow-700 hover:text-yellow-800 font-medium">
               View all missing fields ({totalUnfilledCount})
@@ -192,7 +190,7 @@ export const FieldNavigator: React.FC<FieldNavigatorProps> = ({
               ))}
             </div>
           </details>
-        )}
+        )} */}
       </div>
     </div>
   );

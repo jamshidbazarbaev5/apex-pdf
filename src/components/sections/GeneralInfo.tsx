@@ -25,7 +25,7 @@ export default function GeneralInfo() {
     subsectionTitle: {
       color: '#000',
       fontWeight: 'bold',
-      fontSize: '12px',
+      fontSize: '13px',
       marginTop: '25px',
       marginBottom: '15px',
       letterSpacing: '0.5px'

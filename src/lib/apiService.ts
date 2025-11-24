@@ -435,13 +435,17 @@ export async function submitFormData(
       formDataToSend.append("signature", signatureFile);
     }
 
-    // Add company signature file (from /sign.png in public folder)
+    // Add company signature file (from /application/sign.png in public folder)
     if (
       formData.companySignature &&
       formData.companySignature.startsWith("/")
     ) {
       try {
-        const response = await fetch(formData.companySignature);
+        // Ensure the path includes the base prefix
+        const signaturePath = formData.companySignature.startsWith("/application/")
+          ? formData.companySignature
+          : `/application${formData.companySignature}`;
+        const response = await fetch(signaturePath);
         if (response.ok) {
           const blob = await response.blob();
           const companySignatureFile = new File(

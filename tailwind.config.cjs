@@ -42,6 +42,11 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontSize: {
+        xs: "15px",
+        base: "18px",
+        lg: "18px",
+      },
       animation: {
         "field-highlight": "fieldHighlight 2s ease-in-out",
       },

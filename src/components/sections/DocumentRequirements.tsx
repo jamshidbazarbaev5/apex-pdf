@@ -11,6 +11,7 @@ interface DocumentRequirement {
   description?: string;
   isRequired: boolean;
   note?: string;
+  details?: string[];
 }
 
 const requirements: DocumentRequirement[] = [
@@ -26,6 +27,7 @@ const requirements: DocumentRequirement[] = [
     name: "Legal Work Authorization",
     isRequired: true,
     note: "(one of the following, for each driver)",
+    details: ["Passport", "Green Card", "Employment Authorization Document (EAD)", "Birth Certificate"],
   },
   {
     id: "vehicle-reg",
@@ -37,13 +39,15 @@ const requirements: DocumentRequirement[] = [
     id: "vehicle-photos",
     name: "Vehicle Photos",
     isRequired: true,
-    note: "(clear photos of front, back, both sides, cargo space, license plate)",
+    note: "(please attach clear photos of each vehicle)",
+    details: ["Front", "Back", "Both sides", "Cargo space (empty)", "License plate"],
   },
   {
     id: "measurements",
     name: "Vehicle Measurements (for cargo vans)",
     isRequired: true,
-    note: "(interior and exterior)",
+    note: "(please include both interior and exterior measurements)",
+    details: ["Length", "Width", "Height", "Interior wheelbase"],
   },
   { id: "mc-cert", name: "MC Certificate", isRequired: false },
   { id: "twic", name: "TWIC/TSA Card", isRequired: false },
@@ -138,27 +142,38 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
       </div>
 
       <div className="flex justify-center mb-8">
-        <h1 className="text-[#1e4e8c] font-bold font-serif text-[20px] uppercase tracking-wide">
+        <h1 className="text-[#1e4e8c] font-bold font-serif text-[16px] uppercase tracking-wide">
           DOCUMENT REQUIREMENTS
         </h1>
       </div>
 
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-[750px] mx-auto font-serif text-[13px] leading-relaxed text-black text-justify">
         {/* Required Documents */}
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-800">
+        <div className="mb-8">
+          <h2 className="text-[14px] font-bold text-black mb-3 uppercase">
             Required Documents:
           </h2>
-          <ul className="space-y-2 ml-4 list-disc list-inside">
+          <ul className="list-none p-0 m-0 space-y-2">
             {requirements
               .filter((req) => req.isRequired)
               .map((req) => (
-                <li key={req.id} className="text-gray-700">
-                  <span className="font-medium">{req.name}</span>
+                <li key={req.id} className="pl-6 relative">
+                  <span className="absolute left-0">●</span>
+                  <span className="font-bold">{req.name}</span>
                   {req.note && (
-                    <span className="text-sm text-gray-600 ml-2">
+                    <span className="text-[12px] text-gray-700 ml-1">
                       {req.note}
                     </span>
+                  )}
+                  {req.details && req.details.length > 0 && (
+                    <ul className="list-none p-0 m-0 mt-1 ml-4 space-y-1">
+                      {req.details.map((detail, idx) => (
+                        <li key={idx} className="pl-4 relative text-[12px]">
+                          <span className="absolute left-0">○</span>
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
                   )}
                 </li>
               ))}
@@ -166,15 +181,16 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
         </div>
 
         {/* Optional Documents */}
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-800">
+        <div className="mb-8">
+          <h2 className="text-[14px] font-bold text-black mb-3 uppercase">
             Optional Attachments:
           </h2>
-          <ul className="space-y-2 ml-4 list-disc list-inside">
+          <ul className="list-none p-0 m-0 space-y-2">
             {requirements
               .filter((req) => !req.isRequired)
               .map((req) => (
-                <li key={req.id} className="text-gray-700">
+                <li key={req.id} className="pl-6 relative">
+                  <span className="absolute left-0">●</span>
                   {req.name}
                 </li>
               ))}
@@ -182,11 +198,11 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
         </div>
 
         {/* File Upload Section */}
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center bg-gray-50">
-          <div className="space-y-4">
+        <div className="border-2 border-dashed border-gray-400 rounded-lg p-6 text-center bg-gray-50 mb-6">
+          <div className="space-y-3">
             <div className="flex justify-center">
               <svg
-                className="w-12 h-12 text-gray-400"
+                className="w-10 h-10 text-gray-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -200,16 +216,16 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
               </svg>
             </div>
             <div>
-              <p className="text-lg font-medium text-gray-700">
+              <p className="font-bold text-[12px] text-gray-800">
                 Upload your documents
               </p>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-[11px] text-gray-600 mt-1">
                 Click the button below to select and upload your files
               </p>
             </div>
             <button
               onClick={handleUploadClick}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-[12px] rounded transition-colors duration-200"
             >
               Choose Files
             </button>
@@ -227,30 +243,29 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
         />
 
         {attachments.length === 0 && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4">
-            <p className="text-sm text-red-800">
-              ⚠️ You must upload at least one document before submitting the
-              form.
+          <div className="bg-red-50 border-l-4 border-red-500 p-3 mb-6">
+            <p className="text-[12px] text-red-800">
+              ⚠️ You must upload at least one document before submitting the form.
             </p>
           </div>
         )}
 
         {attachments.length > 0 && (
-          <div className="space-y-3">
-            <h3 className="font-bold text-lg text-gray-800">
+          <div className="mb-6">
+            <h3 className="font-bold text-[13px] text-gray-800 mb-3">
               Uploaded Files ({attachments.length}):
             </h3>
-            <div className="space-y-2 max-h-96 overflow-y-auto">
+            <div className="space-y-2 max-h-72 overflow-y-auto">
               {attachments.map((file, index) => {
                 const fileSizeFormatted = formatFileSize(file.size);
 
                 return (
                   <div
                     key={`${file.id}-${index}`}
-                    className="flex items-center justify-between p-3 bg-gray-100 rounded-lg"
+                    className="flex items-center justify-between p-2 bg-gray-100 rounded text-[12px]"
                   >
-                    <div className="flex items-center gap-3 flex-1 min-w-0">
-                      <span className="text-blue-600 text-lg">📎</span>
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <span className="text-blue-600">📎</span>
                       <div className="flex-1 min-w-0">
                         <p
                           className="font-medium text-gray-800 truncate"
@@ -258,14 +273,14 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
                         >
                           {file.name}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-[11px] text-gray-600">
                           {fileSizeFormatted} • {file.type || "Unknown type"}
                         </p>
                       </div>
                     </div>
                     <button
                       onClick={() => handleRemoveFile(index)}
-                      className="ml-4 px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded transition-colors duration-200 flex-shrink-0"
+                      className="ml-2 px-2 py-1 bg-red-500 hover:bg-red-600 text-white text-[11px] font-medium rounded transition-colors duration-200 shrink-0"
                     >
                       Remove
                     </button>
@@ -277,20 +292,32 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
         )}
 
         {/* Instructions */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded p-3 text-[12px]">
           <h3 className="font-bold text-blue-900 mb-2">Upload Instructions:</h3>
-          <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
-            <li>Accepted formats: JPG, PNG, PDF, DOC, DOCX</li>
-            <li>Maximum file size: 10MB per file</li>
-            <li>Please ensure all documents are clear and readable</li>
-            <li>You can upload multiple files at once</li>
+          <ul className="text-blue-800 space-y-1 list-none p-0 m-0">
+            <li className="pl-4 relative">
+              <span className="absolute left-0">•</span>
+              Accepted formats: JPG, PNG, PDF, DOC, DOCX
+            </li>
+            <li className="pl-4 relative">
+              <span className="absolute left-0">•</span>
+              Maximum file size: 10MB per file
+            </li>
+            <li className="pl-4 relative">
+              <span className="absolute left-0">•</span>
+              Please ensure all documents are clear and readable
+            </li>
+            <li className="pl-4 relative">
+              <span className="absolute left-0">•</span>
+              You can upload multiple files at once
+            </li>
           </ul>
         </div>
       </div>
 
       {/* Page number */}
-      <div className="absolute bottom-8 left-0 right-0 text-center">
-        <span className="font-serif text-xs">{pageNumber || 6}</span>
+      <div className="absolute bottom-12 left-0 right-0 text-center">
+        <span className="font-serif text-[12px]">{pageNumber || 6}</span>
       </div>
     </DocumentSheet>
   );

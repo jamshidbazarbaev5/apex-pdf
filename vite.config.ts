@@ -8,6 +8,8 @@ export default defineConfig({
   base:"/application/",
   server: {
     middlewareMode: false,
+    host: '0.0.0.0',  // Listen on all network interfaces
+    port: 5173,
   },
   resolve: {
     alias: {
