@@ -471,7 +471,12 @@ export async function submitFormData(
     );
 
     if (!response.ok) {
-      throw new Error(`API Error: ${response.status} ${response.statusText}`);
+      const errorData = await response.json().catch(() => null);
+      const error = new Error(
+        errorData?.message || `API Error: ${response.status} ${response.statusText}`
+      );
+      (error as any).response = { data: errorData };
+      throw error;
     }
 
     return await response.json();

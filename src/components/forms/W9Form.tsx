@@ -1,5 +1,4 @@
 import React from "react";
-import { SignButton } from "@/components/ui/SignButton";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
 // import { AutoSaveStatus } from "@/components/ui/AutoSaveStatus";
@@ -740,32 +739,11 @@ const W9Form: React.FC<{ pageNumber?: number }> = ({}) => {
                   <div className="text-[16px] mb-1 text-center font-bold">
                     Signature of U.S. person
                   </div>
-                  <div className="flex justify-center items-center">
-                    <SignButton
-                      value={formData.signature1}
-                      onChange={(value) => {
-                        dispatch(
-                          updateFormData({
-                            signature1: value,
-                            globalSignature: value,
-                          }),
-                        );
-                      }}
-                      placeholder="Click to add signature"
-                    />
-                  </div>
+                 
                 </div>
                 <div className="w-32 p-2">
                   <div className="text-[16px] mb-1">Date</div>
-                  <input
-                    type="date"
-                    name="date1"
-                    value={formData.date1}
-                    onChange={(e) =>
-                      handleChange(e.target.name, e.target.value)
-                    }
-                    className="w-full border-b border-black outline-none bg-transparent text-[10pt] h-8"
-                  />
+                
                 </div>
               </div>
             </div>

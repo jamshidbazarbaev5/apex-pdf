@@ -120,18 +120,11 @@ THAT IS THE "OWNER-OPERATOR" AS THAT TERM IS USED IN THE AGREEMENT.
               </p>
               <div>
                 <p className="font-bold mb-2">Signature:</p>
-                {formData.acceptanceOwnerSignature ? (
-                  <SignatureDisplay
-                    value={formData.acceptanceOwnerSignature}
-                    label="Owner-Operator Signature"
-                    isReadOnly={false}
-                  />
-                ) : (
-                  <SignButton
-                    onChange={(value) => handleChange("acceptanceOwnerSignature", value)}
-                    placeholder="Click to add signature"
-                  />
-                )}
+                <SignButton
+                  value={formData.acceptanceOwnerSignature}
+                  onChange={(value) => handleChange("acceptanceOwnerSignature", value)}
+                  placeholder="Click to add signature"
+                />
               </div>
               <p>
                 DATE:{" "}

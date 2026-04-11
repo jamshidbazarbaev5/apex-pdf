@@ -1,7 +1,6 @@
 import React, { useRef, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { updateFormData } from "@/store/formSlice";
-import { saveFormToDraft } from "@/lib/localStorage";
 import { fileStorage } from "@/lib/fileStorage";
 import { DocumentSheet } from "./DocumentSheet";
 
@@ -75,17 +74,6 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
       const updatedAttachments = [...attachments, ...newFileMetadata];
       dispatch(updateFormData({ attachments: updatedAttachments }));
 
-      // Save to localStorage (metadata only)
-      const formData = {
-        attachments: updatedAttachments,
-      };
-
-      try {
-        saveFormToDraft(formData);
-      } catch (error) {
-        console.error("Failed to save files to draft:", error);
-      }
-
       // Clear file input
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -105,17 +93,6 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
       // Remove from Redux state
       const updatedAttachments = attachments.filter((_, i) => i !== index);
       dispatch(updateFormData({ attachments: updatedAttachments }));
-
-      // Save to localStorage
-      const formData = {
-        attachments: updatedAttachments,
-      };
-
-      try {
-        saveFormToDraft(formData);
-      } catch (error) {
-        console.error("Failed to save updated attachments to draft:", error);
-      }
     },
     [attachments, dispatch],
   );
@@ -249,7 +226,7 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
             </p>
           </div>
         )}
-
+  
         {attachments.length > 0 && (
           <div className="mb-6">
             <h3 className="font-bold text-[13px] text-gray-800 mb-3">
@@ -297,7 +274,7 @@ export const DocumentRequirements: React.FC<{ pageNumber?: number }> = ({
           <ul className="text-blue-800 space-y-1 list-none p-0 m-0">
             <li className="pl-4 relative">
               <span className="absolute left-0">•</span>
-              Accepted formats: JPG, PNG, PDF, DOC, DOCX
+              Accepted formats: JPG, PNG, PDF, DOC, DOCX,HEIC
             </li>
             <li className="pl-4 relative">
               <span className="absolute left-0">•</span>

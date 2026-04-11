@@ -24,7 +24,8 @@ const preloadedState = (() => {
     const mergedForm = {
       ...savedForm,
       companySignature,
-    } as FormData;
+      attachments: [], // Clear attachments - actual files don't persist across reloads
+    } as unknown as FormData;
     return {
       form: mergedForm,
     };

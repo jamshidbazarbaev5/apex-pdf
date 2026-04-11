@@ -36,9 +36,7 @@ export const AgreementSection2 = ({ pageNumber = 8 }: Props) => {
         </p>
 
         <p>
-          <span className="font-bold">2.4</span> Payments are done every 3 days once the load is done. Payment period begins on
-Monday and ends on Friday. That means that those loads, which were closed on
-Saturday/Sunday will be paid in 2-3 days starting from Monday.
+          <span className="font-bold">2.4</span>  Payments are processed once per week (Friday to Friday) with no fee. The payment schedule depends on the delivery time (Central Time). Deliveries completed any day up to Wednesday 12:00 PM (CST) will be paid on Friday of the same week. Deliveries completed after Wednesday 12:00 PM (CST) through the next Wednesday 12:00 PM (CST) will be paid on Friday of the following week. This means the payment cycle runs from Friday to Friday, and all loads are paid according to this cutoff schedule.
         </p>
 
         <p>

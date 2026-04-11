@@ -140,10 +140,19 @@ export const SubmitFormPage: React.FC<{ pageNumber?: number }> = ({}) => {
       // setTimeout(() => {
       //   navigate("/");
       // }, 2000);
-    } catch (error) {
-      const errorMsg =
-        error instanceof Error ? error.message : "An unknown error occurred";
-      setErrorMessage(`Failed to submit form: ${errorMsg}`);
+    } catch (error: unknown) {
+      let errorMsg = "Something went wrong";
+      
+      if (error && typeof error === "object" && "response" in error) {
+        const response = (error as { response?: { data?: { message?: string } } }).response;
+        if (response?.data?.message) {
+          errorMsg = response.data.message;
+        }
+      } else if (error instanceof Error) {
+        errorMsg = error.message;
+      }
+      
+      setErrorMessage(errorMsg);
       console.error("Submission error:", error);
     } finally {
       setIsSubmitting(false);

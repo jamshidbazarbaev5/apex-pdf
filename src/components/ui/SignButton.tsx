@@ -65,7 +65,10 @@ export function SignButton({
               </button>
             </div>
           ) : (
-            <div className="border-2 border-dashed border-gray-300 rounded px-4 py-3 text-gray-500 text-sm">
+            <div 
+              onClick={() => setIsModalOpen(true)}
+              className="border-2 border-dashed border-gray-300 rounded px-4 py-3 text-gray-500 text-sm cursor-pointer hover:border-gray-400 hover:bg-gray-50 transition-colors"
+            >
               {placeholder}
             </div>
           )}
