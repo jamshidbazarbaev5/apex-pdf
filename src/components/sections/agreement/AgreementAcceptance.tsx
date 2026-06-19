@@ -8,7 +8,7 @@ interface Props {
   pageNumber?: number;
 }
 
-export const AgreementAcceptance = ({ pageNumber = 20 }: Props) => {
+export const AgreementAcceptance = ({ pageNumber = 21 }: Props) => {
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.form);
 

@@ -4,7 +4,7 @@ interface Props {
   pageNumber?: number;
 }
 
-export const AgreementAppendix = ({ pageNumber = 21 }: Props) => {
+ export const AgreementAppendix = ({ pageNumber = 21 }: Props) => {
   return (
     <>
       {/* Certificate of Insurance */}
@@ -142,7 +142,7 @@ CONFIRMING WITH
         </div>
 
         <div className="absolute bottom-6 left-0 right-0 text-center">
-          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber + 1}</span>
+          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber}</span>
         </div>
       </DocumentSheet>
 
@@ -180,7 +180,7 @@ CONFIRMING WITH
         </div>
 
         <div className="absolute bottom-12 left-0 right-0 text-center">
-          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber + 2}</span>
+          <span className="font-serif" style={{ fontSize: "18px" }}>{pageNumber + 1}</span>
         </div>
       </DocumentSheet>
     </>

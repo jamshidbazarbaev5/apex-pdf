@@ -7,7 +7,7 @@ interface Props {
   pageNumber?: number;
 }
 
-export const AgreementSections5to11 = ({ pageNumber = 13 }: Props) => {
+export const AgreementSections5to11 = ({ pageNumber = 11 }: Props) => {
   const dispatch = useAppDispatch();
 
   const handleChange = (field: string, value: string) => {
